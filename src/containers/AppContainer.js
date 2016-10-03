@@ -1,25 +1,27 @@
 import React, { Component, PropTypes } from 'react'
-import { browserHistory, Router } from 'react-router'
+import { browserHistory, Router, Route, IndexRoute } from 'react-router'
 import { Provider } from 'react-redux'
+import CoreLayout from '../layouts/CoreLayout'
+import Home from '../routes/Home/Home'
+import About from '../routes/About/About'
+import '../styles/core.scss'
 
 class AppContainer extends Component {
   static propTypes = {
-    routes : PropTypes.object.isRequired,
-    store  : PropTypes.object.isRequired
-  }
-
-  shouldComponentUpdate () {
-    return false
+    store: PropTypes.object.isRequired,
   }
 
   render () {
-    const { routes, store } = this.props
+    const { store } = this.props
 
     return (
       <Provider store={store}>
-        <div style={{ height: '100%' }}>
-          <Router history={browserHistory} children={routes} />
-        </div>
+        <Router history={browserHistory}>
+          <Route path="/" component={CoreLayout}>
+            <IndexRoute component={Home} />
+            <Route path="about" component={About} />
+          </Route>
+        </Router>
       </Provider>
     )
   }

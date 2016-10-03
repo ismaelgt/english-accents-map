@@ -1,19 +1,27 @@
-import React from 'react'
-import Header from '../../components/Header'
+import React, { PropTypes } from 'react'
+import { Link } from 'react-router'
 import './CoreLayout.scss'
 import '../../styles/core.scss'
 
 export const CoreLayout = ({ children }) => (
-  <div className='container text-center'>
-    <Header />
-    <div className='core-layout__viewport'>
+  <div className='mdl-layout mdl-js-layout mdl-layout--fixed-header'>
+    <header className='mdl-layout__header'>
+      <div className='mdl-layout__header-row'>
+        <span className='mdl-layout-title'>English Accents Map</span>
+        <div className='mdl-layout-spacer' />
+        <nav className='mdl-navigation mdl-layout--large-screen-only'>
+          <Link to="/about" className="mdl-navigation__link">About</Link>
+        </nav>
+      </div>
+    </header>
+    <main className='mdl-layout__content'>
       {children}
-    </div>
+    </main>
   </div>
 )
 
 CoreLayout.propTypes = {
-  children : React.PropTypes.element.isRequired
+  children: PropTypes.object.isRequired
 }
 
 export default CoreLayout
