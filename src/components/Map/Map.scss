@@ -1,1 +1,7 @@
+@import '../../styles/base';
 
+.map {
+  height: calc(100vh - #{$header-height});
+  position: fixed;
+  width: 100%;
+}

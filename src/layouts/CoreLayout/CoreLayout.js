@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
 import './CoreLayout.scss'
-import '../../styles/core.scss'
 
 export const CoreLayout = ({ children }) => (
   <div className='mdl-layout mdl-js-layout mdl-layout--fixed-header'>

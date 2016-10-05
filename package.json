@@ -106,6 +106,7 @@
     "extract-text-webpack-plugin": "^1.0.0",
     "file-loader": "^0.9.0",
     "fs-extra": "^0.30.0",
+    "google-maps-react": "^1.0.18",
     "html-webpack-plugin": "^2.22.0",
     "imports-loader": "^0.6.5",
     "ip": "^1.1.2",

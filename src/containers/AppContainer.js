@@ -4,7 +4,6 @@ import { Provider } from 'react-redux'
 import CoreLayout from '../layouts/CoreLayout'
 import Home from '../routes/Home/Home'
 import About from '../routes/About/About'
-import '../styles/core.scss'
 
 class AppContainer extends Component {
   static propTypes = {
