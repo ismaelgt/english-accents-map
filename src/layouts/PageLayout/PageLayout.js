@@ -1,12 +1,16 @@
 import React from 'react'
-import styles from './PageLayout.scss'
+import './PageLayout.scss'
 
 export default class PageLayout extends React.Component {
-  render() {
+  render () {
     return (
-      <div className="page-wrapper">
+      <div className='page-wrapper'>
         {this.props.children}
       </div>
     )
   }
+}
+
+PageLayout.propTypes = {
+  children: React.PropTypes.node
 }

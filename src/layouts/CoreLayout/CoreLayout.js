@@ -9,7 +9,7 @@ export const CoreLayout = ({ children }) => (
         <span className='mdl-layout-title'>English Accents Map</span>
         <div className='mdl-layout-spacer' />
         <nav className='mdl-navigation mdl-layout--large-screen-only'>
-          <Link to="/about" className="mdl-navigation__link">About</Link>
+          <Link to='/about' className='mdl-navigation__link'>About</Link>
         </nav>
       </div>
     </header>

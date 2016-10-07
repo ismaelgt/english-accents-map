@@ -7,7 +7,7 @@ import About from '../routes/About/About'
 
 class AppContainer extends Component {
   static propTypes = {
-    store: PropTypes.object.isRequired,
+    store: PropTypes.object.isRequired
   }
 
   render () {
@@ -16,9 +16,9 @@ class AppContainer extends Component {
     return (
       <Provider store={store}>
         <Router history={browserHistory}>
-          <Route path="/" component={CoreLayout}>
+          <Route path='/' component={CoreLayout}>
             <IndexRoute component={Home} />
-            <Route path="about" component={About} />
+            <Route path='about' component={About} />
           </Route>
         </Router>
       </Provider>
