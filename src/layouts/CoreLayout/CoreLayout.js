@@ -3,7 +3,7 @@ import { Link } from 'react-router'
 import './CoreLayout.scss'
 
 export const CoreLayout = ({ children }) => (
-  <div className='mdl-layout mdl-js-layout mdl-layout--fixed-header'>
+  <div className='eam-layout mdl-layout mdl-js-layout mdl-layout--fixed-header'>
     <header className='mdl-layout__header'>
       <div className='mdl-layout__header-row'>
         <span className='mdl-layout-title'>English Accents Map</span>

@@ -11,5 +11,10 @@ For example:
 @import './themes/default';
 */
 
+@import "~sass-material-colors/sass/sass-material-colors";
+
 $page-width: 1200px;
 $header-height: 64px;
+
+$color-red-400: material-color('red', '400');
+$color-red-500: material-color('red', '500');

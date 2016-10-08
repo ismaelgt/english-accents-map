@@ -1,6 +1,7 @@
 import React from 'react'
 import Map from '../../components/Map/Map'
 import PageLayout from '../../layouts/PageLayout/PageLayout'
+import { Link } from 'react-router'
 
 export const Home = () => (
   <div>
@@ -14,7 +15,7 @@ export const Home = () => (
           <ul className='demo-list-item mdl-list'>
             <li className='mdl-list__item'>
               <span className='mdl-list__item-primary-content'>
-                United States of America
+                <Link to='/about' className='mdl-link'>United States of America</Link>
               </span>
             </li>
             <li className='mdl-list__item'>
