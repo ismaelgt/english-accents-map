@@ -1,7 +1,47 @@
 @import '../../styles/base';
 
 .eam-layout {
+  @include from('desktop') {
+    .mdl-layout__header,
+    .mdl-layout__header-row {
+      height: $header-height;
+      min-height: $header-height;
+    }
+  }
+
   .mdl-layout__header {
-    background-color: $color-red-400;
+    background-color: $white;
+  }
+
+  .mdl-layout__header-row {
+    padding: 0 40px;
+
+    .mdl-navigation__link {
+      color: $grey-700;
+    }
+  }
+
+  .mdl-layout-title {
+    color: $grey-700;
+    font-weight: 300;
+
+    &:hover {
+      color: $grey-900;
+    }
+
+    * {
+      vertical-align: middle;
+    }
+
+    strong {
+      font-weight: 500;
+    }
+  }
+
+  &-title__icon {
+    height: 28px;
+    margin-right: 12px;
+    vertical-align: middle;
+    width: 28px;
   }
 }

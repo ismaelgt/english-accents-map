@@ -1,20 +1,13 @@
-/*
-Application Settings Go Here
-------------------------------------
-This file acts as a bundler for all variables/mixins/themes, so they
-can easily be swapped out without `core.scss` ever having to know.
-
-For example:
-
-@import './variables/colors';
-@import './variables/components';
-@import './themes/default';
-*/
-
-@import "~sass-material-colors/sass/sass-material-colors";
+@import '~sass-material-colors/sass/sass-material-colors';
+@import 'respond';
 
 $page-width: 1200px;
-$header-height: 64px;
+$header-height: 56px;
 
-$color-red-400: material-color('red', '400');
-$color-red-500: material-color('red', '500');
+$white: #fff;
+$red-400: material-color('red', '400');
+$red-500: material-color('red', '500');
+$indigo-400: material-color('indigo', '400');
+$indigo-500: material-color('indigo', '500');
+$grey-700: material-color('grey', '700');
+$grey-900: material-color('grey', '900');

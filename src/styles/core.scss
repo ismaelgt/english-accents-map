@@ -1,6 +1,7 @@
-@import '~material-design-lite/dist/material.red-orange.min';
+@import '~material-design-lite/dist/material.indigo-red.min';
 @import 'base';
 
 a {
-  color: $color-red-500;
+  color: $indigo-500;
+  text-decoration: none;
 }

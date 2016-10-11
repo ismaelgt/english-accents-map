@@ -1,0 +1,22 @@
+$breakpoints: (
+  'tablet': 480,
+  'desktop': 840
+);
+
+@mixin upto($bp) {
+  @media only screen and (max-width: #{map-get($breakpoints, $bp)}px) {
+    @content;
+  }
+}
+
+@mixin from($bp) {
+  @media only screen and (min-width: #{map-get($breakpoints, $bp) + 1}px) {
+    @content;
+  }
+}
+
+@mixin between($bp1, $bp2) {
+  @media only screen and (min-width: #{map-get($breakpoints, $bp1) + 1}px) and (max-width: #{map-get($breakpoints, $bp2)}px) {
+    @content;
+  }
+}

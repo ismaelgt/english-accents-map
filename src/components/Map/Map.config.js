@@ -15,13 +15,7 @@ export default (google) => ({
       'elementType': 'labels.text.fill',
       'stylers': [
         {
-          'color': '#333333'
-        },
-        {
-          'saturation': 35
-        },
-        {
-          'lightness': 40
+          'color': '#ef5350'
         }
       ]
     },
@@ -140,10 +134,10 @@ export default (google) => ({
       'elementType': 'geometry',
       'stylers': [
         {
-          'color': '#e9e9e9'
+          'color': '#d9d9d9'
         },
         {
-          'lightness': 17
+          'lightness': 15
         }
       ]
     }
