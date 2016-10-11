@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { GOOGLE_MAPS_API_KEY } from '../../config'
+import { googleMapsApiKey } from '../../config'
 import getMapConfig from './Map.config'
 import GoogleApiComponent from 'google-maps-react/dist/GoogleApiComponent'
 import './Map.scss'
@@ -34,5 +34,5 @@ Map.propTypes = {
 }
 
 export default GoogleApiComponent({
-  apiKey: GOOGLE_MAPS_API_KEY
+  apiKey: googleMapsApiKey
 })(Map)
