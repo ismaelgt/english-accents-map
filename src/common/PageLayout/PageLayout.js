@@ -1,5 +1,5 @@
 import React from 'react'
-import './PageLayout.scss'
+import './styles.scss'
 
 export default class PageLayout extends React.Component {
   render () {

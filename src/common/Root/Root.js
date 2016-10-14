@@ -1,9 +1,10 @@
 import React, { Component, PropTypes } from 'react'
 import { browserHistory, Router, Route, IndexRoute } from 'react-router'
 import { Provider } from 'react-redux'
-import CoreLayout from '../layouts/CoreLayout'
-import HomeContainer from '../routes/Home/containers/HomeContainer'
-import About from '../routes/About/About'
+import CoreLayout from '../CoreLayout'
+import HomePage from '../../scenes/home/HomePage'
+import AboutPage from '../../scenes/about/AboutPage'
+import '../../styles/core.scss'
 
 class AppContainer extends Component {
   static propTypes = {
@@ -17,8 +18,8 @@ class AppContainer extends Component {
       <Provider store={store}>
         <Router history={browserHistory}>
           <Route path='/' component={CoreLayout}>
-            <IndexRoute component={HomeContainer} />
-            <Route path='about' component={About} />
+            <IndexRoute component={HomePage} />
+            <Route path='about' component={AboutPage} />
           </Route>
         </Router>
       </Provider>

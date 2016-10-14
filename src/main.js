@@ -1,11 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import createStore from './store/createStore'
-import createRoutes from './routes'
-import AppContainer from './containers/AppContainer'
+import Root from './common/Root'
+import { loadCountries } from './scenes/home/CountriesList/actions'
 import { firebaseConfig } from './config'
 import firebase from 'firebase'
-import './styles/core.scss'
 
 // ========================================================
 // Firebase Initialization
@@ -17,7 +16,8 @@ firebase.initializeApp(firebaseConfig)
 // ========================================================
 const initialState = window.___INITIAL_STATE__
 const store = createStore(initialState)
-createRoutes(store)
+
+store.dispatch(loadCountries())
 
 // ========================================================
 // Render Setup
@@ -26,7 +26,7 @@ const MOUNT_NODE = document.getElementById('root')
 
 let render = () => {
   ReactDOM.render(
-    <AppContainer store={store} />,
+    <Root store={store} />,
     MOUNT_NODE
   )
 }
