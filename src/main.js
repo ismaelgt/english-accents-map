@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import createStore from './store/createStore'
+import createRoutes from './routes'
 import AppContainer from './containers/AppContainer'
 import { firebaseConfig } from './config'
 import firebase from 'firebase'
@@ -16,6 +17,7 @@ firebase.initializeApp(firebaseConfig)
 // ========================================================
 const initialState = window.___INITIAL_STATE__
 const store = createStore(initialState)
+createRoutes(store)
 
 // ========================================================
 // Render Setup
