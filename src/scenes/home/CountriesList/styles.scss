@@ -2,10 +2,32 @@
 
 .countries-list {
   a {
-    color: $grey-main;
+    color: $grey-900;
 
     &:hover {
-      color: $indigo-500;
+      color: $blue-900;
     }
+  }
+
+  .mdl-card__title {
+    border-bottom: 1px solid $grey-100;
+    padding: 16px 32px;
+  }
+
+  .mdl-card__title-text {
+    color: $text-colour;
+    font-weight: 400;
+  }
+
+  .mdl-card__supporting-text {
+    padding: 0 16px;
+  }
+
+  .mdl-list {
+    margin: 0;
+  }
+
+  .mdl-list__item a {
+    font-weight: 400;
   }
 }

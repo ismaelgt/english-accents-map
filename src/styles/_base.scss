@@ -5,10 +5,12 @@ $page-width: 1200px;
 $header-height: 56px;
 
 $white: #fff;
-$red-400: material-color('red', '400');
-$red-500: material-color('red', '500');
-$indigo-400: material-color('indigo', '400');
-$indigo-500: material-color('indigo', '500');
-$grey-700: material-color('grey', '700');
-$grey-900: material-color('grey', '900');
-$grey-main: $grey-900;
+$black: #000;
+$blue-700: material-color('blue', '700');
+$blue-900: material-color('blue', '900');
+
+$grey-100: material-color('blue-grey', '100');
+$grey-700: material-color('blue-grey', '700');
+$grey-900: material-color('blue-grey', '900');
+
+$text-colour: $grey-900;
