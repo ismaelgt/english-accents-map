@@ -1,8 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router'
+import './styles.scss'
 
 export const CountriesList = ({ countries }) => (
-  <div className='mdl-card mdl-shadow--2dp'>
+  <div className='mdl-card mdl-shadow--2dp countries-list'>
     {
       countries.loading
       ? <div className='mdl-card__supporting-text'>
@@ -14,7 +15,7 @@ export const CountriesList = ({ countries }) => (
             <li key={key} className='mdl-list__item'>
               <Link to='/about' className='mdl-link'>
                 <span className='mdl-list__item-primary-content'>
-                  <i className='material-icons mdl-list__item-icon'>flag</i>
+                  <img className='mdl-list__item-avatar' src={'/images/flags/' + key + '.svg'} />
                   {countries.data[key].name}
                 </span>
               </Link>
