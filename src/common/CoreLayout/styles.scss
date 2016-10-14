@@ -17,16 +17,16 @@
     padding: 0 40px;
 
     .mdl-navigation__link {
-      color: $grey-700;
+      color: $grey-main;
     }
   }
 
   .mdl-layout-title {
-    color: $grey-700;
+    color: $grey-main;
     font-weight: 300;
 
     &:hover {
-      color: $grey-900;
+      color: $grey-700;
     }
 
     * {

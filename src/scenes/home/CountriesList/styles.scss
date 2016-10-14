@@ -1,0 +1,11 @@
+@import '../../../styles/base';
+
+.countries-list {
+  a {
+    color: $grey-main;
+
+    &:hover {
+      color: $indigo-500;
+    }
+  }
+}
