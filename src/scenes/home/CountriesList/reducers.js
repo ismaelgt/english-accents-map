@@ -2,7 +2,7 @@ import { REQUEST_COUNTRIES, RECEIVE_COUNTRIES } from './actions'
 
 const initialState = {
   loading: true,
-  data: {}
+  data: []
 }
 
 export default (state, action) => {

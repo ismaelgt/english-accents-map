@@ -20,9 +20,14 @@ export const loadCountries = () => {
     dispatch(requestCountries())
     firebase.database()
       .ref('/countries')
+      .orderByChild('order')
       .once('value')
       .then((snapshot) => {
-        dispatch(receiveCountries(snapshot.val()))
+        let orderedCountries = []
+        snapshot.forEach(function (item) {
+          orderedCountries.push({ key: item.key, ...item.val() })
+        })
+        dispatch(receiveCountries(orderedCountries))
       })
   }
 }

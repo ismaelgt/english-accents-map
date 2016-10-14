@@ -12,12 +12,12 @@ export const CountriesList = ({ countries }) => (
           ? <div className='mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active' />
           : '' }
       <ul className='mdl-list'>
-        { Object.keys(countries.data).map((key) => (
-          <li key={key} className='mdl-list__item'>
+        { countries.data.map((country) => (
+          <li key={country.key} className='mdl-list__item'>
             <Link to='/about' className='mdl-link'>
               <span className='mdl-list__item-primary-content'>
-                <img className='mdl-list__item-avatar' src={'/images/flags/' + key + '.svg'} />
-                {countries.data[key].name}
+                <img className='mdl-list__item-avatar' src={'/images/flags/' + country.key + '.svg'} />
+                {country.name}
               </span>
             </Link>
           </li>
