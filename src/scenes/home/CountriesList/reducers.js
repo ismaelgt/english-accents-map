@@ -5,13 +5,13 @@ const initialState = {
   data: []
 }
 
-export default (state, action) => {
+export default (state = initialState, action) => {
   switch (action.type) {
     case REQUEST_COUNTRIES:
       return { ...state, loading: true }
     case RECEIVE_COUNTRIES:
       return { ...state, loading: false, data: action.payload.data }
     default:
-      return initialState
+      return state
   }
 }

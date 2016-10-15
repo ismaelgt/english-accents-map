@@ -7,17 +7,13 @@ import './styles.scss'
 
 class Map extends React.Component {
   componentDidUpdate (prevProps, prevState) {
-    if (prevProps.google !== this.props.google) {
-      this.loadMap()
-    }
+    this.loadMap()
   }
 
   loadMap () {
-    if (this.props && this.props.google) {
-      const { google } = this.props
-      const mapEl = ReactDOM.findDOMNode(this.refs.map)
-      this.map = new google.maps.Map(mapEl, getMapConfig(google))
-    }
+    const { google } = this.props
+    const mapEl = ReactDOM.findDOMNode(this.refs.map)
+    this.map = new google.maps.Map(mapEl, getMapConfig(google))
   }
 
   render () {
