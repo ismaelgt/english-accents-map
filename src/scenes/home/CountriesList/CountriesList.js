@@ -2,15 +2,21 @@ import React from 'react'
 import { Link } from 'react-router'
 import './styles.scss'
 
-export const CountriesList = ({ countries }) => (
-  <div className='mdl-card mdl-shadow--2dp countries-list'>
-    <div className='mdl-card__title'>
-      <h2 className='mdl-card__title-text'>Select Country</h2>
-    </div>
-    <div className='mdl-card__supporting-text'>
-      { countries.loading
-          ? <div className='mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active' />
-          : '' }
+class CountriesList extends React.Component {
+  componentDidMount () {
+    componentHandler.upgradeDom() // MDL
+  }
+
+  render () {
+    const { countries } = this.props
+
+    const loadingIndicator = (
+      <div className='loading-indicator'>
+        <div className='mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active' />
+      </div>
+    )
+
+    const countriesList = (
       <ul className='mdl-list'>
         { countries.data.map((country) => (
           <li key={country.key} className='mdl-list__item'>
@@ -23,9 +29,23 @@ export const CountriesList = ({ countries }) => (
           </li>
         )) }
       </ul>
-    </div>
-  </div>
-)
+    )
+
+    return (
+      <div className='mdl-card mdl-shadow--2dp countries-list'>
+        <div className='mdl-card__title'>
+          <h2 className='mdl-card__title-text'>
+            { countries.loading ? 'Loading Countries...' : 'Select Country' }
+          </h2>
+        </div>
+        <div className='mdl-card__supporting-text'>
+          { countries.loading ? loadingIndicator : countriesList }
+        </div>
+      </div>
+    )
+  }
+
+}
 
 CountriesList.propTypes = {
   countries: React.PropTypes.object

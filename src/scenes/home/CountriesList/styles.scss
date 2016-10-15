@@ -30,4 +30,10 @@
   .mdl-list__item a {
     font-weight: 400;
   }
+
+  .loading-indicator {
+    display: flex;
+    justify-content: center;
+    padding: 32px;
+  }
 }
