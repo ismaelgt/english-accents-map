@@ -32,14 +32,16 @@ class CountriesList extends React.Component {
     )
 
     return (
-      <div className='mdl-card mdl-shadow--2dp countries-list'>
-        <div className='mdl-card__title'>
-          <h2 className='mdl-card__title-text'>
-            { countries.loading ? 'Loading Countries...' : 'Select Country' }
-          </h2>
-        </div>
-        <div className='mdl-card__supporting-text'>
-          { countries.loading ? loadingIndicator : countriesList }
+      <div className='countries-list-wrapper'>
+        <div className='mdl-card mdl-shadow--2dp countries-list'>
+          <div className='mdl-card__title'>
+            <h2 className='mdl-card__title-text'>
+              { countries.loading ? 'Loading Countries...' : 'Select Country' }
+            </h2>
+          </div>
+          <div className='mdl-card__supporting-text'>
+            { countries.loading ? loadingIndicator : countriesList }
+          </div>
         </div>
       </div>
     )

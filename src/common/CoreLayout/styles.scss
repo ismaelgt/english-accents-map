@@ -1,6 +1,6 @@
 @import '../../styles/base';
 
-.eam-layout {
+.mdl-layout.eam-layout {
   @include from('desktop') {
     .mdl-layout__header,
     .mdl-layout__header-row {
@@ -14,10 +14,10 @@
   }
 
   .mdl-layout__header-row {
-    padding: 0 40px;
+    padding: 0 32px;
 
-    .mdl-navigation__link {
-      color: $white;
+    @include upto(tablet) {
+      padding: 0 16px;
     }
   }
 
@@ -34,10 +34,38 @@
     }
   }
 
-  &-title__icon {
+  .eam-layout-title__icon {
     height: 28px;
     margin-right: 12px;
     vertical-align: middle;
     width: 28px;
+  }
+
+  .mdl-layout__drawer-button {
+    left: auto;
+    line-height: $header-height;
+    right: 0;
+
+    @include upto(tablet) {
+      margin: 4px;
+    }
+
+    @include from(tablet) {
+      margin: 4px 12px;
+    }
+  }
+
+  .mdl-layout__drawer {
+    left: auto;
+    right: 0;
+    transform: translateX($drawer-width);
+
+    &.is-visible {
+      transform: translateX(0);
+    }
+  }
+
+  .mdl-navigation .mdl-navigation__link {
+    color: $text-colour;
   }
 }

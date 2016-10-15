@@ -8,16 +8,16 @@ export const CoreLayout = ({ children }) => (
       <div className='mdl-layout__header-row'>
         <Link to='/' className='mdl-layout-title'>
           <img className='eam-layout-title__icon' src='/images/eam_logo_24px.svg' />
-          <span>English</span>
-          <strong>Accents</strong>
-          <span>Map</span>
+          <span>English</span><strong>Accents</strong><span>Map</span>
         </Link>
-        <div className='mdl-layout-spacer' />
-        <nav className='mdl-navigation mdl-layout--large-screen-only'>
-          <Link to='/about' className='mdl-navigation__link'>About</Link>
-        </nav>
       </div>
     </header>
+    <div className='mdl-layout__drawer'>
+      <nav className='mdl-navigation'>
+        <Link to='/about' className='mdl-navigation__link'>Suggest an accent</Link>
+        <Link to='/about' className='mdl-navigation__link'>See the code</Link>
+      </nav>
+    </div>
     <main className='mdl-layout__content'>
       {children}
     </main>

@@ -1,6 +1,7 @@
 $breakpoints: (
   'tablet': 480,
-  'desktop': 840
+  'desktop': 840,
+  'large': 1024
 );
 
 @mixin upto($bp) {

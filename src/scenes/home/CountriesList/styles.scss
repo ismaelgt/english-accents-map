@@ -1,6 +1,23 @@
 @import '../../../styles/base';
 
-.countries-list {
+.countries-list-wrapper {
+  box-sizing: border-box;
+  width: 100%;
+
+  @include upto(tablet) {
+    padding: 32px 16px;
+  }
+
+  @include from(tablet) {
+    padding: 48px 32px;
+  }
+}
+
+.mdl-card.countries-list {
+  @include upto(tablet) {
+    width: 100%;
+  }
+
   a {
     color: $grey-900;
 
