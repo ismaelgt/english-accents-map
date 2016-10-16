@@ -1,5 +1,5 @@
 import React from 'react'
-import PageLayout from '../../../common/PageLayout'
+import PageLayout from '../../../../components/PageLayout'
 
 export const AboutPage = () => (
   <PageLayout>

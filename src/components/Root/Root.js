@@ -2,8 +2,8 @@ import React, { Component, PropTypes } from 'react'
 import { browserHistory, Router, Route, IndexRoute } from 'react-router'
 import { Provider } from 'react-redux'
 import CoreLayout from '../CoreLayout'
-import HomePage from '../../scenes/home/HomePage'
-import AboutPage from '../../scenes/about/AboutPage'
+import HomePage from '../../scenes/home/components/HomePage'
+import AboutPage from '../../scenes/about/components/AboutPage'
 import '../../styles/core.scss'
 
 class AppContainer extends Component {

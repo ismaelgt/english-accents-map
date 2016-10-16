@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
-import locationReducer from './location'
-import countriesReducer from '../scenes/home/CountriesList/reducers'
+import locationReducer from '../services/location/reducer'
+import countriesReducer from '../scenes/home/components/CountriesList/reducer'
 
 export const makeRootReducer = () => {
   return combineReducers({

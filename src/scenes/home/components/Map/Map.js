@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { googleMapsApiKey } from '../../config'
+import { googleMapsApiKey } from '../../../../config'
 import getMapConfig from './config'
 import GoogleApiComponent from 'google-maps-react/dist/GoogleApiComponent'
 import './styles.scss'

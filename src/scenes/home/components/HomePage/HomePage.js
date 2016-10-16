@@ -1,5 +1,5 @@
 import React from 'react'
-import Map from '../../../common/Map'
+import Map from '../Map'
 import CountriesList from '../CountriesList'
 
 export const HomeLayout = () => (

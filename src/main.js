@@ -1,15 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import createStore from './store/createStore'
-import Root from './common/Root'
-import { loadCountries } from './scenes/home/CountriesList/actions'
-import { firebaseConfig } from './config'
-import firebase from 'firebase'
-
-// ========================================================
-// Firebase Initialization
-// ========================================================
-firebase.initializeApp(firebaseConfig)
+import Root from './components/Root'
+import init from 'init'
 
 // ========================================================
 // Store Instantiation
@@ -17,7 +10,7 @@ firebase.initializeApp(firebaseConfig)
 const initialState = window.___INITIAL_STATE__
 const store = createStore(initialState)
 
-store.dispatch(loadCountries())
+init(store)
 
 // ========================================================
 // Render Setup
