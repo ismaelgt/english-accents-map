@@ -1,11 +1,11 @@
 import React from 'react'
 import Map from '../../../common/Map'
-import CountriesListContainer from '../CountriesList'
+import CountriesList from '../CountriesList'
 
 export const HomeLayout = () => (
   <div>
     <Map />
-    <CountriesListContainer />
+    <CountriesList />
   </div>
 )
 

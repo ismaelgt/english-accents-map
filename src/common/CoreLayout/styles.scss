@@ -66,6 +66,10 @@
   }
 
   .mdl-navigation .mdl-navigation__link {
-    color: $text-colour;
+    color: $text-color;
+  }
+
+  .mdl-layout__content {
+    background-color: $grey-100;
   }
 }
