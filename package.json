@@ -80,7 +80,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/igonzaleztrujillo/english-accents-map.git"
+    "url": "git+https://github.com/ismaelgt/english-accents-map.git"
   },
   "author": "Ismael González <ismael.gonzaleztrujillo@gmail.com>",
   "license": "MIT",
