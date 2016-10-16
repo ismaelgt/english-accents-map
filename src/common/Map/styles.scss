@@ -1,6 +1,7 @@
 @import '../../styles/base';
 
 .map-wrapper {
+  background-color: $background-color;
   height: 100%;
   position: fixed;
   top: 0;
