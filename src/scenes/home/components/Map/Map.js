@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { googleMapsApiKey } from '../../../../config'
-import getMapConfig from './config'
+import { GOOGLE_MAPS_API_KEY } from '../../../../config'
+import GOOGLE_MAPS_CONFIG from './config'
 import GoogleApiComponent from 'google-maps-react/dist/GoogleApiComponent'
 import './styles.scss'
 
@@ -13,7 +13,7 @@ class Map extends React.Component {
   loadMap () {
     const { google } = this.props
     const mapEl = ReactDOM.findDOMNode(this.refs.map)
-    this.map = new google.maps.Map(mapEl, getMapConfig(google))
+    this.map = new google.maps.Map(mapEl, GOOGLE_MAPS_CONFIG)
   }
 
   render () {
@@ -30,5 +30,5 @@ Map.propTypes = {
 }
 
 export default GoogleApiComponent({
-  apiKey: googleMapsApiKey
+  apiKey: GOOGLE_MAPS_API_KEY
 })(Map)

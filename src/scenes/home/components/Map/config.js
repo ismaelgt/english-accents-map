@@ -1,5 +1,5 @@
-export default (google) => ({
-  center: new google.maps.LatLng(53.492185, -2.244880), // Manchester!
+const GOOGLE_MAPS_CONFIG = {
+  center: { lat: 53.492185, lng: -2.244880 }, // Manchester!
   zoom: 6,
   disableDefaultUI: true,
   styles: [
@@ -142,4 +142,6 @@ export default (google) => ({
       ]
     }
   ]
-})
+}
+
+export default GOOGLE_MAPS_CONFIG
