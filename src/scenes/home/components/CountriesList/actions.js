@@ -7,10 +7,10 @@ export const requestCountries = () => ({
   type: REQUEST_COUNTRIES
 })
 
-export const receiveCountries = (data) => ({
+export const receiveCountries = (items) => ({
   type: RECEIVE_COUNTRIES,
   payload: {
-    data: data
+    items: items
   }
 })
 

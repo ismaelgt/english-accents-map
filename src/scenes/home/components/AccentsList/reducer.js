@@ -1,4 +1,4 @@
-import { REQUEST_COUNTRIES, RECEIVE_COUNTRIES } from './actions'
+import { REQUEST_ACCENTS, RECEIVE_ACCENTS } from './actions'
 
 const initialState = {
   loading: true,
@@ -7,9 +7,9 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case REQUEST_COUNTRIES:
+    case REQUEST_ACCENTS:
       return { ...state, loading: true }
-    case RECEIVE_COUNTRIES:
+    case RECEIVE_ACCENTS:
       return { ...state, loading: false, items: action.payload.items }
     default:
       return state

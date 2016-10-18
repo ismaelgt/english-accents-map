@@ -1,6 +1,7 @@
 import React from 'react'
 import Map from '../Map'
 import CountriesList from '../CountriesList'
+import AccentsList from '../AccentsList'
 
 export const HomeLayout = ({ viewport }) => (
   <div>

@@ -18,7 +18,7 @@ class CountriesList extends React.Component {
 
     const countriesList = (
       <ul className='mdl-list'>
-        { countries.data.map((country) => (
+        { countries.items.map((country) => (
           <li key={country.key} className='mdl-list__item'>
             <Link to='/about' className='mdl-link'>
               <span className='mdl-list__item-primary-content'>
