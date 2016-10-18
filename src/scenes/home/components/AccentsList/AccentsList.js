@@ -15,15 +15,15 @@ class AccentsList extends React.Component {
           <div className='mdl-card__title'>
             <h3 className='mdl-card__title-text'>
               <img className='mdl-list__item-avatar'
-                src={'/images/flags/' + countries.selected + '.svg'} />
-              <span>{ countries.items.find((item) => (item.key === countries.selected)).name }</span>
+                src={'/images/flags/' + countries.selected.key + '.svg'} />
+              <span>{ countries.selected.name }</span>
             </h3>
           </div>
           <div className='mdl-card__supporting-text'>
             <ul className='mdl-list'>
               {
                 accents.items
-                  .filter((item) => (item.country === countries.selected))
+                  .filter((item) => (item.country === countries.selected.key))
                   .map((accent) => (
                     <li key={accent.key} className='mdl-list__item'>
                       <label className='mdl-radio mdl-js-radio mdl-js-ripple-effect'

@@ -5,7 +5,11 @@ import AccentsList from '../AccentsList'
 
 export const HomeLayout = ({ viewport, countries, accents }) => (
   <div>
-    { viewport.isSmall ? null : <Map /> }
+    {
+      viewport.isSmall
+        ? null
+        : <Map selectedCountry={countries.selected} />
+    }
     {
       countries.selected
         ? <AccentsList countries={countries} accents={accents} />

@@ -20,7 +20,7 @@ class CountriesList extends React.Component {
       <ul className='mdl-list'>
         { countries.items.map((country) => (
           <li key={country.key} className='mdl-list__item'>
-            <Link className='mdl-link' onClick={() => onCountrySelected(country.key)}>
+            <Link className='mdl-link' onClick={() => onCountrySelected(country)}>
               <span className='mdl-list__item-primary-content'>
                 <img className='mdl-list__item-avatar' src={'/images/flags/' + country.key + '.svg'} />
                 {country.name}
