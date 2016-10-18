@@ -10,8 +10,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const mapStateToProps = (state) => ({
-  countries: state.countries
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(CountriesList)
+export default connect(null, mapDispatchToProps)(CountriesList)

@@ -3,6 +3,7 @@ import HomePage from './HomePage'
 
 const mapStateToProps = (state) => ({
   countries: state.countries,
+  accents: state.accents,
   viewport: state.viewport
 })
 
