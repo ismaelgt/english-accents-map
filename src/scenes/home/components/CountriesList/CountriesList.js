@@ -8,7 +8,7 @@ class CountriesList extends React.Component {
   }
 
   render () {
-    const { countries } = this.props
+    const { countries, onCountrySelected } = this.props
 
     const loadingIndicator = (
       <div className='loading-indicator'>
@@ -20,7 +20,7 @@ class CountriesList extends React.Component {
       <ul className='mdl-list'>
         { countries.items.map((country) => (
           <li key={country.key} className='mdl-list__item'>
-            <Link to='/about' className='mdl-link'>
+            <Link className='mdl-link' onClick={() => onCountrySelected(country.key)}>
               <span className='mdl-list__item-primary-content'>
                 <img className='mdl-list__item-avatar' src={'/images/flags/' + country.key + '.svg'} />
                 {country.name}
@@ -50,7 +50,8 @@ class CountriesList extends React.Component {
 }
 
 CountriesList.propTypes = {
-  countries: React.PropTypes.object
+  countries: React.PropTypes.object,
+  onCountrySelected: React.PropTypes.func
 }
 
 export default CountriesList

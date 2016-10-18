@@ -1,3 +1,3 @@
-import AccentsList from './AccentsList'
+import AccentsListContainer from './AccentsListContainer'
 
-export default AccentsList
+export default AccentsListContainer

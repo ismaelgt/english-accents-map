@@ -6,6 +6,12 @@ import GoogleApiComponent from 'google-maps-react/dist/GoogleApiComponent'
 import './styles.scss'
 
 class Map extends React.Component {
+  // Do not update the map unless it's a first load when we'll
+  // receive the google object
+  shouldComponentUpdate (nextProps) {
+    return !this.props.loaded
+  }
+
   componentDidUpdate (prevProps, prevState) {
     this.loadMap()
   }
@@ -26,6 +32,7 @@ class Map extends React.Component {
 }
 
 Map.propTypes = {
+  loaded: React.PropTypes.bool,
   google: React.PropTypes.object
 }
 
