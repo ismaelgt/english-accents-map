@@ -1,0 +1,26 @@
+@import '../../../../styles/definitions';
+
+.eam-card.eam-card--accents-list {
+  .mdl-card__title {
+    padding: 16px 48px 16px 24px;
+  }
+
+  .mdl-card__title-text {
+    line-height: 32px;
+  }
+
+  .mdl-list__item-avatar {
+    height: 32px;
+    margin-right: 16px;
+    width: 32px;
+  }
+
+  .mdl-list__item {
+    min-height: 42px;
+    padding: 4px 16px;
+  }
+
+  .mdl-radio.is-upgraded {
+    padding-left: 36px;
+  }
+}

@@ -1,7 +1,7 @@
-@import '../../styles/base';
+@import '../../styles/definitions';
 
-.mdl-layout.eam-layout {
-  @include from('desktop') {
+.eam-layout.mdl-layout {
+  @include from(desktop) {
     .mdl-layout__header,
     .mdl-layout__header-row {
       height: $header-height;

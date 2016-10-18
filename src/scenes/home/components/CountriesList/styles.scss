@@ -1,47 +1,12 @@
-@import '../../../../styles/base';
+@import '../../../../styles/definitions';
 
-.countries-list-wrapper {
-  box-sizing: border-box;
-  width: 100%;
-
-  @include upto(tablet) {
-    padding: 32px 16px;
-  }
-
-  @include from(tablet) {
-    padding: 48px 32px;
-  }
-}
-
-.mdl-card.countries-list {
-  @include upto(tablet) {
-    width: 100%;
-  }
-
+.eam-card.eam-card--countries-list {
   a {
     color: $grey-900;
 
     &:hover {
       color: $blue-900;
     }
-  }
-
-  .mdl-card__title {
-    border-bottom: 1px solid $grey-100;
-    padding: 16px 32px;
-  }
-
-  .mdl-card__title-text {
-    color: $text-color;
-    font-weight: 400;
-  }
-
-  .mdl-card__supporting-text {
-    padding: 0 16px;
-  }
-
-  .mdl-list {
-    margin: 0;
   }
 
   .mdl-list__item a {

@@ -32,8 +32,8 @@ class CountriesList extends React.Component {
     )
 
     return (
-      <div className='countries-list-wrapper'>
-        <div className='mdl-card mdl-shadow--2dp countries-list'>
+      <div className='eam-card-wrapper'>
+        <div className='eam-card eam-card--countries-list mdl-card mdl-shadow--2dp'>
           <div className='mdl-card__title'>
             <h2 className='mdl-card__title-text'>
               { countries.loading ? 'Loading Countries...' : 'Select Country' }

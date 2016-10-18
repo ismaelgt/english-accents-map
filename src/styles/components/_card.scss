@@ -1,0 +1,39 @@
+.eam-card-wrapper {
+  box-sizing: border-box;
+  width: 100%;
+
+  @include upto(tablet) {
+    padding: 32px 16px;
+  }
+
+  @include from(tablet) {
+    padding: 48px 32px;
+  }
+}
+
+.eam-card {
+  min-height: 0;
+
+  @include upto(tablet) {
+    width: 100%;
+  }
+
+  .mdl-card__title {
+    border-bottom: 1px solid $grey-100;
+    padding: 16px 32px;
+  }
+
+  .mdl-card__title-text {
+    color: $text-color;
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  .mdl-card__supporting-text {
+    padding: 0 16px;
+  }
+
+  .mdl-list {
+    margin: 0;
+  }
+}

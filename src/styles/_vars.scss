@@ -1,10 +1,9 @@
-@import '~sass-material-colors/sass/sass-material-colors';
-@import 'respond';
-
+// Layout
 $page-width: 1200px;
 $header-height: 56px;
 $drawer-width: 240px;
 
+// Colours
 $white: #fff;
 $black: #000;
 $blue-700: material-color('blue', '700');
@@ -16,3 +15,10 @@ $grey-900: material-color('blue-grey', '900');
 
 $text-color: $grey-900;
 $background-color: $grey-100;
+
+// Breakpoints
+$breakpoints: (
+  'tablet': 480,
+  'desktop': 840,
+  'large': 1024
+);

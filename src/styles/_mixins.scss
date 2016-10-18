@@ -1,9 +1,4 @@
-$breakpoints: (
-  'tablet': 480,
-  'desktop': 840,
-  'large': 1024
-);
-
+// Responsive
 @mixin upto($bp) {
   @media only screen and (max-width: #{map-get($breakpoints, $bp)}px) {
     @content;

@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import CoreLayout from '../CoreLayout'
 import HomePage from '../../scenes/home/components/HomePage'
 import AboutPage from '../../scenes/about/components/AboutPage'
-import '../../styles/core.scss'
+import '../../styles/main.scss'
 
 class AppContainer extends Component {
   static propTypes = {
