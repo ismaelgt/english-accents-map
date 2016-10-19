@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router'
 import './styles.scss'
 
 class CountriesList extends React.Component {
@@ -19,13 +18,12 @@ class CountriesList extends React.Component {
     const countriesList = (
       <ul className='mdl-list'>
         { countries.items.map((country) => (
-          <li key={country.key} className='mdl-list__item'>
-            <Link className='mdl-link' onClick={() => onCountrySelected(country)}>
-              <span className='mdl-list__item-primary-content'>
-                <img className='mdl-list__item-avatar' src={'/images/flags/' + country.key + '.svg'} />
-                {country.name}
-              </span>
-            </Link>
+          <li key={country.key} className='mdl-list__item' role='button'
+            onClick={() => onCountrySelected(country)}>
+            <span className='mdl-list__item-primary-content'>
+              <img className='mdl-list__item-avatar' src={'/images/flags/' + country.key + '.svg'} />
+              {country.name}
+            </span>
           </li>
         )) }
       </ul>
