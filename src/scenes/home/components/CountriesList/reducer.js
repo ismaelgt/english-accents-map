@@ -4,7 +4,7 @@ import { SELECT_ACCENT } from '../AccentsList/actions'
 const initialState = {
   loading: true,
   selected: null,
-  selectAccent: null,
+  selectedAccent: null,
   items: []
 }
 

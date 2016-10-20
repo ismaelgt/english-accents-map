@@ -12,7 +12,7 @@ export const HomeLayout = ({ viewport, countries }) => (
     }
     {
       countries.selected
-        ? <AccentsList selectedCountry={countries.selected} />
+        ? <AccentsList selectedCountry={countries.selected} selectedAccent={countries.selectedAccent} />
         : <CountriesList countries={countries} />
     }
   </div>

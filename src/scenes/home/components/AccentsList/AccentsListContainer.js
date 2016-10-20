@@ -10,6 +10,7 @@ const mapDispatchToProps = (dispatch) => {
     },
     onClose: () => {
       dispatch(selectCountry(null))
+      dispatch(selectAccent(null))
     }
   }
 }

@@ -8,7 +8,7 @@ class AccentsList extends React.Component {
   }
 
   render () {
-    const { selectedCountry, onAccentSelected, onClose } = this.props
+    const { selectedCountry, selectedAccent, onAccentSelected, onClose } = this.props
     const accents = objectToArray(selectedCountry.value.accents)
 
     return (
@@ -30,8 +30,7 @@ class AccentsList extends React.Component {
                       htmlFor={'accent-' + accent.key}>
                       <input type='radio' id={'accent-' + accent.key}
                         className='mdl-radio__button'
-                        name='accent'
-                        value={accent.key}
+                        checked={selectedAccent !== null && selectedAccent.key === accent.key}
                         onChange={() => { onAccentSelected(accent) }} />
                       <span className='mdl-radio__label'>{accent.value.name}</span>
                     </label>
@@ -53,6 +52,7 @@ class AccentsList extends React.Component {
 }
 
 AccentsList.propTypes = {
+  selectedCountry: React.PropTypes.object,
   selectedCountry: React.PropTypes.object,
   onAccentSelected: React.PropTypes.func,
   onClose: React.PropTypes.func

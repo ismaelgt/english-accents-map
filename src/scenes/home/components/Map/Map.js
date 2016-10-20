@@ -28,6 +28,9 @@ const Map = React.createClass({
 
   // Selected country and accent will be received via props.
   componentWillReceiveProps (nextProps) {
+    if (!this.props.loaded) {
+      return
+    }
     if (nextProps.selectedCountry && nextProps.selectedCountry !== this.state.selectedCountry) {
       this.selectCountry(nextProps.selectedCountry)
     }
@@ -45,6 +48,11 @@ const Map = React.createClass({
   // This is the first and only time the component is rendered.
   componentDidUpdate (prevProps, prevState) {
     this.loadMap()
+    if (prevProps.selectedAccent) {
+      this.selectAccent(prevProps.selectedAccent)
+    } else if (prevProps.selectedCountry) {
+      this.selectCountry(prevProps.selectedCountry)
+    }
   },
 
   // Load the map
@@ -62,7 +70,7 @@ const Map = React.createClass({
     this.setState({ ...this.state, selectedCountry: country })
   },
 
-  // Move center map to accent location
+  // Move map center to accent location
   selectAccent (accent) {
     this.map.panTo(accent.value.coords)
     this.map.setZoom(7)
