@@ -8,7 +8,7 @@ export const HomeLayout = ({ viewport, countries }) => (
     {
       viewport.isSmall
         ? null
-        : <Map selectedCountry={countries.selected} />
+        : <Map selectedCountry={countries.selected} selectedAccent={countries.selectedAccent} />
     }
     {
       countries.selected

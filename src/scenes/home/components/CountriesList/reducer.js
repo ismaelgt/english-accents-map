@@ -1,8 +1,10 @@
 import { REQUEST_COUNTRIES, RECEIVE_COUNTRIES, SELECT_COUNTRY } from './actions'
+import { SELECT_ACCENT } from '../AccentsList/actions'
 
 const initialState = {
   loading: true,
   selected: null,
+  selectAccent: null,
   items: []
 }
 
@@ -14,6 +16,8 @@ export default (state = initialState, action) => {
       return { ...state, loading: false, items: action.payload.items }
     case SELECT_COUNTRY:
       return { ...state, selected: action.payload.country }
+    case SELECT_ACCENT:
+      return { ...state, selectedAccent: action.payload.accent }
     default:
       return state
   }

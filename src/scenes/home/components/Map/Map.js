@@ -21,14 +21,18 @@ const Map = React.createClass({
   // Define internal state.
   getInitialState () {
     return {
-      selectedCountry: null
+      selectedCountry: null,
+      selectedAccent: null
     }
   },
 
-  // The country selected will be received via props.
+  // Selected country and accent will be received via props.
   componentWillReceiveProps (nextProps) {
-    if (nextProps.selectedCountry) {
+    if (nextProps.selectedCountry && nextProps.selectedCountry !== this.state.selectedCountry) {
       this.selectCountry(nextProps.selectedCountry)
+    }
+    if (nextProps.selectedAccent && nextProps.selectedAccent !== this.state.selectedAccent) {
+      this.selectAccent(nextProps.selectedAccent)
     }
   },
 
@@ -55,7 +59,14 @@ const Map = React.createClass({
     const { sw, ne } = country.value.coords
     const bounds = new this.props.google.maps.LatLngBounds(sw, ne)
     this.map.fitBounds(bounds)
-    this.setState({ selectedCountry: country })
+    this.setState({ ...this.state, selectedCountry: country })
+  },
+
+  // Move center map to accent location
+  selectAccent (accent) {
+    this.map.panTo(accent.value.coords)
+    this.map.setZoom(7)
+    this.setState({ ...this.state, selectedAccent: accent })
   },
 
   propTypes: {

@@ -8,7 +8,7 @@ class AccentsList extends React.Component {
   }
 
   render () {
-    const { selectedCountry, onClose } = this.props
+    const { selectedCountry, onAccentSelected, onClose } = this.props
     const accents = objectToArray(selectedCountry.value.accents)
 
     return (
@@ -29,7 +29,10 @@ class AccentsList extends React.Component {
                     <label className='mdl-radio mdl-js-radio mdl-js-ripple-effect'
                       htmlFor={'accent-' + accent.key}>
                       <input type='radio' id={'accent-' + accent.key}
-                        className='mdl-radio__button' name='accent' value={accent.key} />
+                        className='mdl-radio__button'
+                        name='accent'
+                        value={accent.key}
+                        onChange={() => { onAccentSelected(accent) }} />
                       <span className='mdl-radio__label'>{accent.value.name}</span>
                     </label>
                   </li>
@@ -50,8 +53,8 @@ class AccentsList extends React.Component {
 }
 
 AccentsList.propTypes = {
-  accents: React.PropTypes.object,
   selectedCountry: React.PropTypes.object,
+  onAccentSelected: React.PropTypes.func,
   onClose: React.PropTypes.func
 }
 
