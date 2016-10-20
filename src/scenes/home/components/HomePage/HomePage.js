@@ -3,7 +3,7 @@ import Map from '../Map'
 import CountriesList from '../CountriesList'
 import AccentsList from '../AccentsList'
 
-export const HomeLayout = ({ viewport, countries, accents }) => (
+export const HomeLayout = ({ viewport, countries }) => (
   <div>
     {
       viewport.isSmall
@@ -12,7 +12,7 @@ export const HomeLayout = ({ viewport, countries, accents }) => (
     }
     {
       countries.selected
-        ? <AccentsList countries={countries} accents={accents} />
+        ? <AccentsList selectedCountry={countries.selected} />
         : <CountriesList countries={countries} />
     }
   </div>
@@ -20,8 +20,7 @@ export const HomeLayout = ({ viewport, countries, accents }) => (
 
 HomeLayout.propTypes = {
   viewport: React.PropTypes.object,
-  countries: React.PropTypes.object,
-  accents: React.PropTypes.object
+  countries: React.PropTypes.object
 }
 
 export default HomeLayout

@@ -3,7 +3,6 @@ import { FIREBASE_CONFIG } from './config'
 import locationInit from './services/location'
 import viewportInit from './services/viewport'
 import { loadCountries } from './scenes/home/components/CountriesList/actions'
-import { loadAccents } from './scenes/home/components/AccentsList/actions'
 
 export default function init (store) {
   // Initialise Firebase
@@ -14,6 +13,4 @@ export default function init (store) {
   viewportInit(store)
   // Load countries
   store.dispatch(loadCountries())
-  // Load accents
-  store.dispatch(loadAccents())
 }

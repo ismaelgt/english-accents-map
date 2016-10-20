@@ -52,7 +52,7 @@ const Map = React.createClass({
 
   // Fit country in map using South West and North East coordinates
   selectCountry (country) {
-    const { sw, ne } = country.latLngBounds
+    const { sw, ne } = country.value.coords
     const bounds = new this.props.google.maps.LatLngBounds(sw, ne)
     this.map.fitBounds(bounds)
     this.setState({ selectedCountry: country })

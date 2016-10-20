@@ -22,7 +22,7 @@ class CountriesList extends React.Component {
             onClick={() => onCountrySelected(country)}>
             <span className='mdl-list__item-primary-content'>
               <img className='mdl-list__item-avatar' src={'/images/flags/' + country.key + '.svg'} />
-              {country.name}
+              {country.value.name}
             </span>
           </li>
         )) }

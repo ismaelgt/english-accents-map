@@ -1,4 +1,5 @@
 import firebase from 'firebase'
+import { objectSnapshotToArray } from '../../../../services/firebase-structures'
 
 export const REQUEST_COUNTRIES = 'REQUEST_COUNTRIES'
 export const RECEIVE_COUNTRIES = 'RECEIVE_COUNTRIES'
@@ -31,11 +32,7 @@ export const loadCountries = () => {
       .orderByChild('order')
       .once('value')
       .then((snapshot) => {
-        let orderedCountries = []
-        snapshot.forEach(function (item) {
-          orderedCountries.push({ key: item.key, ...item.val() })
-        })
-        dispatch(receiveCountries(orderedCountries))
+        dispatch(receiveCountries(objectSnapshotToArray(snapshot)))
       })
   }
 }

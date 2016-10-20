@@ -1,4 +1,5 @@
 import React from 'react'
+import { objectToArray } from '../../../../services/firebase-structures'
 import './styles.scss'
 
 class AccentsList extends React.Component {
@@ -7,7 +8,8 @@ class AccentsList extends React.Component {
   }
 
   render () {
-    const { accents, countries, onClose } = this.props
+    const { selectedCountry, onClose } = this.props
+    const accents = objectToArray(selectedCountry.value.accents)
 
     return (
       <div className='eam-card-wrapper'>
@@ -15,24 +17,22 @@ class AccentsList extends React.Component {
           <div className='mdl-card__title'>
             <h3 className='mdl-card__title-text'>
               <img className='mdl-list__item-avatar'
-                src={'/images/flags/' + countries.selected.key + '.svg'} />
-              <span>{ countries.selected.name }</span>
+                src={'/images/flags/' + selectedCountry.key + '.svg'} />
+              <span>{ selectedCountry.value.name }</span>
             </h3>
           </div>
           <div className='mdl-card__supporting-text'>
             <ul className='mdl-list'>
               {
-                accents.items
-                  .filter((item) => (item.country === countries.selected.key))
-                  .map((accent) => (
-                    <li key={accent.key} className='mdl-list__item'>
-                      <label className='mdl-radio mdl-js-radio mdl-js-ripple-effect'
-                        htmlFor={'accent-' + accent.key}>
-                        <input type='radio' id={'accent-' + accent.key}
-                          className='mdl-radio__button' name='accent' value={accent.key} />
-                        <span className='mdl-radio__label'>{accent.name}</span>
-                      </label>
-                    </li>
+                accents.map((accent) => (
+                  <li key={accent.key} className='mdl-list__item'>
+                    <label className='mdl-radio mdl-js-radio mdl-js-ripple-effect'
+                      htmlFor={'accent-' + accent.key}>
+                      <input type='radio' id={'accent-' + accent.key}
+                        className='mdl-radio__button' name='accent' value={accent.key} />
+                      <span className='mdl-radio__label'>{accent.value.name}</span>
+                    </label>
+                  </li>
                   ))
               }
             </ul>
@@ -51,7 +51,7 @@ class AccentsList extends React.Component {
 
 AccentsList.propTypes = {
   accents: React.PropTypes.object,
-  countries: React.PropTypes.object,
+  selectedCountry: React.PropTypes.object,
   onClose: React.PropTypes.func
 }
 
