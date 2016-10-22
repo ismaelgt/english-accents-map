@@ -21,38 +21,46 @@ const Map = React.createClass({
   // Define internal state.
   getInitialState () {
     return {
-      selectedCountry: null,
-      selectedAccent: null
+      countries: null,
+      mapLoaded: false,
+      markersLoaded: false
     }
   },
 
-  // Selected country and accent will be received via props.
   componentWillReceiveProps (nextProps) {
-    if (!this.props.loaded) {
-      return
+    // Countries loaded
+    if (!this.state.countries && nextProps.countries && !nextProps.countries.loading) {
+      this.setState({ countries: nextProps.countries }, () => {
+        if (this.state.mapLoaded) {
+          this.loadMarkers()
+        }
+      })
     }
-    if (nextProps.selectedCountry && nextProps.selectedCountry !== this.state.selectedCountry) {
-      this.selectCountry(nextProps.selectedCountry)
-    }
-    if (nextProps.selectedAccent && nextProps.selectedAccent !== this.state.selectedAccent) {
-      this.selectAccent(nextProps.selectedAccent)
+    if (nextProps.countries && this.state.countries) {
+      // Country selected
+      if (nextProps.countries.selected !== this.state.countries.selected) {
+        this.setState({ countries: nextProps.countries }, () => {
+          this.selectCountry()
+        })
+      }
+      // Accent selected
+      if (nextProps.countries.selectedAccent !== this.state.countries.selectedAccent) {
+        this.setState({ countries: nextProps.countries }, () => {
+          this.selectAccent()
+        })
+      }
     }
   },
 
   // This component should never update after its initialisation as
   // the map would be reloaded.
   shouldComponentUpdate (nextProps) {
-    return !this.props.loaded
+    return !this.state.mapLoaded && nextProps.loaded
   },
 
   // This is the first and only time the component is rendered.
   componentDidUpdate (prevProps, prevState) {
     this.loadMap()
-    if (prevProps.selectedAccent) {
-      this.selectAccent(prevProps.selectedAccent)
-    } else if (prevProps.selectedCountry) {
-      this.selectCountry(prevProps.selectedCountry)
-    }
   },
 
   // Load the map
@@ -60,27 +68,51 @@ const Map = React.createClass({
     const { google } = this.props
     const mapEl = ReactDOM.findDOMNode(this.refs.map)
     this.map = new google.maps.Map(mapEl, GOOGLE_MAPS_CONFIG)
+    this.setState({ mapLoaded: true }, () => {
+      if (this.state.countries && !this.state.countries.loading) {
+        this.loadMarkers()
+      }
+    })
+  },
+
+  // Create one marker in the map for each accent
+  loadMarkers () {
+    const { google } = this.props
+    const { countries } = this.state
+    for (const country of countries.items) {
+      Object.keys(country.value.accents).forEach((key) => {
+        const marker = new google.maps.Marker({
+          position: country.value.accents[key].coords
+        })
+        marker.setMap(this.map)
+      })
+    }
+    this.setState({ markersLoaded: true })
   },
 
   // Fit country in map using South West and North East coordinates
-  selectCountry (country) {
-    const { sw, ne } = country.value.coords
-    const bounds = new this.props.google.maps.LatLngBounds(sw, ne)
-    this.map.fitBounds(bounds)
-    this.setState({ ...this.state, selectedCountry: country })
+  selectCountry () {
+    const selectedCountry = this.state.countries.selected
+    if (selectedCountry !== null) {
+      const { sw, ne } = selectedCountry.value.coords
+      const bounds = new this.props.google.maps.LatLngBounds(sw, ne)
+      this.map.fitBounds(bounds)
+    }
   },
 
   // Move map center to accent location
-  selectAccent (accent) {
-    this.map.panTo(accent.value.coords)
-    this.map.setZoom(7)
-    this.setState({ ...this.state, selectedAccent: accent })
+  selectAccent () {
+    const selectedAccent = this.state.countries.selectedAccent
+    if (selectedAccent !== null) {
+      this.map.panTo(selectedAccent.value.coords)
+      this.map.setZoom(7)
+    }
   },
 
   propTypes: {
     loaded: React.PropTypes.bool,
     google: React.PropTypes.object,
-    selectedCountry: React.PropTypes.object
+    countries: React.PropTypes.object
   }
 })
 

@@ -53,7 +53,7 @@ class AccentsList extends React.Component {
 
 AccentsList.propTypes = {
   selectedCountry: React.PropTypes.object,
-  selectedCountry: React.PropTypes.object,
+  selectedAccent: React.PropTypes.object,
   onAccentSelected: React.PropTypes.func,
   onClose: React.PropTypes.func
 }
