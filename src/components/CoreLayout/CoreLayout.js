@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 import { Link } from 'react-router'
 import './styles.scss'
 
@@ -43,8 +43,8 @@ class CoreLayout extends React.Component {
 }
 
 CoreLayout.propTypes = {
-  children: PropTypes.object.isRequired,
-  location: PropTypes.object
+  location: React.PropTypes.object,
+  children: React.PropTypes.node
 }
 
 export default CoreLayout

@@ -1,13 +1,15 @@
 import React from 'react'
+import { Link } from 'react-router'
 import './styles.scss'
 
-class CountriesList extends React.Component {
+const CountriesList = React.createClass({
+
   componentDidMount () {
     componentHandler.upgradeDom() // MDL
-  }
+  },
 
   render () {
-    const { countries, onCountrySelected } = this.props
+    const { countries } = this.props
 
     const loadingIndicator = (
       <div className='loading-indicator'>
@@ -18,12 +20,11 @@ class CountriesList extends React.Component {
     const countriesList = (
       <ul className='mdl-list'>
         { countries.items.map((country) => (
-          <li key={country.key} className='mdl-list__item' role='button'
-            onClick={() => onCountrySelected(country)}>
-            <span className='mdl-list__item-primary-content'>
+          <li key={country.key} className='mdl-list__item' role='button'>
+            <Link to={'/' + country.key + '/'} className='mdl-list__item-primary-content'>
               <img className='mdl-list__item-avatar' src={'/images/flags/' + country.key + '.svg'} />
               {country.value.name}
-            </span>
+            </Link>
           </li>
         )) }
       </ul>
@@ -43,13 +44,12 @@ class CountriesList extends React.Component {
         </div>
       </div>
     )
+  },
+
+  propTypes: {
+    countries: React.PropTypes.object
   }
 
-}
-
-CountriesList.propTypes = {
-  countries: React.PropTypes.object,
-  onCountrySelected: React.PropTypes.func
-}
+})
 
 export default CountriesList

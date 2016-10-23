@@ -1,5 +1,5 @@
-import { REQUEST_COUNTRIES, RECEIVE_COUNTRIES, SELECT_COUNTRY } from './actions'
-import { SELECT_ACCENT } from '../AccentsList/actions'
+import { REQUEST_COUNTRIES, RECEIVE_COUNTRIES } from './actions'
+import { SELECT_COUNTRY, SELECT_ACCENT } from '../AccentsList/actions'
 
 const initialState = {
   loading: true,

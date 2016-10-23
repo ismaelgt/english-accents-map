@@ -3,7 +3,6 @@ import { objectSnapshotToArray } from '../../../../services/firebase-structures'
 
 export const REQUEST_COUNTRIES = 'REQUEST_COUNTRIES'
 export const RECEIVE_COUNTRIES = 'RECEIVE_COUNTRIES'
-export const SELECT_COUNTRY = 'SELECT_COUNTRY'
 
 export const requestCountries = () => ({
   type: REQUEST_COUNTRIES
@@ -13,13 +12,6 @@ export const receiveCountries = (items) => ({
   type: RECEIVE_COUNTRIES,
   payload: {
     items: items
-  }
-})
-
-export const selectCountry = (country) => ({
-  type: SELECT_COUNTRY,
-  payload: {
-    country: country
   }
 })
 

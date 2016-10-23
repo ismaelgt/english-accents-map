@@ -1,18 +1,20 @@
 import { connect } from 'react-redux'
 import AccentsList from './AccentsList'
-import { selectAccent } from './actions'
-import { selectCountry } from '../CountriesList/actions'
+import { selectCountry, selectAccent } from './actions'
+
+const mapStateToProps = (state) => ({
+  countries: state.countries
+})
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onAccentSelected: (accent) => {
-      dispatch(selectAccent(accent))
+    onSelectCountry: (country) => {
+      dispatch(selectCountry(country))
     },
-    onClose: () => {
-      dispatch(selectCountry(null))
-      dispatch(selectAccent(null))
+    onSelectAccent: (accent) => {
+      dispatch(selectAccent(accent))
     }
   }
 }
 
-export default connect(null, mapDispatchToProps)(AccentsList)
+export default connect(mapStateToProps, mapDispatchToProps)(AccentsList)

@@ -1,8 +1,8 @@
 import { connect } from 'react-redux'
-import CountriesList from './CountriesList'
+import Map from './Map'
 
 const mapStateToProps = (state) => ({
   countries: state.countries
 })
 
-export default connect(mapStateToProps)(CountriesList)
+export default connect(mapStateToProps)(Map)
