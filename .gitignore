@@ -6,5 +6,6 @@ coverage
 src/config.js
 .idea/
 .firebaserc
+database.json
 database.rules.json
 firebase.json
