@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { browserHistory } from 'react-router'
 import GoogleApiComponent from 'google-maps-react/dist/GoogleApiComponent'
 import { GOOGLE_MAPS_API_KEY } from '../../../../config'
 import GOOGLE_MAPS_CONFIG from './config'
@@ -86,7 +87,11 @@ const Map = React.createClass({
     for (const country of countries.items) {
       Object.keys(country.value.accents).forEach((key) => {
         const marker = new google.maps.Marker({
-          position: country.value.accents[key].coords
+          position: country.value.accents[key].coords,
+          title: 'My accent'
+        })
+        marker.addListener('click', () => {
+          browserHistory.push('/' + country.key + '/' + key + '/')
         })
         marker.setMap(this.map)
       })

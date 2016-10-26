@@ -8,27 +8,26 @@ const AccentsList = React.createClass({
   componentDidMount () {
     componentHandler.upgradeDom() // MDL
     if (!this.props.countries.loading) {
-      this.loadFromUrl(this.props.countries)
+      this.loadFromUrl(this.props.countries, this.props.params)
     }
   },
 
   componentWillReceiveProps (nextProps) {
-    if (!nextProps.countries.loading && this.props.countries.loading) {
-      this.loadFromUrl(nextProps.countries)
+    if (!nextProps.countries.loading) {
+      if (
+        this.props.countries.loading || // Countries first load
+        nextProps.params !== this.props.params
+      ) {
+        this.loadFromUrl(nextProps.countries, nextProps.params)
+      }
     }
-  },
-
-  // Always make sure countries are loaded and country is selected when updating
-  shouldComponentUpdate (nextProps) {
-    return !nextProps.countries.loading && nextProps.countries.selected
   },
 
   componentDidUpdate () {
     componentHandler.upgradeDom() // MDL
   },
 
-  loadFromUrl (countries) {
-    const { params } = this.props
+  loadFromUrl (countries, params) {
     const country = countries.items.find(
       (item) => (item.key === params.countryId)
     )
@@ -74,9 +73,10 @@ const AccentsList = React.createClass({
             <li key={accent.key} className='mdl-list__item'>
               <label className='mdl-radio mdl-js-radio mdl-js-ripple-effect'
                 htmlFor={'accent-' + accent.key}>
-                <input type='radio' id={'accent-' + accent.key}
+                <input type='radio'
+                  id={'accent-' + accent.key}
                   className='mdl-radio__button'
-                  checked={countries.selectedAccent !== null && countries.selectedAccent.key === accent.key}
+                  checked={countries.selectedAccent && countries.selectedAccent.key === accent.key}
                   onChange={() => { this.selectAccent(accent) }} />
                 <span className='mdl-radio__label'>{accent.value.name}</span>
               </label>
