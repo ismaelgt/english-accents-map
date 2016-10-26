@@ -1,84 +1,81 @@
 import React from 'react'
 import { Link, withRouter, browserHistory } from 'react-router'
-import { objectToArray } from '../../../../services/firebase-structures'
 import './styles.scss'
 
 const AccentsList = React.createClass({
 
   componentDidMount () {
     componentHandler.upgradeDom() // MDL
-    if (!this.props.countries.loading) {
-      this.loadFromUrl(this.props.countries, this.props.params)
-    }
+    this.loadFromUrl()
   },
 
-  componentWillReceiveProps (nextProps) {
-    if (!nextProps.countries.loading) {
-      if (
-        this.props.countries.loading || // Countries first load
-        nextProps.params !== this.props.params
-      ) {
-        this.loadFromUrl(nextProps.countries, nextProps.params)
-      }
-    }
-  },
-
-  componentDidUpdate () {
+  componentDidUpdate (prevProps) {
     componentHandler.upgradeDom() // MDL
+    if (!this.props.countrySelected || prevProps.params.accentId !== this.props.params.accentId) {
+      this.loadFromUrl()
+    }
   },
 
-  loadFromUrl (countries, params) {
-    const country = countries.items.find(
-      (item) => (item.key === params.countryId)
-    )
+  loadFromUrl () {
+    const { params, countries, accents, countriesLoading, accentsLoading,
+      countrySelected, onSelectCountry, onSelectAccent } = this.props
+
+    if (countriesLoading || accentsLoading) {
+      return
+    }
+
+    const country = countries.byId[params.countryId]
     if (country) {
-      this.props.onSelectCountry(country)
+      onSelectCountry(params.countryId)
       if (params.accentId) {
-        const accent = country.value.accents[params.accentId]
+        const accent = accents.byId[params.accentId]
         if (accent) {
-          this.props.onSelectAccent({ key: params.accentId, value: accent })
+          onSelectAccent(params.accentId)
         } else {
-          browserHistory.push('/' + country.key + '/') // TODO: Show a 404 here
+          // TODO: Show a 404 here
+          browserHistory.push('/' + countrySelected + '/')
         }
       }
     } else {
-      browserHistory.push('/') // TODO: Show a 404 here
+      // TODO: Show a 404 here
+      browserHistory.push('/')
     }
   },
 
-  selectAccent (accent) {
-    this.props.onSelectAccent(accent)
-    this.props.router.push('/' + this.props.countries.selected.key + '/' + accent.key + '/')
+  selectAccent (id) {
+    this.props.onSelectAccent(id)
+    this.props.router.push('/' + this.props.countrySelected + '/' + id + '/')
   },
 
   render () {
-    const { countries } = this.props
-    let accents = []
+    const { countries, accents, countriesLoading, accentsLoading, countrySelected, accentSelected } = this.props
     let header, body, menu
 
-    if (!countries.loading && countries.selected) {
-      accents = objectToArray(countries.selected.value.accents)
+    if (!countriesLoading && !accentsLoading && countrySelected) {
+      const countryAccentsIds = Object.keys(accents.byId).filter(
+        (id) => (accents.byId[id].country === countrySelected)
+      )
 
       header = (
         <h3 className='mdl-card__title-text'>
           <img className='mdl-list__item-avatar'
-            src={'/images/flags/' + countries.selected.key + '.svg'} />
-          <span>{ countries.selected.value.name }</span>
+            src={'/images/flags/' + countrySelected + '.svg'} />
+          <span>{ countries.byId[countrySelected].name }</span>
         </h3>
       )
 
       body = (
         <ul className='mdl-list'>
-          { accents.map((accent) => (
-            <li key={accent.key} className='mdl-list__item'>
+          { countryAccentsIds.map((id) => (
+            <li key={id} className='mdl-list__item'>
               <label className='mdl-radio mdl-js-radio mdl-js-ripple-effect'
-                htmlFor={'accent-' + accent.key}>
+                htmlFor={'accent-' + id}>
                 <input type='radio'
-                  id={'accent-' + accent.key}
+                  id={'accent-' + id}
                   className='mdl-radio__button'
-                  checked={countries.selectedAccent && countries.selectedAccent.key === accent.key}
-                  onChange={() => { this.selectAccent(accent) }} />
-                <span className='mdl-radio__label'>{accent.value.name}</span>
+                  checked={accentSelected !== null && accentSelected === id}
+                  onChange={() => { this.selectAccent(id) }} />
+                <span className='mdl-radio__label'>{accents.byId[id].name}</span>
               </label>
             </li>
             )
@@ -120,6 +117,11 @@ const AccentsList = React.createClass({
     params: React.PropTypes.object,
     router: React.PropTypes.object,
     countries: React.PropTypes.object,
+    accents: React.PropTypes.object,
+    countriesLoading: React.PropTypes.bool,
+    accentsLoading: React.PropTypes.bool,
+    countrySelected: React.PropTypes.string,
+    accentSelected: React.PropTypes.string,
     onSelectCountry: React.PropTypes.func,
     onSelectAccent: React.PropTypes.func
   }

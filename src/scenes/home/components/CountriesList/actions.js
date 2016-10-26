@@ -1,18 +1,24 @@
 import firebase from 'firebase'
-import { objectSnapshotToArray } from '../../../../services/firebase-structures'
 
 export const REQUEST_COUNTRIES = 'REQUEST_COUNTRIES'
 export const RECEIVE_COUNTRIES = 'RECEIVE_COUNTRIES'
+export const SELECT_COUNTRY = 'SELECT_COUNTRY'
 
 export const requestCountries = () => ({
   type: REQUEST_COUNTRIES
 })
 
-export const receiveCountries = (items) => ({
+export const receiveCountries = (itemsById, orderedItemsIds) => ({
   type: RECEIVE_COUNTRIES,
   payload: {
-    items: items
+    byId: itemsById,
+    orderedIds: orderedItemsIds
   }
+})
+
+export const selectCountry = (selectedId) => ({
+  type: SELECT_COUNTRY,
+  payload: selectedId
 })
 
 // Thunk
@@ -24,7 +30,12 @@ export const loadCountries = () => {
       .orderByChild('order')
       .once('value')
       .then((snapshot) => {
-        dispatch(receiveCountries(objectSnapshotToArray(snapshot)))
+        const byId = snapshot.val()
+        let orderedIds = []
+        snapshot.forEach(function (item) {
+          orderedIds.push(item.key)
+        })
+        dispatch(receiveCountries(byId, orderedIds))
       })
   }
 }

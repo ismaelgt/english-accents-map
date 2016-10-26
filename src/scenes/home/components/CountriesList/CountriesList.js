@@ -1,15 +1,17 @@
 import React from 'react'
 import { Link } from 'react-router'
+import { selectAccent } from '../AccentsList/actions'
 import './styles.scss'
 
 const CountriesList = React.createClass({
 
   componentDidMount () {
+    this.props.dispatch(selectAccent(null))
     componentHandler.upgradeDom() // MDL
   },
 
   render () {
-    const { countries } = this.props
+    const { countries, loading } = this.props
 
     const loadingIndicator = (
       <div className='loading-indicator'>
@@ -19,11 +21,11 @@ const CountriesList = React.createClass({
 
     const countriesList = (
       <ul className='mdl-list'>
-        { countries.items.map((country) => (
-          <li key={country.key} className='mdl-list__item' role='button'>
-            <Link to={'/' + country.key + '/'} className='mdl-list__item-primary-content'>
-              <img className='mdl-list__item-avatar' src={'/images/flags/' + country.key + '.svg'} />
-              {country.value.name}
+        { countries.orderedIds.map((countryId) => (
+          <li key={countryId} className='mdl-list__item' role='button'>
+            <Link to={'/' + countryId + '/'} className='mdl-list__item-primary-content'>
+              <img className='mdl-list__item-avatar' src={'/images/flags/' + countryId + '.svg'} />
+              {countries.byId[countryId].name}
             </Link>
           </li>
         )) }
@@ -35,11 +37,11 @@ const CountriesList = React.createClass({
         <div className='eam-card eam-card--countries-list mdl-card mdl-shadow--2dp'>
           <div className='mdl-card__title'>
             <h2 className='mdl-card__title-text'>
-              { countries.loading ? 'Loading Countries...' : 'Select Country' }
+              { loading ? 'Loading Countries...' : 'Select Country' }
             </h2>
           </div>
           <div className='mdl-card__supporting-text'>
-            { countries.loading ? loadingIndicator : countriesList }
+            { loading ? loadingIndicator : countriesList }
           </div>
         </div>
       </div>
@@ -47,7 +49,9 @@ const CountriesList = React.createClass({
   },
 
   propTypes: {
-    countries: React.PropTypes.object
+    countries: React.PropTypes.object,
+    loading: React.PropTypes.bool,
+    dispatch: React.PropTypes.func
   }
 
 })

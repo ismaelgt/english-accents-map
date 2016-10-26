@@ -27,29 +27,32 @@ const Map = React.createClass({
     return {
       loaded: false,
       countries: null,
+      accents: null,
+      countrySelected: null,
+      accentSelected: null,
+      countriesLoading: true,
+      accentsLoading: true,
       mapRendered: false,
       markersRendered: false
     }
   },
 
   componentWillReceiveProps (nextProps) {
-    // Countries loaded
-    if (!this.state.countries && nextProps.countries && !nextProps.countries.loading) {
-      this.state.countries = nextProps.countries
-      if (this.state.mapRendered) {
-        this.loadMarkers()
-      }
+    // Accents loaded
+    if (this.state.mapRendered && !this.state.markersRendered && !nextProps.accentsLoading) {
+      this.loadMarkers(nextProps.accents)
     }
-    if (nextProps.countries && this.state.countries) {
-      // Country selected
-      if (nextProps.countries.selected !== this.state.countries.selected) {
-        this.selectCountry(nextProps.countries.selected)
-      }
-      // Accent selected
-      if (nextProps.countries.selectedAccent !== this.state.countries.selectedAccent) {
-        this.selectAccent(nextProps.countries.selectedAccent)
-      }
-      this.state.countries = nextProps.countries
+    // Country selected
+    if (nextProps.countrySelected !== this.state.countrySelected) {
+      this.selectCountry(nextProps.countrySelected)
+    }
+    // Accent selected
+    if (nextProps.accentSelected !== this.state.accentSelected) {
+      this.selectAccent(nextProps.accentSelected)
+    }
+    // Update component state
+    if (this.state.loaded) {
+      this.state = { ...this.state, ...nextProps }
     }
   },
 
@@ -75,34 +78,31 @@ const Map = React.createClass({
     this.map = new google.maps.Map(mapEl, GOOGLE_MAPS_CONFIG)
 
     this.state.mapRendered = true
-    if (this.state.countries && !this.state.countries.loading) {
-      this.loadMarkers()
+    if (!this.state.accentsLoading) {
+      this.loadMarkers(this.state.accents)
     }
   },
 
   // Create one marker in the map for each accent
-  loadMarkers () {
+  loadMarkers (accents) {
     const { google } = this.props
-    const { countries } = this.state
-    for (const country of countries.items) {
-      Object.keys(country.value.accents).forEach((key) => {
-        const marker = new google.maps.Marker({
-          position: country.value.accents[key].coords,
-          title: 'My accent'
-        })
-        marker.addListener('click', () => {
-          browserHistory.push('/' + country.key + '/' + key + '/')
-        })
-        marker.setMap(this.map)
+
+    Object.keys(accents.byId).forEach((id) => {
+      const marker = new google.maps.Marker({
+        position: accents.byId[id].coords
       })
-    }
+      marker.addListener('click', () => {
+        browserHistory.push('/' + accents.byId[id].country + '/' + id + '/')
+      })
+      marker.setMap(this.map)
+    })
     this.state.markersRendered = true
   },
 
   // Fit country in map using South West and North East coordinates
   selectCountry (selectedCountry) {
     if (selectedCountry !== null) {
-      const { sw, ne } = selectedCountry.value.coords
+      const { sw, ne } = this.state.countries.byId[selectedCountry].coords
       const bounds = new this.props.google.maps.LatLngBounds(sw, ne)
       this.map.fitBounds(bounds)
     }
@@ -111,7 +111,7 @@ const Map = React.createClass({
   // Move map center to accent location
   selectAccent (selectedAccent) {
     if (selectedAccent !== null) {
-      this.map.panTo(selectedAccent.value.coords)
+      this.map.panTo(this.state.accents.byId[selectedAccent].coords)
       this.map.setZoom(7)
     }
   },
@@ -119,7 +119,12 @@ const Map = React.createClass({
   propTypes: {
     loaded: React.PropTypes.bool,
     google: React.PropTypes.object,
-    countries: React.PropTypes.object
+    countries: React.PropTypes.object,
+    accents: React.PropTypes.object,
+    countriesLoading: React.PropTypes.bool,
+    accentsLoading: React.PropTypes.bool,
+    countrySelected: React.PropTypes.string,
+    accentSelected: React.PropTypes.string
   }
 })
 

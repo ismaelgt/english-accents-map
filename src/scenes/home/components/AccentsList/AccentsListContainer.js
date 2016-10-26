@@ -1,9 +1,15 @@
 import { connect } from 'react-redux'
 import AccentsList from './AccentsList'
-import { selectCountry, selectAccent } from './actions'
+import { selectCountry } from '../CountriesList/actions'
+import { selectAccent } from './actions'
 
 const mapStateToProps = (state) => ({
-  countries: state.countries
+  countries: state.entities.countries,
+  accents: state.entities.accents,
+  countriesLoading: state.ui.countries.loading,
+  accentsLoading: state.ui.accents.loading,
+  countrySelected: state.ui.countries.selected,
+  accentSelected: state.ui.accents.selected
 })
 
 const mapDispatchToProps = (dispatch) => {
