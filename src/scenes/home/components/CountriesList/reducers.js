@@ -1,11 +1,11 @@
 import { REQUEST_COUNTRIES, RECEIVE_COUNTRIES, SELECT_COUNTRY } from './actions'
 
-const initialEntityState = {
+const initialCountriesEntityState = {
   byId: {},
   orderedIds: []
 }
 
-export const entityReducer = (state = initialEntityState, action) => {
+export const countriesEntityReducer = (state = initialCountriesEntityState, action) => {
   switch (action.type) {
     case RECEIVE_COUNTRIES:
       return { byId: action.payload.byId, orderedIds: action.payload.orderedIds }
@@ -14,12 +14,12 @@ export const entityReducer = (state = initialEntityState, action) => {
   }
 }
 
-const initialUiState = {
+const initialCountriesUiState = {
   loading: true,
   selected: null
 }
 
-export const uiReducer = (state = initialUiState, action) => {
+export const countriesUiReducer = (state = initialCountriesUiState, action) => {
   switch (action.type) {
     case REQUEST_COUNTRIES:
       return { ...state, loading: true }

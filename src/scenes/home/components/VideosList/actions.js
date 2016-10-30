@@ -1,0 +1,3 @@
+export const NEXT_VIDEO = 'NEXT_VIDEO'
+export const PREVIOUS_VIDEO = 'PREVIOUS_VIDEO'
+export const CLOSE_VIDEO = 'CLOSE_VIDEO'

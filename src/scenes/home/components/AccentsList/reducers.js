@@ -1,10 +1,10 @@
 import { REQUEST_ACCENTS, RECEIVE_ACCENTS, SELECT_ACCENT } from './actions'
 
-const initialEntityState = {
+const initialAccentsEntityState = {
   byId: {}
 }
 
-export const entityReducer = (state = initialEntityState, action) => {
+export const accentsEntityReducer = (state = initialAccentsEntityState, action) => {
   switch (action.type) {
     case RECEIVE_ACCENTS:
       return { byId: action.payload }
@@ -13,12 +13,12 @@ export const entityReducer = (state = initialEntityState, action) => {
   }
 }
 
-const initialUiState = {
+const initialAccentsUiState = {
   loading: true,
   selected: null
 }
 
-export const uiReducer = (state = initialUiState, action) => {
+export const accentsUiReducer = (state = initialAccentsUiState, action) => {
   switch (action.type) {
     case REQUEST_ACCENTS:
       return { ...state, loading: true }

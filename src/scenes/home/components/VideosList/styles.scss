@@ -1,0 +1,48 @@
+@import '../../../../styles/definitions';
+
+.videos-list-overlay {
+  background: rgba($black, .8);
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 3;
+}
+
+.videos-list {
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  padding: 30px 0;
+}
+
+.videos-list__wrapper {
+  flex-basis: 75%;
+  height: 100%;
+  position: relative;
+}
+
+.videos-list__button-container {
+  align-items: center;
+  display: flex;
+  flex-basis: 12.5%;
+  flex-direction: row;
+}
+
+.mdl-button.videos-list__button--close {
+  position: absolute;
+  right: -16px;
+  top: -16px;
+}
+
+.mdl-button.videos-list__button,
+.mdl-button.videos-list__button {
+  background-color: rgba($white, .5);
+
+  &:hover {
+    background-color: $white;
+  }
+}
