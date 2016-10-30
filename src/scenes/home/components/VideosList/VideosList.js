@@ -12,15 +12,31 @@ const VideosList = React.createClass({
     const nextButton = (
       <button onClick={(e) => { e.stopPropagation(); onNextVideo() }}
         className='mdl-button mdl-js-button mdl-button--fab videos-list__button
-          mdl-js-ripple-effect videos-list__button--next'>
+          mdl-js-ripple-effect videos-list__button--next'
+        disabled={index >= videos.length - 1}>
         <i className='material-icons'>keyboard_arrow_right</i>
       </button>
     )
     const previousButton = (
       <button onClick={(e) => { e.stopPropagation(); onPreviousVideo() }}
         className='mdl-button mdl-js-button mdl-button--fab videos-list__button
-          mdl-js-ripple-effect videos-list__button--previous'>
+          mdl-js-ripple-effect videos-list__button--previous'
+        disabled={index === 0}>
         <i className='material-icons'>keyboard_arrow_left</i>
+      </button>
+    )
+    const closeButtonDesktop = (
+      <button onClick={(e) => { e.stopPropagation(); onCloseVideo() }}
+        className='mdl-button mdl-js-button mdl-button--icon
+        videos-list__button videos-list__button--close'>
+        <i className='material-icons'>close</i>
+      </button>
+    )
+    const closeButtonMobile = (
+      <button onClick={(e) => { e.stopPropagation(); onCloseVideo() }}
+        className='mdl-button mdl-js-button mdl-button--fab videos-list__button
+          mdl-js-ripple-effect'>
+        <i className='material-icons'>close</i>
       </button>
     )
     return (
@@ -31,11 +47,7 @@ const VideosList = React.createClass({
             { index > 0 ? previousButton : null }
           </div>
           <div className='videos-list__wrapper'>
-            <button className='mdl-button mdl-js-button mdl-button--icon
-              videos-list__button videos-list__button--close'
-              onClick={(e) => { e.stopPropagation(); onCloseVideo() }}>
-              <i className='material-icons'>close</i>
-            </button>
+            { closeButtonDesktop }
             <iframe
               width='100%'
               height='100%'
@@ -45,6 +57,9 @@ const VideosList = React.createClass({
           <div className='videos-list__button-container'>
             { index < videos.length - 1 ? nextButton : null }
           </div>
+        </div>
+        <div className='videos-list__button-container--mobile'>
+          { previousButton }{ nextButton }{ closeButtonMobile }
         </div>
       </div>
     )

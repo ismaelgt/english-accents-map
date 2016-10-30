@@ -1,7 +1,7 @@
 @import '../../../../styles/definitions';
 
 .videos-list-overlay {
-  background: rgba($black, .8);
+  background: rgba($grey-900, .8);
   height: 100%;
   left: 0;
   position: absolute;
@@ -17,12 +17,21 @@
   flex-direction: row;
   height: 100%;
   padding: 30px 0;
+
+  @include upto(tablet) {
+    height: 85%;
+    padding: 0;
+  }
 }
 
 .videos-list__wrapper {
   flex-basis: 75%;
   height: 100%;
   position: relative;
+
+  @include upto(tablet) {
+    flex-basis: 100%;
+  }
 }
 
 .videos-list__button-container {
@@ -30,12 +39,32 @@
   display: flex;
   flex-basis: 12.5%;
   flex-direction: row;
+
+  @include upto(tablet) {
+    display: none;
+  }
 }
 
 .mdl-button.videos-list__button--close {
   position: absolute;
   right: -16px;
   top: -16px;
+
+  @include upto(tablet) {
+    display: none;
+  }
+}
+
+.videos-list__button-container--mobile {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  height: 15%;
+  justify-content: space-around;
+
+  @include from(tablet) {
+    display: none;
+  }
 }
 
 .mdl-button.videos-list__button,
