@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router'
+import NowWatching from '../../scenes/home/components/NowWatching'
 import './styles.scss'
 
 class CoreLayout extends React.Component {
@@ -23,6 +24,8 @@ class CoreLayout extends React.Component {
               <img className='eam-layout-title__icon' src='/images/eam_logo_24px.svg' />
               <span>English</span><strong>Accents</strong><span>Map</span>
             </Link>
+            <div className='mdl-layout-spacer' />
+            <NowWatching />
           </div>
         </header>
         <div id='mdl-layout__drawer' className='mdl-layout__drawer' ref='drawer'>

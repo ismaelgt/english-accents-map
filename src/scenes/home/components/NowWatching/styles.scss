@@ -1,0 +1,7 @@
+@import '../../../../styles/definitions';
+
+.current-selection {
+  @include upto('desktop') {
+    display: none;
+  }
+}

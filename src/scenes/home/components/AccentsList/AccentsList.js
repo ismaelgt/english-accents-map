@@ -31,7 +31,9 @@ const AccentsList = React.createClass({
         const accent = accents.byId[params.accentId]
         if (accent) {
           onSelectAccent(params.accentId)
-          onOpenVideos()
+          if (accent.videos && accent.videos.length) {
+            onOpenVideos()
+          }
         } else {
           // TODO: Show a 404 here
           browserHistory.push('/' + countrySelected + '/')
