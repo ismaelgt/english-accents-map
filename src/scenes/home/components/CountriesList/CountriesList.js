@@ -19,6 +19,15 @@ const CountriesList = React.createClass({
       </div>
     )
 
+    const instructions = (
+      <div className='eam-card eam-card--instructions mdl-card mdl-shadow--2dp'>
+        <div className='mdl-card__supporting-text'>
+          Select a country and a region or click on one of the map markers.
+          You'll see a list of videos showing the English accent spoken there.
+        </div>
+      </div>
+    )
+
     const countriesList = (
       <ul className='mdl-list'>
         { countries.orderedIds.map((countryId) => (
@@ -34,12 +43,8 @@ const CountriesList = React.createClass({
 
     return (
       <div className='eam-card-wrapper'>
+        { loading ? null : instructions }
         <div className='eam-card eam-card--countries-list mdl-card mdl-shadow--2dp'>
-          <div className='mdl-card__title'>
-            <h2 className='mdl-card__title-text'>
-              { loading ? 'Loading Countries...' : 'Select Country' }
-            </h2>
-          </div>
           <div className='mdl-card__supporting-text'>
             { loading ? loadingIndicator : countriesList }
           </div>

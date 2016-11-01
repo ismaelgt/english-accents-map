@@ -7,7 +7,7 @@
   }
 
   @include from(tablet) {
-    padding: 48px 32px;
+    padding: 32px;
   }
 }
 
@@ -29,10 +29,6 @@
     font-weight: 500;
   }
 
-  .mdl-card__supporting-text {
-    padding: 0 16px;
-  }
-
   .mdl-list {
     margin: 0;
   }
@@ -41,5 +37,13 @@
     display: flex;
     justify-content: center;
     padding: 32px;
+  }
+}
+
+.eam-card--instructions {
+  margin-bottom: 16px;
+
+  .mdl-card__supporting-text {
+    color: $text-color;
   }
 }

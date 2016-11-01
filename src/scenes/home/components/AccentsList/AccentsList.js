@@ -51,11 +51,21 @@ const AccentsList = React.createClass({
 
   render () {
     const { countries, accents, countriesLoading, accentsLoading, countrySelected, accentSelected } = this.props
-    let header, body, menu
+    let header, body, menu, instructions
 
     if (!countriesLoading && !accentsLoading && countrySelected) {
       const countryAccentsIds = Object.keys(accents.byId).filter(
         (id) => (accents.byId[id].country === countrySelected)
+      )
+
+      instructions = (
+        <div className='eam-card eam-card--instructions mdl-card mdl-shadow--2dp'>
+          <div className='mdl-card__supporting-text'>
+            Select a region in <strong>{ countries.byId[countrySelected].name } </strong>
+            or <Link to='/'>another country</Link>, or click on one of the map markers.<br />
+            You'll see a list of videos showing the English accent spoken there.
+          </div>
+        </div>
       )
 
       header = (
@@ -92,6 +102,8 @@ const AccentsList = React.createClass({
         </Link>
       )
     } else {
+      instructions = null
+
       header = (
         <h3 className='mdl-card__title-text'>Loading...</h3>
       )
@@ -106,6 +118,7 @@ const AccentsList = React.createClass({
 
     return (
       <div className='eam-card-wrapper'>
+        { instructions }
         <div className='eam-card eam-card--accents-list mdl-card mdl-shadow--2dp'>
           <div className='mdl-card__title'>{ header }</div>
           <div className='mdl-card__supporting-text'>{ body }</div>
