@@ -1,5 +1,4 @@
-import { SELECT_ACCENT } from '../AccentsList/actions'
-import { NEXT_VIDEO, PREVIOUS_VIDEO, CLOSE_VIDEO } from './actions'
+import { OPEN_VIDEOS, NEXT_VIDEO, PREVIOUS_VIDEO, CLOSE_VIDEO } from './actions'
 
 const initialVideosUiState = {
   open: false,
@@ -8,7 +7,7 @@ const initialVideosUiState = {
 
 export const videosUiReducer = (state = initialVideosUiState, action) => {
   switch (action.type) {
-    case SELECT_ACCENT:
+    case OPEN_VIDEOS:
       return {
         open: action.payload !== null,
         index: action.payload !== null ? 0 : null

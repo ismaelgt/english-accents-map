@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
 import AccentsList from './AccentsList'
 import { selectCountry } from '../CountriesList/actions'
+import { openVideos } from '../VideosList/actions'
 import { selectAccent } from './actions'
 
 const mapStateToProps = (state) => ({
@@ -19,6 +20,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     onSelectAccent: (accent) => {
       dispatch(selectAccent(accent))
+    },
+    onOpenVideos: () => {
+      dispatch(openVideos())
     }
   }
 }

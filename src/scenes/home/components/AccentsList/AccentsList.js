@@ -18,7 +18,7 @@ const AccentsList = React.createClass({
 
   loadFromUrl () {
     const { params, countries, accents, countriesLoading, accentsLoading,
-      countrySelected, onSelectCountry, onSelectAccent } = this.props
+      countrySelected, onSelectCountry, onSelectAccent, onOpenVideos } = this.props
 
     if (countriesLoading || accentsLoading) {
       return
@@ -31,6 +31,7 @@ const AccentsList = React.createClass({
         const accent = accents.byId[params.accentId]
         if (accent) {
           onSelectAccent(params.accentId)
+          onOpenVideos()
         } else {
           // TODO: Show a 404 here
           browserHistory.push('/' + countrySelected + '/')
@@ -43,7 +44,6 @@ const AccentsList = React.createClass({
   },
 
   selectAccent (id) {
-    this.props.onSelectAccent(id)
     this.props.router.push('/' + this.props.countrySelected + '/' + id + '/')
   },
 
@@ -123,7 +123,8 @@ const AccentsList = React.createClass({
     countrySelected: React.PropTypes.string,
     accentSelected: React.PropTypes.string,
     onSelectCountry: React.PropTypes.func,
-    onSelectAccent: React.PropTypes.func
+    onSelectAccent: React.PropTypes.func,
+    onOpenVideos: React.PropTypes.func
   }
 })
 
