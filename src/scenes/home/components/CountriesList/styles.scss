@@ -1,20 +1,15 @@
 @import '../../../../styles/definitions';
 
 .eam-card.eam-card--countries-list {
-  .mdl-list__item {
-    padding: 12px 16px;
+  .mdl-card__title {
+    padding: 16px 32px;
   }
 
-  .mdl-list__item-primary-content {
-    color: $grey-900;
-    font-weight: 400;
-
-    &:hover {
-      color: $blue-900;
-    }
+  .mdl-list__item {
+    padding: 12px 8px 12px 12px;
   }
 
   .mdl-card__supporting-text {
-    padding: 0 16px;
+    padding: 0 8px;
   }
 }

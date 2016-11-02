@@ -20,10 +20,12 @@ const CountriesList = React.createClass({
     )
 
     const instructions = (
-      <div className='eam-card eam-card--instructions mdl-card mdl-shadow--2dp'>
+      <div className='eam-card eam-card--intro mdl-card mdl-shadow--2dp'>
         <div className='mdl-card__supporting-text'>
-          Select a country and a region or click on one of the map markers.
-          You'll see a list of videos showing the English accent spoken there.
+          <h1 className='intro__title'>Watch English accents videos</h1>
+          <p className='intro__text'>
+            Start by selecting a country and a region or by clicking on one of the map markers.
+          </p>
         </div>
       </div>
     )
@@ -32,9 +34,14 @@ const CountriesList = React.createClass({
       <ul className='mdl-list'>
         { countries.orderedIds.map((countryId) => (
           <li key={countryId} className='mdl-list__item' role='button'>
-            <Link to={'/' + countryId + '/'} className='mdl-list__item-primary-content'>
-              <img className='mdl-list__item-avatar' src={'/images/flags/' + countryId + '.svg'} />
-              {countries.byId[countryId].name}
+            <Link to={'/' + countryId + '/'} className='eam-card__link'>
+              <span className='mdl-list__item-primary-content'>
+                <img className='mdl-list__item-avatar' src={'/images/flags/' + countryId + '.svg'} />
+                {countries.byId[countryId].name}
+              </span>
+              <span className='mdl-list__item-secondary-action'>
+                <i className='material-icons'>arrow_forward</i>
+              </span>
             </Link>
           </li>
         )) }

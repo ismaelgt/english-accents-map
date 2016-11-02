@@ -1,0 +1,18 @@
+.eam-card--intro {
+  margin-bottom: 16px;
+
+  .mdl-card__supporting-text {
+    color: $text-color;
+  }
+
+  .intro__title {
+    font-size: 20px;
+    font-weight: 300;
+    margin: 0 0 8px;
+  }
+
+  .intro__text {
+    line-height: 18px;
+    margin-bottom: 0;
+  }
+}

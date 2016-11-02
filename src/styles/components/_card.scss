@@ -18,15 +18,15 @@
     width: 100%;
   }
 
-  .mdl-card__title {
-    border-bottom: 1px solid $grey-100;
-    padding: 16px 32px;
-  }
-
   .mdl-card__title-text {
     color: $text-color;
     font-size: 18px;
     font-weight: 500;
+  }
+
+  .mdl-card__supporting-text {
+    box-sizing: border-box;
+    width: 100%;
   }
 
   .mdl-list {
@@ -40,10 +40,23 @@
   }
 }
 
-.eam-card--instructions {
-  margin-bottom: 16px;
 
-  .mdl-card__supporting-text {
-    color: $text-color;
+.eam-card__link {
+  align-items: center;
+  color: $grey-900;
+  display: flex;
+  flex-grow: 1;
+  font-weight: 400;
+
+  .mdl-list__item-secondary-action {
+    display: none;
+  }
+
+  &:hover {
+    color: $blue-900;
+
+    .mdl-list__item-secondary-action {
+      display: block;
+    }
   }
 }

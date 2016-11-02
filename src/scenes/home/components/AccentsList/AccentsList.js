@@ -45,12 +45,8 @@ const AccentsList = React.createClass({
     }
   },
 
-  selectAccent (id) {
-    this.props.router.push('/' + this.props.countrySelected + '/' + id + '/')
-  },
-
   render () {
-    const { countries, accents, countriesLoading, accentsLoading, countrySelected, accentSelected } = this.props
+    const { countries, accents, countriesLoading, accentsLoading, countrySelected } = this.props
     let header, body, menu, instructions
 
     if (!countriesLoading && !accentsLoading && countrySelected) {
@@ -59,36 +55,37 @@ const AccentsList = React.createClass({
       )
 
       instructions = (
-        <div className='eam-card eam-card--instructions mdl-card mdl-shadow--2dp'>
+        <div className='eam-card eam-card--intro mdl-card mdl-shadow--2dp'>
           <div className='mdl-card__supporting-text'>
-            Select a region in <strong>{ countries.byId[countrySelected].name } </strong>
-            or <Link to='/'>another country</Link>, or click on one of the map markers.<br />
-            You'll see a list of videos showing the English accent spoken there.
+            <h1 className='intro__title'>Watch English accents videos</h1>
+            <p className='intro__text'>
+              Select a region in { countries.byId[countrySelected].name } or <Link to='/'>another country</Link>,
+              or click on one of the map markers.
+            </p>
           </div>
         </div>
       )
 
       header = (
-        <h3 className='mdl-card__title-text'>
+        <h2 className='mdl-card__title-text'>
           <img className='mdl-list__item-avatar'
             src={'/images/flags/' + countrySelected + '.svg'} />
           <span>{ countries.byId[countrySelected].name }</span>
-        </h3>
+        </h2>
       )
 
       body = (
         <ul className='mdl-list'>
           { countryAccentsIds.map((id) => (
             <li key={id} className='mdl-list__item'>
-              <label className='mdl-radio mdl-js-radio mdl-js-ripple-effect'
-                htmlFor={'accent-' + id}>
-                <input type='radio'
-                  id={'accent-' + id}
-                  className='mdl-radio__button'
-                  checked={accentSelected !== null && accentSelected === id}
-                  onChange={() => { this.selectAccent(id) }} />
-                <span className='mdl-radio__label'>{accents.byId[id].name}</span>
-              </label>
+              <Link to={`/${countrySelected}/${id}/`} className='eam-card__link'>
+                <span className='mdl-list__item-primary-content'>
+                  {accents.byId[id].name}
+                </span>
+                <span className='mdl-list__item-secondary-action'>
+                  <i className='material-icons'>play_circle_outline</i>
+                </span>
+              </Link>
             </li>
             )
           ) }
@@ -98,7 +95,7 @@ const AccentsList = React.createClass({
       menu = (
         <Link className='mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect'
           to={'/'}>
-          <i className='material-icons'>close</i>
+          <i className='material-icons'>arrow_back</i>
         </Link>
       )
     } else {
