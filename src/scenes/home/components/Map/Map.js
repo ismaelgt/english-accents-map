@@ -12,9 +12,6 @@ import './styles.scss'
 const Map = React.createClass({
 
   render () {
-    if (!this.props.loaded) {
-      return null
-    }
     return (
       <div className='map-wrapper'>
         <div className='map' ref='map' />
@@ -38,29 +35,34 @@ const Map = React.createClass({
   },
 
   componentWillReceiveProps (nextProps) {
-    // Accents loaded
-    if (this.state.mapRendered && !this.state.markersRendered && !nextProps.accentsLoading) {
-      this.loadMarkers(nextProps.accents)
+    if (!this.state.loaded && nextProps.loaded) {
+      return
     }
-    // Country selected
-    if (nextProps.countrySelected !== this.state.countrySelected) {
-      this.selectCountry(nextProps.countrySelected)
+
+    if (this.state.mapRendered) {
+      // Accents loaded
+      if (!this.state.markersRendered && !nextProps.accentsLoading) {
+        this.loadMarkers(nextProps.accents)
+      }
+      // Country selected
+      if (nextProps.countrySelected !== this.state.countrySelected) {
+        this.selectCountry(nextProps.countries, nextProps.countrySelected)
+      }
+      // Accent selected
+      if (nextProps.accentSelected !== this.state.accentSelected) {
+        this.selectAccent(nextProps.accents, nextProps.accentSelected)
+      }
     }
-    // Accent selected
-    if (nextProps.accentSelected !== this.state.accentSelected) {
-      this.selectAccent(nextProps.accentSelected)
-    }
-    // Update component state
-    if (this.state.loaded) {
-      this.state = { ...this.state, ...nextProps }
-    }
+
+    // Update component state.
+    // We don't want asynchronous state updates as this component doesn't re-render
+    this.state = { ...this.state, ...nextProps }
   },
 
   // This component should never update after its initialisation as
   // the map would be reloaded.
   shouldComponentUpdate (nextProps) {
     if (!this.state.loaded && nextProps.loaded) {
-      this.state.loaded = true
       return true
     }
     return false
@@ -68,6 +70,7 @@ const Map = React.createClass({
 
   // This is the first and only time the component is updated.
   componentDidUpdate (prevProps, prevState) {
+    this.state = { ...this.state, ...this.props, loaded: true }
     this.loadMap()
   },
 
@@ -92,7 +95,11 @@ const Map = React.createClass({
         position: accents.byId[id].coords
       })
       marker.addListener('click', () => {
-        browserHistory.push('/' + accents.byId[id].country + '/' + id + '/')
+        if (this.state.accentSelected !== id) {
+          browserHistory.push('/' + accents.byId[id].country + '/' + id + '/')
+        } else {
+          this.props.onOpenVideos()
+        }
       })
       marker.setMap(this.map)
     })
@@ -100,18 +107,18 @@ const Map = React.createClass({
   },
 
   // Fit country in map using South West and North East coordinates
-  selectCountry (selectedCountry) {
+  selectCountry (countries, selectedCountry) {
     if (selectedCountry !== null) {
-      const { sw, ne } = this.state.countries.byId[selectedCountry].coords
+      const { sw, ne } = countries.byId[selectedCountry].coords
       const bounds = new this.props.google.maps.LatLngBounds(sw, ne)
       this.map.fitBounds(bounds)
     }
   },
 
   // Move map center to accent location
-  selectAccent (selectedAccent) {
+  selectAccent (accents, selectedAccent) {
     if (selectedAccent !== null) {
-      this.map.panTo(this.state.accents.byId[selectedAccent].coords)
+      this.map.panTo(accents.byId[selectedAccent].coords)
       this.map.setZoom(7)
     }
   },
@@ -124,7 +131,8 @@ const Map = React.createClass({
     countriesLoading: React.PropTypes.bool,
     accentsLoading: React.PropTypes.bool,
     countrySelected: React.PropTypes.string,
-    accentSelected: React.PropTypes.string
+    accentSelected: React.PropTypes.string,
+    onOpenVideos: React.PropTypes.func
   }
 })
 

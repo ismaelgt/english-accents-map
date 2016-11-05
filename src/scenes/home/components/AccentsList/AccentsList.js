@@ -45,6 +45,14 @@ const AccentsList = React.createClass({
     }
   },
 
+  selectAccent (id) {
+    if (this.props.accentSelected === id) {
+      this.props.onOpenVideos()
+    } else {
+      browserHistory.push('/' + this.props.countrySelected + '/' + id + '/')
+    }
+  },
+
   render () {
     const { countries, accents, countriesLoading, accentsLoading,
       countrySelected, accentSelected, videosOpen } = this.props
@@ -79,15 +87,16 @@ const AccentsList = React.createClass({
         <ul className='mdl-list'>
           { countryAccentsIds.map((id) => (
             <li key={id} className='mdl-list__item'>
-              <Link to={`/${countrySelected}/${id}/`}
-                className={'eam-card__link' + ((accentSelected === id && videosOpen) ? ' eam-card__link--active' : '')}>
+              <div
+                className={'eam-card__link' + ((accentSelected === id && videosOpen) ? ' eam-card__link--active' : '')}
+                onClick={() => { this.selectAccent(id) }}>
                 <span className='mdl-list__item-primary-content'>
                   {accents.byId[id].name}
                 </span>
                 <span className='mdl-list__item-secondary-action'>
                   <i className='material-icons'>play_circle_outline</i>
                 </span>
-              </Link>
+              </div>
             </li>
             )
           ) }

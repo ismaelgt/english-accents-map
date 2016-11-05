@@ -1,8 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router'
+import { selectAccent } from '../AccentsList/actions'
 import './styles.scss'
 
 const CountriesList = React.createClass({
+
+  componentWillMount () {
+    this.props.dispatch(selectAccent(null))
+  },
 
   componentDidMount () {
     componentHandler.upgradeDom() // MDL
