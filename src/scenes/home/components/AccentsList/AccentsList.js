@@ -66,10 +66,13 @@ const AccentsList = React.createClass({
       instructions = (
         <div className='eam-card eam-card--intro mdl-card mdl-shadow--2dp'>
           <div className='mdl-card__supporting-text'>
-            <h1 className='intro__title'>Watch English accents videos</h1>
             <p className='intro__text'>
-              Select a region in { countries.byId[countrySelected].name } or <Link to='/'>another country</Link>,
-              or click on one of the map markers.
+              { videosOpen
+                ? <span>Use the arrows to navigate through { accents.byId[accentSelected].name } accent videos
+                or select a different region.</span>
+                : <span>Select a region in { countries.byId[countrySelected].name } or <Link to='/'>another
+                country</Link><span className='hide-mobile'>, or click on one of the map markers</span>.</span>
+              }
             </p>
           </div>
         </div>

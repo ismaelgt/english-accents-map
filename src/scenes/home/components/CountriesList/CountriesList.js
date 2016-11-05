@@ -27,7 +27,8 @@ const CountriesList = React.createClass({
         <div className='mdl-card__supporting-text'>
           <h1 className='intro__title'>Watch English accents videos</h1>
           <p className='intro__text'>
-            Start by selecting a country and a region or by clicking on one of the map markers.
+            Start by selecting a country and a region<span className='hide-mobile'> or
+            by clicking on one of the map markers</span>.
           </p>
         </div>
       </div>

@@ -2,3 +2,9 @@ a {
   color: $blue-900;
   text-decoration: none;
 }
+
+.hide-mobile {
+  @include upto('tablet') {
+    display: none;
+  }
+}
