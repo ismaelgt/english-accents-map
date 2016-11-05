@@ -13,6 +13,12 @@
 
 .eam-card {
   min-height: 0;
+  position: relative;
+  width: $card-width;
+
+  @include from(large) {
+    z-index: 3;
+  }
 
   @include upto(tablet) {
     width: 100%;
@@ -52,6 +58,7 @@
     display: none;
   }
 
+  &--active,
   &:hover {
     color: $blue-900;
 

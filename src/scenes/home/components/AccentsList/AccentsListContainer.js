@@ -10,7 +10,8 @@ const mapStateToProps = (state) => ({
   countriesLoading: state.ui.countries.loading,
   accentsLoading: state.ui.accents.loading,
   countrySelected: state.ui.countries.selected,
-  accentSelected: state.ui.accents.selected
+  accentSelected: state.ui.accents.selected,
+  videosOpen: state.ui.videos.open
 })
 
 const mapDispatchToProps = (dispatch) => {

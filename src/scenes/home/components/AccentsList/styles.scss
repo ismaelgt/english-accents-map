@@ -36,4 +36,10 @@
   .mdl-radio.is-upgraded {
     padding-left: 36px;
   }
+
+  .mdl-button--icon:hover {
+    i {
+      color: $blue-900;
+    }
+  }
 }

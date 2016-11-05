@@ -22,6 +22,12 @@
     height: 85%;
     padding: 0;
   }
+
+  @include from(large) {
+    position: absolute;
+    right: 0;
+    width: calc(100% - #{$card-width} - 64px);
+  }
 }
 
 .videos-list__wrapper {
@@ -69,9 +75,13 @@
 
 .mdl-button.videos-list__button,
 .mdl-button.videos-list__button {
-  background-color: rgba($white, .5);
+  background-color: $white;
 
   &:hover {
     background-color: $white;
+
+    i {
+      color: $blue-900;
+    }
   }
 }
