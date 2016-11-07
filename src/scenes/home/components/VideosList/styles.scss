@@ -33,6 +33,7 @@
 .videos-list__wrapper {
   flex-basis: 75%;
   height: 100%;
+  max-height: 640px;
   position: relative;
 
   @include upto(tablet) {
