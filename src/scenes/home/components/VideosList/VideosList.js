@@ -42,6 +42,16 @@ const VideosList = React.createClass({
     return (
       <div className='videos-list-overlay'
         onClick={onCloseVideo}>
+        <div className='eam-card-wrapper videos-list__intro--mobile'>
+          <div className='eam-card eam-card--intro mdl-card mdl-shadow--2dp'>
+            <div className='mdl-card__supporting-text'>
+              <p className='intro__text'>
+                <span>Use the arrows to navigate through the accent videos or click on the
+                cross to select a different region.</span>
+              </p>
+            </div>
+          </div>
+        </div>
         <div className='videos-list'>
           <div className='videos-list__button-container'>
             { index > 0 ? previousButton : null }
