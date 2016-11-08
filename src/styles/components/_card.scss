@@ -21,6 +21,10 @@
     width: 100%;
   }
 
+  .mdl-list__item-avatar {
+    background-color: transparent;
+  }
+
   .mdl-card__title-text {
     color: $text-color;
     font-size: 18px;
