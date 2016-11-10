@@ -96,6 +96,10 @@
 
 .mdl-button.videos-list__button,
 .mdl-button.mdl-button--fab.videos-list__button {
+  &[disabled] {
+    visibility: hidden;
+  }
+
   &,
   &:hover,
   &:active,
