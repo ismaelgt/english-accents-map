@@ -95,16 +95,22 @@
 }
 
 .mdl-button.videos-list__button,
-.mdl-button.videos-list__button {
-  background-color: $white;
-
-  @include from(tablet) {
-    &:hover i {
-      color: $blue-900;
-    }
+.mdl-button.mdl-button--fab.videos-list__button {
+  &,
+  &:hover,
+  &:active,
+  &:focus,
+  &:visited {
+    background-color: $white;
   }
 
-  &:hover {
-    background-color: $white;
+  &:hover,
+  &:active,
+  &:focus {
+    @include from(tablet) {
+      i {
+        color: $blue-900;
+      }
+    }
   }
 }
