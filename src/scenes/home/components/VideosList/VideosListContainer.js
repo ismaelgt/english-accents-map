@@ -1,15 +1,9 @@
 import { connect } from 'react-redux'
 import VideosList from './VideosList'
-import { NEXT_VIDEO, PREVIOUS_VIDEO, CLOSE_VIDEO } from './actions'
+import { CLOSE_VIDEO } from './actions'
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onNextVideo: () => {
-      dispatch({ type: NEXT_VIDEO })
-    },
-    onPreviousVideo: () => {
-      dispatch({ type: PREVIOUS_VIDEO })
-    },
     onCloseVideo: () => {
       dispatch({ type: CLOSE_VIDEO })
     }

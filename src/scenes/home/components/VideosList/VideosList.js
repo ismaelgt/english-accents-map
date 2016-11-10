@@ -1,30 +1,45 @@
 import React from 'react'
+import YouTubePlayer from 'youtube-player'
+import VideoListButton from './VideoListButton'
 import './styles.scss'
 
 const VideosList = React.createClass({
+  getInitialState () {
+    return {
+      index: 0
+    }
+  },
+
+  componentDidMount () {
+    this.player = YouTubePlayer(this.refs.videoPlayer, {
+      height: '100%',
+      width: '100%'
+    })
+    // Update index when player state changes
+    this.player.addEventListener('onStateChange', () => {
+      this.player.getPlaylistIndex().then((index) => {
+        this.setState({ index: index })
+      })
+    })
+    this.player.cuePlaylist(this.props.videos)
+  },
+
+  nextVideo () {
+    this.player.nextVideo()
+  },
+
+  previousVideo () {
+    this.player.previousVideo()
+  },
+
   render () {
-    const { videos, index, onNextVideo, onPreviousVideo, onCloseVideo } = this.props
+    const { videos, onCloseVideo } = this.props
+    const { index } = this.state
 
     if (!videos || videos.length === 0) {
       return null
     }
 
-    const nextButton = (
-      <button onClick={(e) => { e.stopPropagation(); onNextVideo() }}
-        className='mdl-button mdl-js-button mdl-button--fab videos-list__button
-          mdl-js-ripple-effect videos-list__button--next'
-        disabled={index >= videos.length - 1}>
-        <i className='material-icons'>keyboard_arrow_right</i>
-      </button>
-    )
-    const previousButton = (
-      <button onClick={(e) => { e.stopPropagation(); onPreviousVideo() }}
-        className='mdl-button mdl-js-button mdl-button--fab videos-list__button
-          mdl-js-ripple-effect videos-list__button--previous'
-        disabled={index === 0}>
-        <i className='material-icons'>keyboard_arrow_left</i>
-      </button>
-    )
     const closeButtonDesktop = (
       <button onClick={(e) => { e.stopPropagation(); onCloseVideo() }}
         className='mdl-button mdl-js-button mdl-button--icon
@@ -54,22 +69,36 @@ const VideosList = React.createClass({
         </div>
         <div className='videos-list'>
           <div className='videos-list__button-container'>
-            { index > 0 ? previousButton : null }
+            <VideoListButton
+              type='previous'
+              index={index}
+              total={videos.length}
+              onClick={(e) => { e.stopPropagation(); this.previousVideo() }} />
           </div>
           <div className='videos-list__wrapper'>
             { closeButtonDesktop }
-            <iframe
-              width='100%'
-              height='100%'
-              src={`https://www.youtube.com/embed/${videos[index]}/`}
-              frameBorder='0' />
+            <div ref='videoPlayer' />
           </div>
           <div className='videos-list__button-container'>
-            { index < videos.length - 1 ? nextButton : null }
+            <VideoListButton
+              type='next'
+              index={index}
+              total={videos.length}
+              onClick={(e) => { e.stopPropagation(); this.nextVideo() }} />
           </div>
         </div>
         <div className='videos-list__button-container--mobile'>
-          { previousButton }{ nextButton }{ closeButtonMobile }
+          <VideoListButton
+            type='previous'
+            index={index}
+            total={videos.length}
+            onClick={(e) => { e.stopPropagation(); this.previousVideo() }} />
+          <VideoListButton
+            type='next'
+            index={index}
+            total={videos.length}
+            onClick={(e) => { e.stopPropagation(); this.nextVideo() }} />
+          { closeButtonMobile }
         </div>
       </div>
     )

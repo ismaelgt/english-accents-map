@@ -1,5 +1,4 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import { browserHistory } from 'react-router'
 import GoogleApiComponent from 'google-maps-react/dist/GoogleApiComponent'
 import { GOOGLE_MAPS_API_KEY } from '../../../../config'
@@ -77,8 +76,7 @@ const Map = React.createClass({
   // Load the map
   loadMap () {
     const { google } = this.props
-    const mapEl = ReactDOM.findDOMNode(this.refs.map)
-    this.map = new google.maps.Map(mapEl, GOOGLE_MAPS_CONFIG)
+    this.map = new google.maps.Map(this.refs.map, GOOGLE_MAPS_CONFIG)
 
     this.state.mapRendered = true
     if (!this.state.accentsLoading) {

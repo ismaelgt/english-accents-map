@@ -1,4 +1,4 @@
-import { OPEN_VIDEOS, NEXT_VIDEO, PREVIOUS_VIDEO, CLOSE_VIDEO } from './actions'
+import { OPEN_VIDEOS, CLOSE_VIDEO } from './actions'
 
 const initialVideosUiState = {
   open: false,
@@ -17,10 +17,6 @@ export const videosUiReducer = (state = initialVideosUiState, action) => {
         open: false,
         index: null
       }
-    case NEXT_VIDEO:
-      return { ...state, index: state.index + 1 }
-    case PREVIOUS_VIDEO:
-      return { ...state, index: state.index - 1 }
     default:
       return state
   }
