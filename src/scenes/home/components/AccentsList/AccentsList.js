@@ -54,15 +54,11 @@ const AccentsList = React.createClass({
   },
 
   render () {
-    const { countries, accents, countriesLoading, accentsLoading,
-      countrySelected, accentSelected, videosOpen } = this.props
+    const { countries, accents, countriesLoading, accentsLoading, countrySelected,
+      accentSelected, accentIds, videosOpen } = this.props
     let header, body, menu, instructions
 
     if (!countriesLoading && !accentsLoading && countrySelected) {
-      const countryAccentsIds = Object.keys(accents.byId).filter(
-        (id) => (accents.byId[id].country === countrySelected)
-      )
-
       instructions = (
         <div className='eam-card eam-card--intro mdl-card mdl-shadow--2dp'>
           <div className='mdl-card__supporting-text'>
@@ -88,7 +84,7 @@ const AccentsList = React.createClass({
 
       body = (
         <ul className='mdl-list'>
-          { countryAccentsIds.map((id) => (
+          { accentIds.map((id) => (
             <li key={id} className='mdl-list__item'>
               <div
                 className={'eam-card__link' + ((accentSelected === id && videosOpen) ? ' eam-card__link--active' : '')}
@@ -144,6 +140,7 @@ const AccentsList = React.createClass({
     router: React.PropTypes.object,
     countries: React.PropTypes.object,
     accents: React.PropTypes.object,
+    accentIds: React.PropTypes.array,
     countriesLoading: React.PropTypes.bool,
     accentsLoading: React.PropTypes.bool,
     countrySelected: React.PropTypes.string,
