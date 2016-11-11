@@ -21,7 +21,17 @@ const VideosList = React.createClass({
         this.setState({ index: index })
       })
     })
-    this.player.cuePlaylist(this.props.videos)
+    this.player.loadPlaylist(this.props.videos)
+  },
+
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.videos !== this.props.videos) {
+      this.player.loadPlaylist(nextProps.videos)
+    }
+  },
+
+  componentWillUnmount () {
+    this.player.destroy()
   },
 
   nextVideo () {
@@ -54,6 +64,7 @@ const VideosList = React.createClass({
         <i className='material-icons'>close</i>
       </button>
     )
+
     return (
       <div className='videos-list-overlay'
         onClick={onCloseVideo}>
@@ -105,9 +116,6 @@ const VideosList = React.createClass({
   },
   propTypes: {
     videos: React.PropTypes.array,
-    index: React.PropTypes.number,
-    onNextVideo: React.PropTypes.func,
-    onPreviousVideo: React.PropTypes.func,
     onCloseVideo: React.PropTypes.func
   }
 })

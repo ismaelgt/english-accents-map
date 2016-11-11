@@ -16,8 +16,7 @@ const mapStateToProps = (state) => {
     : null
 
   return {
-    videos: videos,
-    index: state.ui.videos.index
+    videos: videos
   }
 }
 
