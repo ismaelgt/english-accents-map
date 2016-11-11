@@ -49,7 +49,7 @@ const Map = React.createClass({
       }
       // Accent selected
       if (nextProps.accentSelected !== this.state.accentSelected) {
-        this.selectAccent(nextProps.accents, nextProps.accentSelected)
+        this.selectAccent(nextProps.countries, nextProps.accents, nextProps.accentSelected)
       }
     }
 
@@ -89,35 +89,42 @@ const Map = React.createClass({
     const { google } = this.props
 
     Object.keys(accents.byId).forEach((id) => {
-      const marker = new google.maps.Marker({
-        position: accents.byId[id].coords
-      })
-      marker.addListener('click', () => {
-        if (this.state.accentSelected !== id) {
-          browserHistory.push('/' + accents.byId[id].country + '/' + id + '/')
-        } else {
-          this.props.onOpenVideos()
-        }
-      })
-      marker.setMap(this.map)
+      const accent = accents.byId[id]
+      if (accent.coords) {
+        const marker = new google.maps.Marker({
+          position: accent.coords
+        })
+        marker.addListener('click', () => {
+          if (this.state.accentSelected !== id) {
+            browserHistory.push('/' + accent.country + '/' + id + '/')
+          } else {
+            this.props.onOpenVideos()
+          }
+        })
+        marker.setMap(this.map)
+      }
     })
     this.state.markersRendered = true
   },
 
   // Fit country in map using South West and North East coordinates
-  selectCountry (countries, selectedCountry) {
-    if (selectedCountry !== null) {
-      const { sw, ne } = countries.byId[selectedCountry].coords
+  selectCountry (countries, selectedCountryId) {
+    if (selectedCountryId !== null) {
+      const { sw, ne } = countries.byId[selectedCountryId].coords
       const bounds = new this.props.google.maps.LatLngBounds(sw, ne)
       this.map.fitBounds(bounds)
     }
   },
 
   // Move map center to accent location
-  selectAccent (accents, selectedAccent) {
-    if (selectedAccent !== null) {
-      this.map.panTo(accents.byId[selectedAccent].coords)
-      this.map.setZoom(7)
+  selectAccent (countries, accents, selectedAccentId) {
+    if (selectedAccentId !== null) {
+      const selectedAccent = accents.byId[selectedAccentId]
+      if (selectedAccent.coords) {
+        const selectedCountry = countries.byId[selectedAccent.country]
+        this.map.panTo(selectedAccent.coords)
+        this.map.setZoom(selectedCountry.zoom)
+      }
     }
   },
 
