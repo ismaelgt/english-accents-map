@@ -10,7 +10,7 @@
   }
 
   .mdl-layout__header {
-    background-color: $white;
+    background-color: $grey-900;
   }
 
   .mdl-layout__header-row {
@@ -22,10 +22,12 @@
   }
 
   .mdl-layout-title {
-    color: $grey-900;
+    color: $white;
+    font-family: $font-titles;
     font-weight: 300;
 
     * {
+      line-height: 31px;
       vertical-align: middle;
     }
 
@@ -55,7 +57,7 @@
     }
 
     i {
-      color: $grey-900;
+      color: $white;
     }
   }
 
