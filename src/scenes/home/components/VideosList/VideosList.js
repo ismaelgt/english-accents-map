@@ -69,7 +69,7 @@ const VideosList = React.createClass({
       <div className='videos-list-overlay'
         onClick={onCloseVideo}>
         <div className='eam-card-wrapper videos-list__intro--mobile'>
-          <div className='eam-card eam-card--intro mdl-card mdl-shadow--2dp'>
+          <div className='eam-card eam-card--intro mdl-card mdl-shadow--8dp'>
             <div className='mdl-card__supporting-text'>
               <p className='intro__text'>
                 <span>Use the arrows to navigate through the accent videos or click on the

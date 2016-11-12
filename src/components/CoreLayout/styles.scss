@@ -10,7 +10,7 @@
   }
 
   .mdl-layout__header {
-    background-color: $grey-900;
+    background-color: $white;
   }
 
   .mdl-layout__header-row {
@@ -22,7 +22,7 @@
   }
 
   .mdl-layout-title {
-    color: $white;
+    color: $grey-900;
     font-weight: 300;
 
     * {
@@ -34,11 +34,11 @@
     }
   }
 
-  .eam-layout-title__icon {
-    height: 28px;
+  .eam-layout-title__logo {
+    height: 32px;
     margin-right: 12px;
     vertical-align: middle;
-    width: 28px;
+    width: 32px;
   }
 
   .mdl-layout__drawer-button {
@@ -52,6 +52,10 @@
 
     @include from(tablet) {
       margin: 4px 12px;
+    }
+
+    i {
+      color: $grey-900;
     }
   }
 

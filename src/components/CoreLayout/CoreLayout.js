@@ -20,7 +20,7 @@ class CoreLayout extends React.Component {
         <header className='mdl-layout__header'>
           <div className='mdl-layout__header-row'>
             <Link to='/' className='mdl-layout-title'>
-              <img className='eam-layout-title__icon' src='/images/eam_logo_24px.svg' />
+              <img className='eam-layout-title__logo' src='/images/logo.png' />
               <span>English</span><strong>Accents</strong><span>Map</span>
             </Link>
             <div className='mdl-layout-spacer' />
@@ -28,7 +28,7 @@ class CoreLayout extends React.Component {
         </header>
         <div id='mdl-layout__drawer' className='mdl-layout__drawer' ref='drawer'>
           <nav className='mdl-navigation'>
-            <Link to='/about' className='mdl-navigation__link'>Suggest an accent</Link>
+            <Link to='/suggest' className='mdl-navigation__link'>Make a suggestion</Link>
             <Link to='https://github.com/ismaelgt/english-accents-map' target='_blank'
               className='mdl-navigation__link'>See the code</Link>
             <Link to='https://github.com/ismaelgt/english-accents-map/issues' target='_blank'

@@ -27,7 +27,7 @@ const CountriesList = React.createClass({
     )
 
     const instructions = (
-      <div className='eam-card eam-card--intro mdl-card mdl-shadow--2dp'>
+      <div className='eam-card eam-card--intro mdl-card mdl-shadow--8dp'>
         <div className='mdl-card__supporting-text'>
           <h1 className='intro__title'>Watch English accents videos</h1>
           <p className='intro__text'>
@@ -59,7 +59,7 @@ const CountriesList = React.createClass({
     return (
       <div className='eam-card-wrapper'>
         { loading ? null : instructions }
-        <div className='eam-card eam-card--countries-list mdl-card mdl-shadow--2dp'>
+        <div className='eam-card eam-card--countries-list mdl-card mdl-shadow--8dp'>
           <div className='mdl-card__supporting-text'>
             { loading ? loadingIndicator : countriesList }
           </div>

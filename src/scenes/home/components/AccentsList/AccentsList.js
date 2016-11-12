@@ -60,7 +60,7 @@ const AccentsList = React.createClass({
 
     if (!countriesLoading && !accentsLoading && countrySelected) {
       instructions = (
-        <div className='eam-card eam-card--intro mdl-card mdl-shadow--2dp'>
+        <div className='eam-card eam-card--intro mdl-card mdl-shadow--8dp'>
           <div className='mdl-card__supporting-text'>
             <p className='intro__text'>
               { videosOpen
@@ -126,7 +126,7 @@ const AccentsList = React.createClass({
     return (
       <div className='eam-card-wrapper'>
         { instructions }
-        <div className='eam-card eam-card--accents-list mdl-card mdl-shadow--2dp'>
+        <div className='eam-card eam-card--accents-list mdl-card mdl-shadow--8dp'>
           <div className='mdl-card__title'>{ header }</div>
           <div className='mdl-card__supporting-text'>{ body }</div>
           <div className='mdl-card__menu'>{ menu }</div>
