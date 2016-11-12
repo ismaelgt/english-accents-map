@@ -1,1 +1,11 @@
+/* TEAM */
 
+Dev: Ismael González Trujillo
+Contact: ismael.gonzaleztrujillo [at] gmail.com
+Twitter: @ismaelgtr
+Location: Bristol, UK
+
+/* THANKS */
+
+UX tips: Zita Orbán
+Twitter: @xiplecouk

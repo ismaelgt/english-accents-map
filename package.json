@@ -1,6 +1,6 @@
 {
   "name": "english-accents-map",
-  "version": "0.0.1",
+  "version": "0.1",
   "description": "A map of English accents",
   "main": "index.js",
   "engines": {
@@ -82,7 +82,7 @@
     "type": "git",
     "url": "git+https://github.com/ismaelgt/english-accents-map.git"
   },
-  "author": "Ismael González <ismael.gonzaleztrujillo@gmail.com>",
+  "author": "Ismael González Trujillo <ismael.gonzaleztrujillo@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "babel-core": "^6.16.0",
