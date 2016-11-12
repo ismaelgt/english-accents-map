@@ -1,6 +1,6 @@
 {
   "name": "english-accents-map",
-  "version": "0.1",
+  "version": "0.1.0",
   "description": "A map of English accents",
   "main": "index.js",
   "engines": {
