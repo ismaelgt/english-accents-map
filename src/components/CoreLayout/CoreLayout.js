@@ -29,7 +29,6 @@ class CoreLayout extends React.Component {
         </header>
         <div id='mdl-layout__drawer' className='mdl-layout__drawer' ref='drawer'>
           <nav className='mdl-navigation'>
-            <Link to='/suggest' className='mdl-navigation__link'>Make a suggestion</Link>
             <Link to='https://github.com/ismaelgt/english-accents-map' target='_blank'
               className='mdl-navigation__link'>See the code</Link>
             <Link to='https://github.com/ismaelgt/english-accents-map/issues' target='_blank'
