@@ -142,5 +142,6 @@ const Map = React.createClass({
 })
 
 export default GoogleApiComponent({
-  apiKey: GOOGLE_MAPS_API_KEY
+  apiKey: GOOGLE_MAPS_API_KEY,
+  version: '3.25'
 })(Map)
