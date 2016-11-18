@@ -21,12 +21,12 @@ const VideosList = React.createClass({
         this.setState({ index: index })
       })
     })
-    this.player.loadPlaylist(this.props.videos)
+    this.player.cuePlaylist(this.props.videos)
   },
 
   componentWillReceiveProps (nextProps) {
     if (nextProps.videos !== this.props.videos) {
-      this.player.loadPlaylist(nextProps.videos)
+      this.player.cuePlaylist(nextProps.videos)
     }
   },
 
