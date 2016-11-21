@@ -1,3 +1,5 @@
+import ReactGA from 'react-ga'
+
 // ------------------------------------
 // Constants
 // ------------------------------------
@@ -17,5 +19,9 @@ export function locationChange (location = '/') {
 // Specialized Action Creator
 // ------------------------------------
 export const updateLocation = ({ dispatch }) => {
-  return (nextLocation) => dispatch(locationChange(nextLocation))
+  return (nextLocation) => {
+    ReactGA.set({ page: nextLocation.pathname })
+    ReactGA.pageview(nextLocation.pathname)
+    dispatch(locationChange(nextLocation))
+  }
 }
