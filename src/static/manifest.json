@@ -4,7 +4,7 @@
   "description": "Watch videos of the English accents spoken around the world",
   "start_url": "./?utm_source=web_app_manifest",
   "display": "standalone",
-  "orientation": "portrait-primary",
+  "orientation": "any",
   "background_color": "#fff",
   "theme_color": "#192f5d",
   "icons": [
