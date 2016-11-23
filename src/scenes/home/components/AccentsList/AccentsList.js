@@ -66,8 +66,8 @@ const AccentsList = React.createClass({
               { videosOpen
                 ? <span>Use the arrows to navigate through { accents.byId[accentSelected].name } accent videos
                 or select a different region.</span>
-                : <span>Select a region in { countries.byId[countrySelected].name } or <Link to='/'>another
-                country</Link><span className='hide-mobile'>, or click on one of the map markers</span>.</span>
+                : <span>Select an accent in { countries.byId[countrySelected].name } or <Link to='/'>another
+                  country</Link><span className='hide-mobile'>, or click on one of the map markers</span>.</span>
               }
             </p>
           </div>
