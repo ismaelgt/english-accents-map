@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link, withRouter, browserHistory } from 'react-router'
+import DocumentTitle from 'react-document-title'
+import makeDocumentTitle from '../../../../services/documentTitle'
 import './styles.scss'
 
 const AccentsList = React.createClass({
@@ -56,9 +58,13 @@ const AccentsList = React.createClass({
   render () {
     const { countries, accents, countriesLoading, accentsLoading, countrySelected,
       accentSelected, accentIds, videosOpen } = this.props
-    let header, body, menu, instructions
+    let header, body, menu, instructions, docTitle
 
     if (!countriesLoading && !accentsLoading && countrySelected) {
+      docTitle = accentSelected && videosOpen
+        ? accents.byId[accentSelected].name + ' - ' + countries.byId[countrySelected].name
+        : countries.byId[countrySelected].name
+
       instructions = (
         <div className='eam-card eam-card--intro mdl-card mdl-shadow--8dp'>
           <div className='mdl-card__supporting-text'>
@@ -109,6 +115,7 @@ const AccentsList = React.createClass({
         </Link>
       )
     } else {
+      docTitle = null
       instructions = null
 
       header = (
@@ -125,6 +132,7 @@ const AccentsList = React.createClass({
 
     return (
       <div className='eam-card-wrapper'>
+        <DocumentTitle title={makeDocumentTitle(docTitle)} />
         { instructions }
         <div className='eam-card eam-card--accents-list mdl-card mdl-shadow--8dp'>
           <div className='mdl-card__title'>{ header }</div>

@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router'
+import DocumentTitle from 'react-document-title'
+import makeDocumentTitle from '../../services/documentTitle'
 import './styles.scss'
 
 class CoreLayout extends React.Component {
@@ -17,6 +19,7 @@ class CoreLayout extends React.Component {
       <div id='mdl-layout'
         className='eam-layout mdl-layout mdl-js-layout mdl-layout--fixed-header'
         ref='layout'>
+        <DocumentTitle title={makeDocumentTitle()} />
         <header className='mdl-layout__header'>
           <div className='mdl-layout__header-row'>
             <Link to='/' className='mdl-layout-title'>
