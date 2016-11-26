@@ -51,6 +51,7 @@ describe('(Internal Module) Location', () => {
   describe('(Specialized Action Creator) updateLocation', () => {
     let _globalState
     let _dispatchSpy
+    let _getStateMock
 
     beforeEach(() => {
       _globalState = {
@@ -62,6 +63,9 @@ describe('(Internal Module) Location', () => {
           location : locationReducer(_globalState.location, action)
         }
       })
+      _getStateMock = () => {
+        return { ui: { location: null } }
+      }
     })
 
     it('Should be exported as a function.', () => {
@@ -73,7 +77,8 @@ describe('(Internal Module) Location', () => {
     })
 
     it('Should call dispatch exactly once.', () => {
-      updateLocation({ dispatch: _dispatchSpy })('/')
+      const nextLocation = { pathname: '/' }
+      updateLocation({ dispatch: _dispatchSpy, getState: _getStateMock })(nextLocation)
       expect(_dispatchSpy.should.have.been.calledOnce)
     })
   })
