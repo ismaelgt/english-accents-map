@@ -18,10 +18,13 @@ export function locationChange (location = '/') {
 // ------------------------------------
 // Specialized Action Creator
 // ------------------------------------
-export const updateLocation = ({ dispatch }) => {
+export const updateLocation = (store) => {
   return (nextLocation) => {
-    ReactGA.set({ page: nextLocation.pathname })
-    ReactGA.pageview(nextLocation.pathname)
-    dispatch(locationChange(nextLocation))
+    const currLocation = store.getState().ui.location
+    if (currLocation === null || currLocation.pathname !== nextLocation.pathname) {
+      ReactGA.set({ page: nextLocation.pathname })
+      ReactGA.pageview(nextLocation.pathname)
+    }
+    store.dispatch(locationChange(nextLocation))
   }
 }
