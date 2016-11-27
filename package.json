@@ -24,7 +24,7 @@
   },
   "betterScripts": {
     "build": {
-      "command": "npm run clean && npm run compile",
+      "command": "npm run clean && npm run test && npm run compile",
       "env": {
         "NODE_ENV": "production",
         "DEBUG": "app:*"
