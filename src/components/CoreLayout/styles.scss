@@ -11,6 +11,10 @@
 
   .mdl-layout__header {
     background-color: $theme-color;
+
+    @include upto(tablet) {
+      box-shadow: none;
+    }
   }
 
   .mdl-layout__header-row {
