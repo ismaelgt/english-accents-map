@@ -1,5 +1,6 @@
 import React from 'react'
 import { browserHistory } from 'react-router'
+import ReactGA from 'react-ga'
 import YouTubePlayer from 'youtube-player'
 import VideoListButton from './VideoListButton'
 import './styles.scss'
@@ -92,7 +93,12 @@ const VideosList = React.createClass({
 
   updateUrlHash (videoId = null) {
     const hash = videoId ? '#' + videoId : ''
-    browserHistory.push(this.props.location.pathname + hash)
+    if (this.props.location.hash !== hash) {
+      browserHistory.push(this.props.location.pathname + hash)
+      if (hash !== '') {
+        ReactGA.event({ category: 'Video', action: 'Play', label: videoId })
+      }
+    }
   },
 
   render () {
