@@ -2,6 +2,7 @@ import React from 'react'
 import { browserHistory } from 'react-router'
 import ReactGA from 'react-ga'
 import YouTubePlayer from 'youtube-player'
+import VideosTitleBar from './VideosTitleBarContainer'
 import VideoListButton from './VideoListButton'
 import './styles.scss'
 
@@ -109,23 +110,11 @@ const VideosList = React.createClass({
       return null
     }
 
-    const closeButtonDesktop = (
-      <button onClick={this.closeVideo}
-        className='mdl-button mdl-js-button mdl-button--icon
-        videos-list__button videos-list__button--close'>
-        <i className='material-icons'>close</i>
-      </button>
-    )
-    const closeButtonMobile = (
-      <button onClick={this.closeVideo}
-        className='mdl-button mdl-js-button mdl-button--fab videos-list__button
-          mdl-js-ripple-effect'>
-        <i className='material-icons'>close</i>
-      </button>
-    )
-
     return (
       <div className='videos-list-overlay' onClick={this.closeVideo}>
+        <div className='videos-list__title-bar-mobile'>
+          <VideosTitleBar />
+        </div>
         <div className='videos-list'>
           <div className='videos-list__button-container'>
             <VideoListButton
@@ -135,7 +124,11 @@ const VideosList = React.createClass({
               onClick={this.previousVideo} />
           </div>
           <div className='videos-list__wrapper'>
-            { closeButtonDesktop }
+            <button onClick={this.closeVideo}
+              className='mdl-button mdl-js-button mdl-button--icon
+              videos-list__button videos-list__button--close'>
+              <i className='material-icons'>close</i>
+            </button>
             <div ref='videoPlayer' />
           </div>
           <div className='videos-list__button-container'>
@@ -146,7 +139,7 @@ const VideosList = React.createClass({
               onClick={this.nextVideo} />
           </div>
         </div>
-        <div className='videos-list__button-container--mobile'>
+        <div className='videos-list__button-container-mobile'>
           <VideoListButton
             type='previous'
             index={index}
@@ -157,7 +150,6 @@ const VideosList = React.createClass({
             index={index}
             total={videos.length}
             onClick={this.nextVideo} />
-          { closeButtonMobile }
         </div>
       </div>
     )

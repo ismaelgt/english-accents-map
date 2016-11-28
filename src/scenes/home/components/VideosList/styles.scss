@@ -25,7 +25,7 @@
   padding: (30px + $header-height) 0 30px;
 
   @include upto(tablet) {
-    height: 60%;
+    height: 70%;
     padding: 0;
   }
 
@@ -44,6 +44,14 @@
 
   @include upto(tablet) {
     flex-basis: 100%;
+  }
+}
+
+.videos-list__title-bar-mobile {
+  height: 15%;
+
+  @include from(tablet) {
+    display: none;
   }
 }
 
@@ -68,11 +76,11 @@
   }
 }
 
-.videos-list__button-container--mobile {
+.videos-list__button-container-mobile {
   align-items: center;
   display: flex;
   flex-direction: row;
-  height: 25%;
+  height: 15%;
   justify-content: space-around;
 
   @include from(tablet) {
