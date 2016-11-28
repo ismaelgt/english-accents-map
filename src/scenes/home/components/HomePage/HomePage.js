@@ -9,7 +9,9 @@ const HomePage = React.createClass({
       <div>
         { viewport.isSmall ? null : <Map /> }
         { videoOpen ? <VideosList /> : null }
-        { children }
+        <div className='eam-card-wrapper'>
+          { children }
+        </div>
       </div>
     )
   },
