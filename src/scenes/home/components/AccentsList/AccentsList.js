@@ -66,11 +66,13 @@ const AccentsList = React.createClass({
         : countries.byId[countrySelected].name
 
       header = (
-        <h2 className='mdl-card__title-text'>
+        <div className='mdl-card__title'>
+          <h2 className='mdl-card__title-text'>
+            { countries.byId[countrySelected].name }
+          </h2>
           <img className='mdl-list__item-avatar'
             src={'/images/flags/' + countrySelected + '.svg'} />
-          <span>{ countries.byId[countrySelected].name }</span>
-        </h2>
+        </div>
       )
 
       body = (
@@ -101,10 +103,7 @@ const AccentsList = React.createClass({
       )
     } else {
       docTitle = null
-
-      header = (
-        <h3 className='mdl-card__title-text'>Loading...</h3>
-      )
+      header = null
 
       body = (
         <div className='loading-indicator'>
@@ -118,7 +117,7 @@ const AccentsList = React.createClass({
       <div>
         <DocumentTitle title={makeDocumentTitle(docTitle)} />
         <div className='eam-card eam-card--accents-list mdl-card mdl-shadow--8dp'>
-          <div className='mdl-card__title'>{ header }</div>
+          { header }
           <div className='mdl-card__supporting-text'>{ body }</div>
           <div className='mdl-card__menu'>{ menu }</div>
         </div>

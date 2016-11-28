@@ -2,7 +2,8 @@
 
 .eam-card.eam-card--countries-list {
   .mdl-card__title {
-    padding: 16px 32px;
+    border-bottom: 1px solid $grey-100;
+    padding: 16px 24px;
   }
 
   .mdl-list__item {

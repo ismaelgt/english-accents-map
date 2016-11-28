@@ -72,25 +72,11 @@
   align-items: center;
   display: flex;
   flex-direction: row;
-  height: 15%;
+  height: 25%;
   justify-content: space-around;
 
   @include from(tablet) {
     display: none;
-  }
-}
-
-.videos-list__intro--mobile {
-  align-items: center;
-  display: flex;
-  height: 25%;
-
-  @include from(tablet) {
-    display: none;
-  }
-
-  .eam-card--intro {
-    margin-bottom: 0;
   }
 }
 
