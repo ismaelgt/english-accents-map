@@ -69,8 +69,32 @@
     }
   }
 
-  .mdl-navigation .mdl-navigation__link {
-    color: $text-color;
+  .mdl-navigation {
+    height: 100%;
+    justify-content: space-between;
+    padding: 16px 0;
+
+    .mdl-navigation__link {
+      color: $text-color;
+
+      @include from(tablet) {
+        padding-left: 24px;
+      }
+    }
+  }
+
+  .mdl-navigation__link {
+    &.is-active {
+      color: $blue-900;
+
+      i {
+        color: $blue-900;
+      }
+    }
+
+    i {
+      margin-right: 8px;
+    }
   }
 
   .mdl-layout__content {

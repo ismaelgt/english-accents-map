@@ -32,10 +32,26 @@ class CoreLayout extends React.Component {
         </header>
         <div id='mdl-layout__drawer' className='mdl-layout__drawer' ref='drawer'>
           <nav className='mdl-navigation'>
-            <Link to='https://github.com/ismaelgt/english-accents-map' target='_blank'
-              className='mdl-navigation__link'>See the code</Link>
-            <Link to='https://github.com/ismaelgt/english-accents-map/issues' target='_blank'
-              className='mdl-navigation__link'>Report a bug</Link>
+            <div>
+              <Link to='/' className='mdl-navigation__link' activeClassName='is-active'>
+                <i className='material-icons mdl-list__item-icon'>home</i> Home
+              </Link>
+              <Link to='/my-list/' className='mdl-navigation__link' activeClassName='is-active'>
+                <i className='material-icons mdl-list__item-icon'>playlist_play</i> My list
+              </Link>
+              <Link to='/suggest/' className='mdl-navigation__link' activeClassName='is-active'>
+                <i className='material-icons mdl-list__item-icon'>add_location</i> Make a suggestion
+              </Link>
+            </div>
+            <div>
+              <Link to='https://github.com/ismaelgt/english-accents-map' target='_blank'
+                className='mdl-navigation__link'>
+                <i className='material-icons mdl-list__item-icon'>code</i> See the code
+              </Link>
+              <Link to='/terms/' className='mdl-navigation__link'>
+                <i className='material-icons mdl-list__item-icon'>info</i> Terms and Privacy
+              </Link>
+            </div>
           </nav>
         </div>
         <main className='mdl-layout__content'>
