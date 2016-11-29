@@ -90,25 +90,29 @@
 
 .mdl-button.videos-list__button,
 .mdl-button.mdl-button--fab.videos-list__button {
-  &[disabled] {
-    visibility: hidden;
-  }
+  &:not([disabled]) {
+    &,
+    &:hover,
+    &:active,
+    &:focus,
+    &:visited {
+      background-color: $white;
+    }
 
-  &,
-  &:hover,
-  &:active,
-  &:focus,
-  &:visited {
-    background-color: $white;
-  }
-
-  &:hover,
-  &:active,
-  &:focus {
-    @include from(tablet) {
-      i {
-        color: $blue-900;
+    &:hover,
+    &:active,
+    &:focus {
+      @include from(tablet) {
+        i {
+          color: $blue-900;
+        }
       }
+    }
+  }
+
+  &[disabled] {
+    @include upto(tablet) {
+      background-color: rgba($white, .12);
     }
   }
 }
