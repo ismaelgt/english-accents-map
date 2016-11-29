@@ -56,17 +56,15 @@
   font-weight: 400;
 
   .mdl-list__item-secondary-action {
-    display: none;
+    opacity: 0;
   }
 
   &--active,
   &:hover {
     color: $blue-900;
-  }
 
-  &--active {
     .mdl-list__item-secondary-action {
-      display: block;
+      opacity: 1;
     }
   }
 }
