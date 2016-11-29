@@ -62,7 +62,9 @@
   &--active,
   &:hover {
     color: $blue-900;
+  }
 
+  &--active {
     .mdl-list__item-secondary-action {
       display: block;
     }
