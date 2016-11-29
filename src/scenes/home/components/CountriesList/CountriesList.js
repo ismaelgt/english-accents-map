@@ -48,7 +48,7 @@ const CountriesList = React.createClass({
       <div className='eam-card eam-card--countries-list mdl-card mdl-shadow--8dp'>
         { loading ? null
           : <div className='mdl-card__title'>
-            <h1 className='mdl-card__title-text'>Select an accent...</h1>
+            <h1 className='mdl-card__title-text'>Select a country and an accent...</h1>
           </div>
         }
 
