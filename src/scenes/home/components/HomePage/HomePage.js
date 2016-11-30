@@ -37,9 +37,6 @@ const HomePage = React.createClass({
       <div>
         { viewport.isSmall ? mobileView : desktopView }
         { videoOpen ? <VideosList /> : null }
-        <div className='eam-card-wrapper'>
-          { children }
-        </div>
       </div>
     )
   },
