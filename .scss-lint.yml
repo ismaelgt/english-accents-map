@@ -1,3 +1,5 @@
 linters:
   SelectorFormat:
     enabled: false
+  NestingDepth:
+    max_depth: 4

@@ -25,7 +25,7 @@
   padding: (30px + $header-height) 0 30px;
 
   @include upto(tablet) {
-    height: 60%;
+    height: 70%;
     padding: 0;
   }
 
@@ -44,6 +44,14 @@
 
   @include upto(tablet) {
     flex-basis: 100%;
+  }
+}
+
+.videos-list__title-bar-mobile {
+  height: 15%;
+
+  @include from(tablet) {
+    display: none;
   }
 }
 
@@ -68,7 +76,7 @@
   }
 }
 
-.videos-list__button-container--mobile {
+.videos-list__button-container-mobile {
   align-items: center;
   display: flex;
   flex-direction: row;
@@ -80,41 +88,31 @@
   }
 }
 
-.videos-list__intro--mobile {
-  align-items: center;
-  display: flex;
-  height: 25%;
-
-  @include from(tablet) {
-    display: none;
-  }
-
-  .eam-card--intro {
-    margin-bottom: 0;
-  }
-}
-
 .mdl-button.videos-list__button,
 .mdl-button.mdl-button--fab.videos-list__button {
-  &[disabled] {
-    visibility: hidden;
-  }
+  &:not([disabled]) {
+    &,
+    &:hover,
+    &:active,
+    &:focus,
+    &:visited {
+      background-color: $white;
+    }
 
-  &,
-  &:hover,
-  &:active,
-  &:focus,
-  &:visited {
-    background-color: $white;
-  }
-
-  &:hover,
-  &:active,
-  &:focus {
-    @include from(tablet) {
-      i {
-        color: $blue-900;
+    &:hover,
+    &:active,
+    &:focus {
+      @include from(tablet) {
+        i {
+          color: $blue-900;
+        }
       }
+    }
+  }
+
+  &[disabled] {
+    @include upto(tablet) {
+      background-color: rgba($white, .12);
     }
   }
 }

@@ -58,34 +58,21 @@ const AccentsList = React.createClass({
   render () {
     const { countries, accents, countriesLoading, accentsLoading, countrySelected,
       accentSelected, accentIds, videosOpen } = this.props
-    let header, body, menu, instructions, docTitle
+    let header, body, menu, docTitle
 
     if (!countriesLoading && !accentsLoading && countrySelected) {
       docTitle = accentSelected && videosOpen
         ? accents.byId[accentSelected].name + ' - ' + countries.byId[countrySelected].name
         : countries.byId[countrySelected].name
 
-      instructions = (
-        <div className='eam-card eam-card--intro mdl-card mdl-shadow--8dp'>
-          <div className='mdl-card__supporting-text'>
-            <p className='intro__text'>
-              { videosOpen
-                ? <span>Use the arrows to navigate through { accents.byId[accentSelected].name } accent videos
-                or select a different region.</span>
-                : <span>Select an accent in { countries.byId[countrySelected].name } or <Link to='/'>another
-                  country</Link><span className='hide-mobile'>, or click on one of the map markers</span>.</span>
-              }
-            </p>
-          </div>
-        </div>
-      )
-
       header = (
-        <h2 className='mdl-card__title-text'>
+        <div className='mdl-card__title'>
+          <h2 className='mdl-card__title-text'>
+            { countries.byId[countrySelected].name }
+          </h2>
           <img className='mdl-list__item-avatar'
             src={'/images/flags/' + countrySelected + '.svg'} />
-          <span>{ countries.byId[countrySelected].name }</span>
-        </h2>
+        </div>
       )
 
       body = (
@@ -116,11 +103,7 @@ const AccentsList = React.createClass({
       )
     } else {
       docTitle = null
-      instructions = null
-
-      header = (
-        <h3 className='mdl-card__title-text'>Loading...</h3>
-      )
+      header = null
 
       body = (
         <div className='loading-indicator'>
@@ -131,11 +114,10 @@ const AccentsList = React.createClass({
     }
 
     return (
-      <div className='eam-card-wrapper'>
+      <div>
         <DocumentTitle title={makeDocumentTitle(docTitle)} />
-        { instructions }
         <div className='eam-card eam-card--accents-list mdl-card mdl-shadow--8dp'>
-          <div className='mdl-card__title'>{ header }</div>
+          { header }
           <div className='mdl-card__supporting-text'>{ body }</div>
           <div className='mdl-card__menu'>{ menu }</div>
         </div>

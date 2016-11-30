@@ -47,7 +47,6 @@
   }
 }
 
-
 .eam-card__link {
   align-items: center;
   color: $grey-900;
@@ -57,7 +56,7 @@
   font-weight: 400;
 
   .mdl-list__item-secondary-action {
-    display: none;
+    opacity: 0;
   }
 
   &--active,
@@ -65,7 +64,7 @@
     color: $blue-900;
 
     .mdl-list__item-secondary-action {
-      display: block;
+      opacity: 1;
     }
   }
 }

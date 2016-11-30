@@ -1,8 +1,11 @@
+@import '../../../../styles/definitions';
+
 .eam-card--intro {
   margin-bottom: 16px;
 
   .mdl-card__supporting-text {
     color: $text-color;
+    padding-bottom: 0;
   }
 
   .intro__title {
@@ -16,5 +19,9 @@
     font-weight: 300;
     line-height: 20px;
     margin-bottom: 0;
+  }
+
+  .intro__button {
+    float: right;
   }
 }
