@@ -67,11 +67,11 @@ const AccentsList = React.createClass({
 
       header = (
         <div className='mdl-card__title'>
+          <img className='mdl-list__item-avatar'
+            src={'/images/flags/' + countrySelected + '.svg'} />
           <h2 className='mdl-card__title-text'>
             { countries.byId[countrySelected].name }
           </h2>
-          <img className='mdl-list__item-avatar'
-            src={'/images/flags/' + countrySelected + '.svg'} />
         </div>
       )
 
@@ -98,7 +98,7 @@ const AccentsList = React.createClass({
       menu = (
         <Link className='mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect'
           to={'/'}>
-          <i className='material-icons'>arrow_back</i>
+          <i className='material-icons'>close</i>
         </Link>
       )
     } else {
