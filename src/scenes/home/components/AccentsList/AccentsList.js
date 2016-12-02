@@ -1,5 +1,6 @@
 import React from 'react'
-import { Link, withRouter, browserHistory } from 'react-router'
+import { Link, browserHistory } from 'react-router'
+import { sendPlayVideoEvent } from '../../../../services/analytics'
 import DocumentTitle from 'react-document-title'
 import makeDocumentTitle from '../../../../services/documentTitle'
 import './styles.scss'
@@ -20,7 +21,7 @@ const AccentsList = React.createClass({
 
   loadFromUrl () {
     const { params, countries, accents, countriesLoading, accentsLoading,
-      countrySelected, onSelectCountry, onSelectAccent, onOpenVideos } = this.props
+      countrySelected, onSelectCountry, onSelectAccent, onOpenVideos, onCloseVideo } = this.props
 
     if (countriesLoading || accentsLoading) {
       return
@@ -40,6 +41,8 @@ const AccentsList = React.createClass({
           // TODO: Show a 404 here
           browserHistory.push('/' + countrySelected + '/')
         }
+      } else {
+        onCloseVideo()
       }
     } else {
       // TODO: Show a 404 here
@@ -48,10 +51,17 @@ const AccentsList = React.createClass({
   },
 
   selectAccent (id) {
-    if (this.props.accentSelected === id) {
-      this.props.onOpenVideos()
+    const { accents, accentSelected, countrySelected, onOpenVideos } = this.props
+    if (accentSelected === id) {
+      onOpenVideos()
     } else {
-      browserHistory.push('/' + this.props.countrySelected + '/' + id + '/')
+      const accentUrl = '/' + countrySelected + '/' + id + '/'
+      const videos = accents.byId[id].videos
+      const url = videos ? accentUrl + '#' + videos[0] : accentUrl
+      browserHistory.push(url)
+      if (videos) {
+        sendPlayVideoEvent(videos[0])
+      }
     }
   },
 
@@ -127,7 +137,6 @@ const AccentsList = React.createClass({
 
   propTypes: {
     params: React.PropTypes.object,
-    router: React.PropTypes.object,
     countries: React.PropTypes.object,
     accents: React.PropTypes.object,
     accentIds: React.PropTypes.array,
@@ -138,8 +147,9 @@ const AccentsList = React.createClass({
     videosOpen: React.PropTypes.bool,
     onSelectCountry: React.PropTypes.func,
     onSelectAccent: React.PropTypes.func,
-    onOpenVideos: React.PropTypes.func
+    onOpenVideos: React.PropTypes.func,
+    onCloseVideo: React.PropTypes.func
   }
 })
 
-export default withRouter(AccentsList)
+export default AccentsList
