@@ -1,5 +1,5 @@
 import ReactGA from 'react-ga'
-import firebase from 'firebase'
+import firebase from 'firebase/app'
 import { FIREBASE_CONFIG, ANALYTICS_TRACKING_ID } from './config'
 import locationInit from './services/location'
 import viewportInit from './services/viewport'
