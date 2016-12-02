@@ -1,5 +1,4 @@
 import { connect } from 'react-redux'
-import { openVideos } from '../VideosList/actions'
 import Map from './Map'
 
 const mapStateToProps = (state) => ({
@@ -11,12 +10,4 @@ const mapStateToProps = (state) => ({
   accentSelected: state.ui.accents.selected
 })
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onOpenVideos: () => {
-      dispatch(openVideos())
-    }
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Map)
+export default connect(mapStateToProps)(Map)

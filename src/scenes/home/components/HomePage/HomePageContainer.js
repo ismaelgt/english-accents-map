@@ -3,7 +3,7 @@ import HomePage from './HomePage'
 
 const mapStateToProps = (state) => ({
   viewport: state.ui.viewport,
-  videoOpen: state.ui.videos.open
+  accentSelected: state.ui.accents.selected
 })
 
 export default connect(mapStateToProps)(HomePage)

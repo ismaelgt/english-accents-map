@@ -4,11 +4,11 @@ import VideosList from '../VideosList'
 
 const HomePage = React.createClass({
   render () {
-    const { viewport, children, videoOpen } = this.props
+    const { viewport, children, accentSelected } = this.props
     return (
       <div>
         { viewport.isSmall ? null : <Map /> }
-        { videoOpen ? <VideosList /> : null }
+        { accentSelected ? <VideosList /> : null }
         <div className='eam-card-wrapper'>
           { children }
         </div>
@@ -17,7 +17,7 @@ const HomePage = React.createClass({
   },
   propTypes: {
     viewport: React.PropTypes.object,
-    videoOpen: React.PropTypes.bool,
+    accentSelected: React.PropTypes.string,
     children: React.PropTypes.node
   }
 })

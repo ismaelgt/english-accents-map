@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link, browserHistory } from 'react-router'
-import { sendPlayVideoEvent } from '../../../../services/analytics'
 import DocumentTitle from 'react-document-title'
 import makeDocumentTitle from '../../../../services/documentTitle'
 import './styles.scss'
@@ -9,69 +8,65 @@ const AccentsList = React.createClass({
 
   componentDidMount () {
     componentHandler.upgradeDom() // MDL
-    this.loadFromUrl()
+    this.loadCountryAndAccentFromUrl()
   },
 
   componentDidUpdate (prevProps) {
     componentHandler.upgradeDom() // MDL
-    if (!this.props.countrySelected || prevProps.params.accentId !== this.props.params.accentId) {
-      this.loadFromUrl()
+    if (!this.props.countrySelected ||
+      prevProps.params.accentId !== this.props.params.accentId) {
+      this.loadCountryAndAccentFromUrl()
     }
   },
 
-  loadFromUrl () {
+  loadCountryAndAccentFromUrl () {
     const { params, countries, accents, countriesLoading, accentsLoading,
-      countrySelected, onSelectCountry, onSelectAccent, onOpenVideos, onCloseVideo } = this.props
+      countrySelected, accentSelected, onSelectCountry, onSelectAccent } = this.props
 
     if (countriesLoading || accentsLoading) {
       return
     }
 
-    const country = countries.byId[params.countryId]
-    if (country) {
+    // Load country
+    if (params.countryId !== countrySelected) {
+      const country = countries.byId[params.countryId]
+      if (!country) {
+        browserHistory.push('/') // TODO: 404?
+        return
+      }
       onSelectCountry(params.countryId)
+    }
+
+    // Load accent
+    if (params.accentId !== accentSelected) {
       if (params.accentId) {
         const accent = accents.byId[params.accentId]
-        if (accent) {
-          onSelectAccent(params.accentId)
-          if (accent.videos && accent.videos.length) {
-            onOpenVideos()
-          }
-        } else {
-          // TODO: Show a 404 here
-          browserHistory.push('/' + countrySelected + '/')
+        if (!accent) {
+          browserHistory.push('/' + countrySelected + '/') // TODO: 404?
+          return
         }
-      } else {
-        onCloseVideo()
       }
-    } else {
-      // TODO: Show a 404 here
-      browserHistory.push('/')
+      onSelectAccent(params.accentId || null)
     }
   },
 
   selectAccent (id) {
-    const { accents, accentSelected, countrySelected, onOpenVideos } = this.props
-    if (accentSelected === id) {
-      onOpenVideos()
-    } else {
+    const { accents, accentSelected, countrySelected } = this.props
+    if (accentSelected !== id) {
       const accentUrl = '/' + countrySelected + '/' + id + '/'
       const videos = accents.byId[id].videos
       const url = videos ? accentUrl + '#' + videos[0] : accentUrl
       browserHistory.push(url)
-      if (videos) {
-        sendPlayVideoEvent(videos[0])
-      }
     }
   },
 
   render () {
     const { countries, accents, countriesLoading, accentsLoading, countrySelected,
-      accentSelected, accentIds, videosOpen } = this.props
+      accentSelected, accentIds } = this.props
     let header, body, menu, docTitle
 
     if (!countriesLoading && !accentsLoading && countrySelected) {
-      docTitle = accentSelected && videosOpen
+      docTitle = accentSelected
         ? accents.byId[accentSelected].name + ' - ' + countries.byId[countrySelected].name
         : countries.byId[countrySelected].name
 
@@ -90,7 +85,7 @@ const AccentsList = React.createClass({
           { accentIds.map((id) => (
             <li key={id} className='mdl-list__item'>
               <div
-                className={'eam-card__link' + ((accentSelected === id && videosOpen) ? ' eam-card__link--active' : '')}
+                className={'eam-card__link' + (accentSelected === id ? ' eam-card__link--active' : '')}
                 onClick={() => { this.selectAccent(id) }}>
                 <span className='mdl-list__item-primary-content'>
                   {accents.byId[id].name}
@@ -144,11 +139,8 @@ const AccentsList = React.createClass({
     accentsLoading: React.PropTypes.bool,
     countrySelected: React.PropTypes.string,
     accentSelected: React.PropTypes.string,
-    videosOpen: React.PropTypes.bool,
     onSelectCountry: React.PropTypes.func,
-    onSelectAccent: React.PropTypes.func,
-    onOpenVideos: React.PropTypes.func,
-    onCloseVideo: React.PropTypes.func
+    onSelectAccent: React.PropTypes.func
   }
 })
 

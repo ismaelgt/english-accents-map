@@ -2,7 +2,6 @@ import { connect } from 'react-redux'
 import { createSelector } from 'reselect'
 import AccentsList from './AccentsList'
 import { selectCountry } from '../CountriesList/actions'
-import { openVideos, closeVideo } from '../VideosList/actions'
 import { selectAccent } from './actions'
 
 const getCountriesLoading = (state) => state.ui.countries.loading
@@ -26,8 +25,7 @@ const mapStateToProps = (state) => ({
   countriesLoading: state.ui.countries.loading,
   accentsLoading: state.ui.accents.loading,
   countrySelected: state.ui.countries.selected,
-  accentSelected: state.ui.accents.selected,
-  videosOpen: state.ui.videos.open
+  accentSelected: state.ui.accents.selected
 })
 
 const mapDispatchToProps = (dispatch) => {
@@ -37,12 +35,6 @@ const mapDispatchToProps = (dispatch) => {
     },
     onSelectAccent: (accent) => {
       dispatch(selectAccent(accent))
-    },
-    onOpenVideos: () => {
-      dispatch(openVideos())
-    },
-    onCloseVideo: () => {
-      dispatch(closeVideo())
     }
   }
 }

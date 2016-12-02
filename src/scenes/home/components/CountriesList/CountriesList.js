@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router'
 import { selectAccent } from '../AccentsList/actions'
 import { selectCountry } from './actions'
-import { CLOSE_VIDEO } from '../VideosList/actions'
 import './styles.scss'
 
 const CountriesList = React.createClass({
@@ -10,7 +9,6 @@ const CountriesList = React.createClass({
   componentWillMount () {
     this.props.dispatch(selectCountry(null))
     this.props.dispatch(selectAccent(null))
-    this.props.dispatch({ type: CLOSE_VIDEO })
   },
 
   componentDidMount () {

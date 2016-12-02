@@ -96,9 +96,7 @@ const Map = React.createClass({
         })
         marker.addListener('click', () => {
           if (this.state.accentSelected !== id) {
-            browserHistory.push('/' + accent.country + '/' + id + '/')
-          } else {
-            this.props.onOpenVideos()
+            browserHistory.push('/' + accent.country + '/' + id + '/#' + accent.videos[0])
           }
         })
         marker.setMap(this.map)
@@ -136,8 +134,7 @@ const Map = React.createClass({
     countriesLoading: React.PropTypes.bool,
     accentsLoading: React.PropTypes.bool,
     countrySelected: React.PropTypes.string,
-    accentSelected: React.PropTypes.string,
-    onOpenVideos: React.PropTypes.func
+    accentSelected: React.PropTypes.string
   }
 })
 
