@@ -62,7 +62,7 @@ const AccentsList = React.createClass({
 
   render () {
     const { countries, accents, countriesLoading, accentsLoading, countrySelected,
-      accentSelected, accentIds } = this.props
+      accentSelected, regionAccentIds, countryAccentIds } = this.props
     let header, body, menu, docTitle
 
     if (!countriesLoading && !accentsLoading && countrySelected) {
@@ -81,23 +81,27 @@ const AccentsList = React.createClass({
       )
 
       body = (
-        <ul className='mdl-list'>
-          { accentIds.map((id) => (
-            <li key={id} className='mdl-list__item'>
-              <div
-                className={'eam-card__link' + (accentSelected === id ? ' eam-card__link--active' : '')}
-                onClick={() => { this.selectAccent(id) }}>
-                <span className='mdl-list__item-primary-content'>
-                  {accents.byId[id].name}
-                </span>
-                <span className='mdl-list__item-secondary-action'>
-                  <i className='material-icons'>play_circle_outline</i>
-                </span>
-              </div>
-            </li>
-            )
-          ) }
-        </ul>
+        <div>
+          <AccentsListBody
+            accentIds={countryAccentIds}
+            accents={accents}
+            accentSelected={accentSelected}
+            onAccentClick={this.selectAccent}
+          />
+          {
+            regionAccentIds.length > 0
+            ? <div>
+              <h3 className='eam-card__list-header'>By region</h3>
+              <AccentsListBody
+                accentIds={regionAccentIds}
+                accents={accents}
+                accentSelected={accentSelected}
+                onAccentClick={this.selectAccent}
+              />
+            </div>
+            : null
+          }
+        </div>
       )
 
       menu = (
@@ -134,7 +138,8 @@ const AccentsList = React.createClass({
     params: React.PropTypes.object,
     countries: React.PropTypes.object,
     accents: React.PropTypes.object,
-    accentIds: React.PropTypes.array,
+    countryAccentIds: React.PropTypes.array,
+    regionAccentIds: React.PropTypes.array,
     countriesLoading: React.PropTypes.bool,
     accentsLoading: React.PropTypes.bool,
     countrySelected: React.PropTypes.string,
@@ -143,5 +148,32 @@ const AccentsList = React.createClass({
     onSelectAccent: React.PropTypes.func
   }
 })
+
+const AccentsListBody = ({ accentIds, accents, accentSelected, onAccentClick }) => (
+  <ul className='mdl-list'>
+    { accentIds.map((id) => (
+      <li key={id} className='mdl-list__item'>
+        <div
+          className={'eam-card__link' + (accentSelected === id ? ' eam-card__link--active' : '')}
+          onClick={() => onAccentClick(id)}>
+          <span className='mdl-list__item-primary-content'>
+            {accents.byId[id].name}
+          </span>
+          <span className='mdl-list__item-secondary-action'>
+            <i className='material-icons'>play_circle_outline</i>
+          </span>
+        </div>
+      </li>
+      )
+    ) }
+  </ul>
+)
+
+AccentsListBody.propTypes = {
+  accents: React.PropTypes.object,
+  accentIds: React.PropTypes.array,
+  accentSelected: React.PropTypes.string,
+  onAccentClick: React.PropTypes.func
+}
 
 export default AccentsList
