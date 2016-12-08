@@ -7,16 +7,26 @@ import { loadCountries } from './scenes/home/components/CountriesList/actions'
 import { loadAccents } from './scenes/home/components/AccentsList/actions'
 
 export default function init (store) {
+  // Register ServiceWorker
+  if (__PROD__ && 'serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js')
+  }
+
   // Init Google Analytics
   ReactGA.initialize(ANALYTICS_TRACKING_ID)
+
   // Initialise Firebase
   firebase.initializeApp(FIREBASE_CONFIG)
+
   // Listen to location changes
   locationInit(store)
+
   // Listen to window resize event
   viewportInit(store)
+
   // Load countries
   store.dispatch(loadCountries())
+
   // Load accents
   store.dispatch(loadAccents())
 }
