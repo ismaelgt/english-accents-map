@@ -24,7 +24,8 @@ class CoreLayout extends React.Component {
           <div className='mdl-layout__header-row'>
             <Link to='/' className='mdl-layout-title'>
               <img className='eam-layout-title__logo' src='/images/header-logo.png'
-                srcSet='/images/header-logo.png 1x, /images/header-logo@2x.png 2x, /images/header-logo@3x.png 3x' />
+                srcSet='/images/header-logo.png 1x, /images/header-logo@2x.png 2x, /images/header-logo@3x.png 3x'
+                alt='English Accents Map' />
               <span>English</span><strong>Accents</strong><span>Map</span>
             </Link>
             <div className='mdl-layout-spacer' />

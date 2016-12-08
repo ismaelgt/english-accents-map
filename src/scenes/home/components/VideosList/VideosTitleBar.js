@@ -6,7 +6,8 @@ const VideosTitleBar = ({ accents, accentSelected, selectAccent }) => {
       <div className='eam-card eam-card--accents-list mdl-card mdl-shadow--8dp'>
         <div className='mdl-card__title'>
           <img className='mdl-list__item-avatar'
-            src={'/images/flags/' + accents.byId[accentSelected].country + '.svg'} />
+            src={'/images/flags/' + accents.byId[accentSelected].country + '.svg'}
+            alt={accents.byId[accentSelected].country} />
           <h2 className='mdl-card__title-text'>
             { accents.byId[accentSelected].name }
           </h2>

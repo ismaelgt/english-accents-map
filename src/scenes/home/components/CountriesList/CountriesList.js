@@ -30,7 +30,9 @@ const CountriesList = React.createClass({
           <li key={countryId} className='mdl-list__item' role='button'>
             <Link to={'/' + countryId + '/'} className='eam-card__link'>
               <span className='mdl-list__item-primary-content'>
-                <img className='mdl-list__item-avatar' src={'/images/flags/' + countryId + '.svg'} />
+                <img className='mdl-list__item-avatar'
+                  src={'/images/flags/' + countryId + '.svg'}
+                  alt={countries.byId[countryId].name} />
                 {countries.byId[countryId].name}
               </span>
               <span className='mdl-list__item-secondary-action'>

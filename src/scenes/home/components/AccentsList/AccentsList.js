@@ -73,7 +73,8 @@ const AccentsList = React.createClass({
       header = (
         <div className='mdl-card__title'>
           <img className='mdl-list__item-avatar'
-            src={'/images/flags/' + countrySelected + '.svg'} />
+            src={'/images/flags/' + countrySelected + '.svg'}
+            alt={countries.byId[countrySelected].name} />
           <h2 className='mdl-card__title-text'>
             { countries.byId[countrySelected].name }
           </h2>
