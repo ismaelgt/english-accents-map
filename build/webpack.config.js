@@ -66,7 +66,7 @@ webpackConfig.plugins = [
       urlPattern: /^https:\/\/fonts\.googleapis\.com/,
       handler: 'cacheFirst'
     }, {
-      urlPattern: /\/images\/flags/,
+      urlPattern: /\/images\//,
       handler: 'cacheFirst'
     }]
   })
