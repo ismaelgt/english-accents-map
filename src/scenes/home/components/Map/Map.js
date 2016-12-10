@@ -40,8 +40,8 @@ const Map = React.createClass({
 
     if (this.state.mapRendered) {
       // Accents loaded
-      if (!this.state.markersRendered && !nextProps.accentsLoading) {
-        this.loadMarkers(nextProps.accents)
+      if (!this.state.markersRendered && !nextProps.accentsLoading && !nextProps.countriesLoading) {
+        this.loadMarkers(nextProps.accents, nextProps.countries)
       }
       // Country selected
       if (nextProps.countrySelected !== this.state.countrySelected) {
@@ -79,28 +79,29 @@ const Map = React.createClass({
     this.map = new google.maps.Map(this.refs.map, GOOGLE_MAPS_CONFIG)
 
     this.state.mapRendered = true
-    if (!this.state.accentsLoading) {
-      this.loadMarkers(this.state.accents)
+    if (!this.state.accentsLoading && !this.state.countriesLoading) {
+      this.loadMarkers(this.state.accents, this.state.countries)
     }
   },
 
   // Create one marker in the map for each accent
-  loadMarkers (accents) {
+  loadMarkers (accents, countries) {
     const { google } = this.props
 
     Object.keys(accents.byId).forEach((id) => {
       const accent = accents.byId[id]
-      if (accent.coords) {
-        const marker = new google.maps.Marker({
-          position: accent.coords
-        })
-        marker.addListener('click', () => {
-          if (this.state.accentSelected !== id) {
-            browserHistory.push('/' + accent.country + '/' + id + '/#' + accent.videos[0])
-          }
-        })
-        marker.setMap(this.map)
+      if (!accent.coords || !countries.byId[accent.country]) {
+        return
       }
+      const marker = new google.maps.Marker({
+        position: accent.coords
+      })
+      marker.addListener('click', () => {
+        if (this.state.accentSelected !== id) {
+          browserHistory.push('/' + accent.country + '/' + id + '/#' + accent.videos[0])
+        }
+      })
+      marker.setMap(this.map)
     })
     this.state.markersRendered = true
   },
