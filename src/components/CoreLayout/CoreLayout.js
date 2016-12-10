@@ -14,6 +14,14 @@ class CoreLayout extends React.Component {
     }
   }
 
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.online !== this.props.online) {
+      this.refs.snackbar.MaterialSnackbar.showSnackbar({
+        message: nextProps.online ? 'You are back online' : 'You\'ve gone offline'
+      })
+    }
+  }
+
   render () {
     return (
       <div id='mdl-layout'
@@ -46,6 +54,10 @@ class CoreLayout extends React.Component {
         <main className='mdl-layout__content'>
           {this.props.children}
         </main>
+        <div ref='snackbar' className='mdl-js-snackbar mdl-snackbar'>
+          <div className='mdl-snackbar__text' />
+          <button className='mdl-snackbar__action' type='button' />
+        </div>
       </div>
     )
   }
@@ -53,6 +65,7 @@ class CoreLayout extends React.Component {
 
 CoreLayout.propTypes = {
   location: React.PropTypes.object,
+  online: React.PropTypes.bool,
   children: React.PropTypes.node
 }
 
