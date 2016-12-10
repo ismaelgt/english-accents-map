@@ -28,7 +28,8 @@ export const loadCountries = () => {
     dispatch(requestCountries())
     firebase.database()
       .ref('/countries')
-      .orderByChild('order')
+      .orderByChild('published')
+      .equalTo(true)
       .once('value')
       .then((snapshot) => {
         const byId = snapshot.val()
