@@ -16,14 +16,14 @@
 
   .mdl-list__item-avatar {
     height: 24px;
+    left: 20px;
     position: absolute;
-    right: 18px;
+    top: 14px;
     width: 24px;
   }
 
   .mdl-card__menu {
-    left: 16px;
-    right: auto;
+    right: 14px;
     top: 11px;
   }
 
@@ -36,5 +36,14 @@
     i {
       color: $blue-900;
     }
+  }
+
+  .eam-card__list-header {
+    border-bottom: 1px solid $grey-100;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 14px;
+    margin: 4px 8px;
+    padding-bottom: 8px;
   }
 }

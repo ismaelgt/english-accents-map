@@ -1,5 +1,10 @@
 @import '../../styles/definitions';
 
+.eam .mdl-layout__container {
+  // See http://stackoverflow.com/questions/32202215/
+  position: static;
+}
+
 .eam-layout.mdl-layout {
   @include from(desktop) {
     .mdl-layout__header,
@@ -11,9 +16,14 @@
 
   .mdl-layout__header {
     background-color: $theme-color;
+    position: fixed;
 
     @include upto(tablet) {
       box-shadow: none;
+    }
+
+    @include upto(large) {
+      display: flex;
     }
   }
 
@@ -48,6 +58,7 @@
   .mdl-layout__drawer-button {
     left: auto;
     line-height: $header-height;
+    position: fixed;
     right: 0;
 
     @include upto(tablet) {
@@ -65,12 +76,17 @@
 
   .mdl-layout__drawer {
     left: auto;
+    position: fixed;
     right: 0;
     transform: translateX($drawer-width);
 
     &.is-visible {
       transform: translateX(0);
     }
+  }
+
+  .mdl-layout__obfuscator {
+    position: fixed;
   }
 
   .mdl-navigation {
@@ -103,5 +119,9 @@
 
   .mdl-layout__content {
     background-color: $grey-100;
+    box-sizing: border-box;
+    min-height: 100vh;
+    overflow: auto;
+    padding-top: $header-height;
   }
 }

@@ -1,4 +1,5 @@
-import firebase from 'firebase'
+import firebase from 'firebase/app'
+import 'firebase/database'
 
 export const REQUEST_COUNTRIES = 'REQUEST_COUNTRIES'
 export const RECEIVE_COUNTRIES = 'RECEIVE_COUNTRIES'
@@ -27,7 +28,8 @@ export const loadCountries = () => {
     dispatch(requestCountries())
     firebase.database()
       .ref('/countries')
-      .orderByChild('order')
+      .orderByChild('published')
+      .equalTo(true)
       .once('value')
       .then((snapshot) => {
         const byId = snapshot.val()

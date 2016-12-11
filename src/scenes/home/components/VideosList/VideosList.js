@@ -1,6 +1,6 @@
 import React from 'react'
 import { browserHistory } from 'react-router'
-import ReactGA from 'react-ga'
+import { sendPlayVideoEvent } from '../../../../services/analytics'
 import YouTubePlayer from 'youtube-player'
 import VideosTitleBar from './VideosTitleBarContainer'
 import VideoListButton from './VideoListButton'
@@ -30,6 +30,9 @@ const VideosList = React.createClass({
       }
     })
     this.player.cuePlaylist(this.props.videos)
+    if (this.props.location.hash) {
+      sendPlayVideoEvent(this.props.location.hash.substring(1))
+    }
   },
 
   componentWillReceiveProps (nextProps) {
@@ -42,8 +45,10 @@ const VideosList = React.createClass({
     if (prevProps.videos !== this.props.videos) {
       this.player.cuePlaylist(this.props.videos)
     }
-    if (prevProps.location.hash !== this.props.location.hash) {
-      this.playVideoById(this.props.location.hash.substring(1))
+    if (this.props.location.hash && prevProps.location.hash !== this.props.location.hash) {
+      const videoId = this.props.location.hash.substring(1)
+      this.playVideoById(videoId)
+      sendPlayVideoEvent(videoId)
     }
     if (prevState.index !== this.state.index) {
       const videoId = this.props.videos[this.state.index]
@@ -60,7 +65,6 @@ const VideosList = React.createClass({
       this.playVideoById(this.props.location.hash.substring(1))
     } else {
       const videoId = this.props.videos[0]
-      this.playVideoById(videoId)
       this.updateUrlHash(videoId)
     }
   },
@@ -69,8 +73,6 @@ const VideosList = React.createClass({
     const videoIndex = this.props.videos.indexOf(id)
     if (videoIndex > -1) {
       this.player.playVideoAt(videoIndex)
-    } else {
-      this.updateUrlHash(null)
     }
   },
 
@@ -88,17 +90,13 @@ const VideosList = React.createClass({
 
   closeVideo (evt) {
     evt.stopPropagation()
-    this.updateUrlHash()
-    this.props.onCloseVideo()
+    browserHistory.push('/' + this.props.countrySelected + '/')
   },
 
   updateUrlHash (videoId = null) {
     const hash = videoId ? '#' + videoId : ''
     if (this.props.location.hash !== hash) {
       browserHistory.push(this.props.location.pathname + hash)
-      if (hash !== '') {
-        ReactGA.event({ category: 'Video', action: 'Play', label: videoId })
-      }
     }
   },
 
@@ -157,7 +155,7 @@ const VideosList = React.createClass({
   propTypes: {
     videos: React.PropTypes.array,
     location: React.PropTypes.object,
-    onCloseVideo: React.PropTypes.func
+    countrySelected: React.PropTypes.string
   }
 })
 

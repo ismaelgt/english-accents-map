@@ -5,7 +5,7 @@ import './styles.scss'
 
 const HomePage = React.createClass({
   render () {
-    const { viewport, children, videoOpen } = this.props
+    const { viewport, children, accentSelected } = this.props
 
     const mobileView = (
       <div className='eam-tabs mdl-tabs mdl-js-tabs mdl-js-ripple-effect'>
@@ -18,7 +18,9 @@ const HomePage = React.createClass({
           </a>
         </div>
         <div className='mdl-tabs__panel' id='list'>
-          { children }
+          <div className='eam-card-wrapper'>
+            { children }
+          </div>
         </div>
         <div className='mdl-tabs__panel is-active' id='map'>
           <Map />
@@ -29,20 +31,22 @@ const HomePage = React.createClass({
     const desktopView = (
       <div>
         <Map />
-        { children }
+        <div className='eam-card-wrapper'>
+          { children }
+        </div>
       </div>
     )
 
     return (
       <div>
         { viewport.isSmall ? mobileView : desktopView }
-        { videoOpen ? <VideosList /> : null }
+        { accentSelected ? <VideosList /> : null }
       </div>
     )
   },
   propTypes: {
     viewport: React.PropTypes.object,
-    videoOpen: React.PropTypes.bool,
+    accentSelected: React.PropTypes.string,
     children: React.PropTypes.node
   }
 })

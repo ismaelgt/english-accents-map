@@ -1,11 +1,11 @@
 import { connect } from 'react-redux'
 import VideosTitleBar from './VideosTitleBar'
-import { CLOSE_VIDEO } from './actions'
+import { selectAccent } from '../AccentsList/actions'
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onCloseVideo: () => {
-      dispatch({ type: CLOSE_VIDEO })
+    selectAccent: (accent) => {
+      dispatch(selectAccent(accent))
     }
   }
 }
@@ -13,7 +13,6 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
   return {
     accents: state.entities.accents,
-    countrySelected: state.ui.countries.selected,
     accentSelected: state.ui.accents.selected
   }
 }

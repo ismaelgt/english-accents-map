@@ -1,14 +1,5 @@
 import { connect } from 'react-redux'
 import VideosList from './VideosList'
-import { CLOSE_VIDEO } from './actions'
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onCloseVideo: () => {
-      dispatch({ type: CLOSE_VIDEO })
-    }
-  }
-}
 
 const mapStateToProps = (state) => {
   const videos = state.ui.accents.selected
@@ -16,9 +7,10 @@ const mapStateToProps = (state) => {
     : null
 
   return {
+    countrySelected: state.ui.countries.selected,
     location: state.ui.location,
     videos: videos
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(VideosList)
+export default connect(mapStateToProps)(VideosList)

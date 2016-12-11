@@ -14,6 +14,14 @@ class CoreLayout extends React.Component {
     }
   }
 
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.online !== this.props.online) {
+      this.refs.snackbar.MaterialSnackbar.showSnackbar({
+        message: nextProps.online ? 'You are back online' : 'You\'ve gone offline'
+      })
+    }
+  }
+
   render () {
     return (
       <div id='mdl-layout'
@@ -24,7 +32,8 @@ class CoreLayout extends React.Component {
           <div className='mdl-layout__header-row'>
             <Link to='/' className='mdl-layout-title'>
               <img className='eam-layout-title__logo' src='/images/header-logo.png'
-                srcSet='/images/header-logo.png 1x, /images/header-logo@2x.png 2x, /images/header-logo@3x.png 3x' />
+                srcSet='/images/header-logo.png 1x, /images/header-logo@2x.png 2x, /images/header-logo@3x.png 3x'
+                alt='English Accents Map' />
               <span>English</span><strong>Accents</strong><span>Map</span>
             </Link>
             <div className='mdl-layout-spacer' />
@@ -36,20 +45,8 @@ class CoreLayout extends React.Component {
               <Link to='/' className='mdl-navigation__link' activeClassName='is-active'>
                 <i className='material-icons mdl-list__item-icon'>home</i> Home
               </Link>
-              <Link to='/my-list/' className='mdl-navigation__link' activeClassName='is-active'>
-                <i className='material-icons mdl-list__item-icon'>playlist_play</i> My list
-              </Link>
               <Link to='/suggest/' className='mdl-navigation__link' activeClassName='is-active'>
                 <i className='material-icons mdl-list__item-icon'>add_location</i> Make a suggestion
-              </Link>
-            </div>
-            <div>
-              <Link to='https://github.com/ismaelgt/english-accents-map' target='_blank'
-                className='mdl-navigation__link'>
-                <i className='material-icons mdl-list__item-icon'>code</i> See the code
-              </Link>
-              <Link to='/terms/' className='mdl-navigation__link'>
-                <i className='material-icons mdl-list__item-icon'>info</i> Terms and Privacy
               </Link>
             </div>
           </nav>
@@ -57,6 +54,10 @@ class CoreLayout extends React.Component {
         <main className='mdl-layout__content'>
           {this.props.children}
         </main>
+        <div ref='snackbar' className='mdl-js-snackbar mdl-snackbar'>
+          <div className='mdl-snackbar__text' />
+          <button className='mdl-snackbar__action' type='button' />
+        </div>
       </div>
     )
   }
@@ -64,6 +65,7 @@ class CoreLayout extends React.Component {
 
 CoreLayout.propTypes = {
   location: React.PropTypes.object,
+  online: React.PropTypes.bool,
   children: React.PropTypes.node
 }
 

@@ -2,6 +2,7 @@ const webpack = require('webpack')
 const cssnano = require('cssnano')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
 const config = require('../config')
 const debug = require('debug')('app:webpack:config')
 
@@ -50,12 +51,24 @@ webpackConfig.plugins = [
   new HtmlWebpackPlugin({
     template : paths.client('index.html'),
     hash     : false,
-    // favicon  : paths.client('static/favicon.ico'),
+    favicon  : paths.client('static/favicon.ico'),
     filename : 'index.html',
     inject   : 'body',
     minify   : {
       collapseWhitespace : true
     }
+  }),
+  new SWPrecacheWebpackPlugin({
+    cacheId: 'english-accents-map',
+    filename: 'sw.js',
+    verbose: true,
+    runtimeCaching: [{
+      urlPattern: /^https:\/\/fonts\.googleapis\.com/,
+      handler: 'cacheFirst'
+    }, {
+      urlPattern: /\/images\//,
+      handler: 'cacheFirst'
+    }]
   })
 ]
 
