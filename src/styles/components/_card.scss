@@ -37,17 +37,29 @@
 
   .mdl-card__supporting-text {
     box-sizing: border-box;
+    padding: 8px 0;
     width: 100%;
   }
 
   .mdl-list {
     margin: 0;
+    padding: 0;
   }
 
   .loading-indicator {
     display: flex;
     justify-content: center;
     padding: 32px;
+  }
+
+  .eam-card__list-subheader {
+    border-top: 1px solid $grey-100;
+    color: $black-54;
+    font-size: 14px;
+    font-weight: $font-weight-medium;
+    line-height: 48px;
+    margin: 0;
+    padding: 0 16px;
   }
 }
 

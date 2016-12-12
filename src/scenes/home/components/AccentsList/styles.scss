@@ -2,16 +2,11 @@
 
 .eam-card.eam-card--accents-list {
   .mdl-card__title {
-    border-bottom: 1px solid $grey-100;
     padding: 16px 48px 16px 32px;
   }
 
   .mdl-card__title-text {
     margin-left: 24px;
-  }
-
-  .mdl-card__supporting-text {
-    padding: 0 16px;
   }
 
   .mdl-list__item-avatar {
@@ -23,13 +18,8 @@
   }
 
   .mdl-card__menu {
-    left: 16px;
+    left: 12px;
     top: 11px;
-  }
-
-  .mdl-list__item {
-    min-height: 42px;
-    padding: 4px 0 4px 8px;
   }
 
   .mdl-button--icon:hover {
@@ -38,12 +28,7 @@
     }
   }
 
-  .eam-card__list-header {
-    border-bottom: 1px solid $grey-100;
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 14px;
-    margin: 4px 8px;
-    padding-bottom: 8px;
+  .mdl-card__supporting-text {
+    padding: 0;
   }
 }

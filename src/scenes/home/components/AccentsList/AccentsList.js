@@ -7,12 +7,12 @@ import './styles.scss'
 const AccentsList = React.createClass({
 
   componentDidMount () {
-    componentHandler.upgradeDom() // MDL
+    componentHandler.upgradeDom()
     this.loadCountryAndAccentFromUrl()
   },
 
   componentDidUpdate (prevProps) {
-    componentHandler.upgradeDom() // MDL
+    componentHandler.upgradeDom()
     if (!this.props.countrySelected ||
       prevProps.params.accentId !== this.props.params.accentId) {
       this.loadCountryAndAccentFromUrl()
@@ -82,17 +82,24 @@ const AccentsList = React.createClass({
       )
 
       body = (
-        <div>
-          <AccentsListBody
-            accentIds={countryAccentIds}
-            accents={accents}
-            accentSelected={accentSelected}
-            onAccentClick={this.selectAccent}
-          />
+        <section>
+          {
+            countryAccentIds.length > 0
+            ? <div>
+              <h3 className='eam-card__list-subheader'>General</h3>
+              <AccentsListBody
+                accentIds={countryAccentIds}
+                accents={accents}
+                accentSelected={accentSelected}
+                onAccentClick={this.selectAccent}
+              />
+            </div>
+            : null
+          }
           {
             regionAccentIds.length > 0
             ? <div>
-              <h3 className='eam-card__list-header'>By region</h3>
+              <h3 className='eam-card__list-subheader'>By region</h3>
               <AccentsListBody
                 accentIds={regionAccentIds}
                 accents={accents}
@@ -102,7 +109,7 @@ const AccentsList = React.createClass({
             </div>
             : null
           }
-        </div>
+        </section>
       )
 
       menu = (
@@ -117,7 +124,7 @@ const AccentsList = React.createClass({
 
       body = (
         <div className='loading-indicator'>
-          <div className='mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active' />
+          <div ref='spinner' className='mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active' />
         </div>
       )
       menu = null
@@ -153,12 +160,13 @@ const AccentsList = React.createClass({
 const AccentsListBody = ({ accentIds, accents, accentSelected, onAccentClick }) => (
   <ul className='mdl-list'>
     { accentIds.map((id) => (
-      <li key={id} className='mdl-list__item'>
+      <li key={id} className='mdl-list__item mdl-list__item--two-line'>
         <div
           className={'eam-card__link' + (accentSelected === id ? ' eam-card__link--active' : '')}
           onClick={() => onAccentClick(id)}>
           <span className='mdl-list__item-primary-content'>
-            {accents.byId[id].name}
+            <span>{accents.byId[id].name}</span>
+            <span className='mdl-list__item-sub-title'>{accents.byId[id].videos.length} videos</span>
           </span>
           <span className='mdl-list__item-secondary-action'>
             <i className='material-icons'>play_circle_outline</i>
