@@ -15,7 +15,7 @@ const VideosTitleBar = ({ accents, accentSelected, selectAccent }) => {
         <div className='mdl-card__menu'>
           <button className='mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect'
             onClick={() => selectAccent(null)}>
-            <i className='material-icons'>close</i>
+            <i className='material-icons'>arrow_back</i>
           </button>
         </div>
       </div>

@@ -108,7 +108,7 @@ const AccentsList = React.createClass({
       menu = (
         <Link className='mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect'
           to={'/'}>
-          <i className='material-icons'>close</i>
+          <i className='material-icons'>arrow_back</i>
         </Link>
       )
     } else {

@@ -4,9 +4,22 @@ $header-height: 56px;
 $drawer-width: 240px;
 $card-width: 330px;
 
+// Font
+$roboto: Roboto, Helvetica, Arial, sans-serif;
+$font-weight-thin: 100;
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+
 // Colours
 $white: #fff;
+
 $black: #000;
+$black-12: rgba($black, .12);
+$black-54: rgba($black, .54);
+$black-87: rgba($black, .87);
+
 $blue-700: material-color('blue', '700');
 $blue-900: material-color('blue', '900');
 
