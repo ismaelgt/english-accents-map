@@ -27,7 +27,7 @@ VideosTitleBar.propTypes = {
   accents: React.PropTypes.object,
   accentSelected: React.PropTypes.string,
   countrySelected: React.PropTypes.string,
-  onSelectAccent: React.PropTypes.func
+  selectAccent: React.PropTypes.func
 }
 
 export default VideosTitleBar
