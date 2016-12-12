@@ -28,9 +28,11 @@ export default function init (store) {
   // Listen to network status changes
   networkStatusInit(store)
 
-  // Load countries
-  store.dispatch(loadCountries())
+  if (window.navigator.onLine) {
+    // Load countries
+    store.dispatch(loadCountries())
 
-  // Load accents
-  store.dispatch(loadAccents())
+    // Load accents
+    store.dispatch(loadAccents())
+  }
 }

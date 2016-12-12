@@ -1,3 +1,4 @@
+import { REHYDRATE } from 'redux-persist/constants'
 import { REQUEST_COUNTRIES, RECEIVE_COUNTRIES, SELECT_COUNTRY } from './actions'
 
 const initialCountriesEntityState = {
@@ -9,6 +10,8 @@ export const countriesEntityReducer = (state = initialCountriesEntityState, acti
   switch (action.type) {
     case RECEIVE_COUNTRIES:
       return { byId: action.payload.byId, orderedIds: action.payload.orderedIds }
+    case REHYDRATE:
+      return action.payload.entities ? action.payload.entities.countries : state
     default:
       return state
   }
@@ -25,6 +28,8 @@ export const countriesUiReducer = (state = initialCountriesUiState, action) => {
       return { ...state, loading: true }
     case RECEIVE_COUNTRIES:
       return { ...state, loading: false }
+    case REHYDRATE:
+      return { ...state, loading: !action.payload.entities }
     case SELECT_COUNTRY:
       return { ...state, selected: action.payload }
     default:

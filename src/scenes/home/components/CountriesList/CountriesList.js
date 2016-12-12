@@ -12,7 +12,11 @@ const CountriesList = React.createClass({
   },
 
   componentDidMount () {
-    componentHandler.upgradeDom() // MDL
+    componentHandler.upgradeDom()
+  },
+
+  componentDidUpdate () {
+    componentHandler.upgradeDom()
   },
 
   render () {

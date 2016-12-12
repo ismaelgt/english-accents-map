@@ -1,5 +1,6 @@
 import { applyMiddleware, compose, createStore } from 'redux'
 import thunk from 'redux-thunk'
+import { persistStore } from 'redux-persist'
 import makeRootReducer from './reducers'
 
 export default (initialState = {}) => {
@@ -38,6 +39,8 @@ export default (initialState = {}) => {
       store.replaceReducer(reducers(store.asyncReducers))
     })
   }
+
+  persistStore(store, { whitelist: ['entities'] })
 
   return store
 }
