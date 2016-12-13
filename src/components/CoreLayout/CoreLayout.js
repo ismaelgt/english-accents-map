@@ -17,7 +17,7 @@ class CoreLayout extends React.Component {
   componentWillReceiveProps (nextProps) {
     if (nextProps.online !== this.props.online) {
       this.refs.snackbar.MaterialSnackbar.showSnackbar({
-        message: nextProps.online ? 'You are back online' : 'You\'ve gone offline'
+        message: nextProps.online ? 'You are back online' : 'You have gone offline'
       })
     }
   }
