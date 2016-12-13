@@ -93,6 +93,12 @@ const VideosList = React.createClass({
     browserHistory.push('/' + this.props.countrySelected + '/')
   },
 
+  closeVideoIfLargeScreen (evt) {
+    if (!this.props.isSmallViewport) {
+      this.closeVideo(evt)
+    }
+  },
+
   updateUrlHash (videoId = null) {
     const hash = videoId ? '#' + videoId : ''
     if (this.props.location.hash !== hash) {
@@ -109,7 +115,7 @@ const VideosList = React.createClass({
     }
 
     return (
-      <div className='videos-list-overlay' onClick={this.closeVideo}>
+      <div className='videos-list-overlay' onClick={this.closeVideoIfLargeScreen}>
         <div className='videos-list__title-bar-mobile'>
           <VideosTitleBar />
         </div>
@@ -153,6 +159,7 @@ const VideosList = React.createClass({
     )
   },
   propTypes: {
+    isSmallViewport: React.PropTypes.bool,
     videos: React.PropTypes.array,
     location: React.PropTypes.object,
     countrySelected: React.PropTypes.string
