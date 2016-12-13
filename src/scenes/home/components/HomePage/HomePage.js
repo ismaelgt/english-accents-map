@@ -5,15 +5,15 @@ import './styles.scss'
 
 const HomePage = React.createClass({
   componentDidUpdate (prevProps) {
-    if (prevProps.viewport.isSmall !== this.props.viewport.isSmall && this.props.viewport.isSmall) {
+    if (this.props.viewport.isSmall && this.props.online) {
       componentHandler.upgradeDom()
       this.refs.tabs.MaterialTabs.init()
     }
   },
   render () {
-    const { viewport, children, accentSelected } = this.props
+    const { online, viewport, children, accentSelected } = this.props
 
-    const mobileView = (
+    const mobileViewOnline = (
       <div ref='tabs' className='eam-tabs mdl-tabs mdl-js-tabs mdl-js-ripple-effect'>
         <div className='mdl-tabs__tab-bar'>
           <a href='#map' className='mdl-tabs__tab is-active'>
@@ -34,9 +34,15 @@ const HomePage = React.createClass({
       </div>
     )
 
+    const mobileViewOffline = (
+      <div className='eam-card-wrapper'>
+        { children }
+      </div>
+    )
+
     const desktopView = (
       <div>
-        <Map />
+        { online ? <Map /> : null }
         <div className='eam-card-wrapper'>
           { children }
         </div>
@@ -45,12 +51,13 @@ const HomePage = React.createClass({
 
     return (
       <div>
-        { viewport.isSmall ? mobileView : desktopView }
+        { viewport.isSmall ? (online ? mobileViewOnline : mobileViewOffline) : desktopView }
         { accentSelected ? <VideosList /> : null }
       </div>
     )
   },
   propTypes: {
+    online: React.PropTypes.bool,
     viewport: React.PropTypes.object,
     accentSelected: React.PropTypes.string,
     children: React.PropTypes.node
