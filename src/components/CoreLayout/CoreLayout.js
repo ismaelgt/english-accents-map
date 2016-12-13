@@ -25,7 +25,8 @@ class CoreLayout extends React.Component {
   render () {
     return (
       <div id='mdl-layout'
-        className='eam-layout mdl-layout mdl-js-layout mdl-layout--fixed-header'
+        className={'eam-layout mdl-layout mdl-js-layout mdl-layout--fixed-header ' +
+          (this.props.online ? 'is-online' : 'is-offline')}
         ref='layout'>
         <DocumentTitle title={makeDocumentTitle()} />
         <header className='mdl-layout__header'>
