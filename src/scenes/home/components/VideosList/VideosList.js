@@ -4,6 +4,7 @@ import { sendPlayVideoEvent } from '../../../../services/analytics'
 import YouTubePlayer from 'youtube-player'
 import VideosTitleBar from './VideosTitleBarContainer'
 import VideoListButton from './VideoListButton'
+import AddToFavoritesButton from './AddToFavoritesButtonContainer'
 import './styles.scss'
 
 const VideosList = React.createClass({
@@ -107,7 +108,7 @@ const VideosList = React.createClass({
   },
 
   render () {
-    const { videos } = this.props
+    const { videos, accentSelected } = this.props
     const { index } = this.state
 
     if (!videos || videos.length === 0) {
@@ -149,6 +150,7 @@ const VideosList = React.createClass({
             index={index}
             total={videos.length}
             onClick={this.previousVideo} />
+          <AddToFavoritesButton id={accentSelected} />
           <VideoListButton
             type='next'
             index={index}
@@ -162,7 +164,8 @@ const VideosList = React.createClass({
     isSmallViewport: React.PropTypes.bool,
     videos: React.PropTypes.array,
     location: React.PropTypes.object,
-    countrySelected: React.PropTypes.string
+    countrySelected: React.PropTypes.string,
+    accentSelected: React.PropTypes.string
   }
 })
 

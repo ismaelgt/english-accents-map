@@ -86,6 +86,14 @@
   @include from(tablet) {
     display: none;
   }
+
+  .mdl-button--fab {
+    margin: 0;
+  }
+
+  .mdl-button--icon {
+    color: $white;
+  }
 }
 
 .mdl-button.videos-list__button,
