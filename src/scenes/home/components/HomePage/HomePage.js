@@ -4,12 +4,21 @@ import VideosList from '../VideosList'
 import './styles.scss'
 
 const HomePage = React.createClass({
+  componentDidMount () {
+    this.initTabs()
+  },
+
   componentDidUpdate (prevProps) {
-    if (this.props.viewport.small && this.props.online) {
+    this.initTabs()
+  },
+
+  initTabs () {
+    if (this.refs.tabs) {
       componentHandler.upgradeDom()
       this.refs.tabs.MaterialTabs.init()
     }
   },
+
   render () {
     const { online, viewport, children, accentSelected } = this.props
     let homeView = null
