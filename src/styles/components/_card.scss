@@ -25,19 +25,42 @@
     width: 100%;
   }
 
+  .mdl-card__title {
+    border-bottom: 1px solid $grey-100;
+    padding: 16px 48px 16px 32px;
+
+    .mdl-card__title-text {
+      color: $text-color;
+      font-size: 18px;
+      font-weight: 500;
+      margin-left: 24px;
+    }
+
+    .mdl-list__item-avatar {
+      height: 24px;
+      position: absolute;
+      right: 18px;
+      top: 14px;
+      width: 24px;
+    }
+  }
+
+  .mdl-card__menu {
+    left: 12px;
+    top: 11px;
+
+    a {
+      color: $black;
+    }
+  }
+
   .mdl-list__item-avatar {
     background-color: transparent;
   }
 
-  .mdl-card__title-text {
-    color: $text-color;
-    font-size: 18px;
-    font-weight: 500;
-  }
-
   .mdl-card__supporting-text {
     box-sizing: border-box;
-    padding: 8px 0;
+    padding: 0;
     width: 100%;
   }
 

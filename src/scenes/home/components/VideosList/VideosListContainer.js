@@ -7,7 +7,7 @@ const mapStateToProps = (state) => {
     : null
 
   return {
-    isSmallViewport: state.ui.viewport.isSmall,
+    smallViewport: state.ui.viewport.small,
     accentSelected: state.ui.accents.selected,
     countrySelected: state.ui.countries.selected,
     location: state.ui.location,

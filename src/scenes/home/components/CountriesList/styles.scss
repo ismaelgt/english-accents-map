@@ -3,5 +3,14 @@
 .eam-card.eam-card--countries-list {
   .mdl-card__title {
     border-bottom: 1px solid $grey-100;
+    padding: 16px;
+
+    .mdl-card__title-text {
+      margin: 0;
+    }
+  }
+
+  .mdl-card__supporting-text {
+    padding: 8px 0;
   }
 }

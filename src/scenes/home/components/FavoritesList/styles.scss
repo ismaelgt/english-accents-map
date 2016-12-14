@@ -1,0 +1,18 @@
+@import '../../../../styles/definitions';
+
+.eam-card--favorites-list {
+  .favorite-icon {
+    color: $red-400;
+    position: absolute;
+    right: 16px;
+    top: 15px;
+  }
+
+  .empty-list {
+    padding: 16px;
+
+    p {
+      margin: 0;
+    }
+  }
+}

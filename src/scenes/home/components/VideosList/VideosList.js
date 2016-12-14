@@ -95,7 +95,7 @@ const VideosList = React.createClass({
   },
 
   closeVideoIfLargeScreen (evt) {
-    if (!this.props.isSmallViewport) {
+    if (!this.props.smallViewport) {
       this.closeVideo(evt)
     }
   },
@@ -161,7 +161,7 @@ const VideosList = React.createClass({
     )
   },
   propTypes: {
-    isSmallViewport: React.PropTypes.bool,
+    smallViewport: React.PropTypes.bool,
     videos: React.PropTypes.array,
     location: React.PropTypes.object,
     countrySelected: React.PropTypes.string,

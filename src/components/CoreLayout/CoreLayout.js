@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router'
+import { Link, IndexLink } from 'react-router'
 import DocumentTitle from 'react-document-title'
 import makeDocumentTitle from '../../services/documentTitle'
 import './styles.scss'
@@ -50,8 +50,11 @@ class CoreLayout extends React.Component {
           </div>
           <nav className='mdl-navigation'>
             <div>
-              <Link to='/' className='mdl-navigation__link' activeClassName='is-active'>
+              <IndexLink to='/' className='mdl-navigation__link' activeClassName='is-active'>
                 <i className='material-icons mdl-list__item-icon'>home</i> Home
+              </IndexLink>
+              <Link to='/favorites/' className='mdl-navigation__link' activeClassName='is-active'>
+                <i className='material-icons mdl-list__item-icon'>favorite</i> My Favorites
               </Link>
               <Link to='/suggest/' className='mdl-navigation__link' activeClassName='is-active'>
                 <i className='material-icons mdl-list__item-icon'>add_location</i> Make a suggestion

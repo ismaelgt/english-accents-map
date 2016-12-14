@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link, browserHistory } from 'react-router'
+import Spinner from '../../../../components/Spinner'
 import DocumentTitle from 'react-document-title'
 import makeDocumentTitle from '../../../../services/documentTitle'
 import './styles.scss'
@@ -7,12 +8,10 @@ import './styles.scss'
 const AccentsList = React.createClass({
 
   componentDidMount () {
-    componentHandler.upgradeDom()
     this.loadCountryAndAccentFromUrl()
   },
 
   componentDidUpdate (prevProps) {
-    componentHandler.upgradeDom()
     if (!this.props.countrySelected ||
       prevProps.params.accentId !== this.props.params.accentId) {
       this.loadCountryAndAccentFromUrl()
@@ -72,12 +71,12 @@ const AccentsList = React.createClass({
 
       header = (
         <div className='mdl-card__title'>
-          <img className='mdl-list__item-avatar'
-            src={'/images/flags/' + countrySelected + '.svg'}
-            alt={countries.byId[countrySelected].name} />
           <h2 className='mdl-card__title-text'>
             { countries.byId[countrySelected].name }
           </h2>
+          <img className='mdl-list__item-avatar'
+            src={'/images/flags/' + countrySelected + '.svg'}
+            alt={countries.byId[countrySelected].name} />
         </div>
       )
 
@@ -122,11 +121,7 @@ const AccentsList = React.createClass({
       docTitle = null
       header = null
 
-      body = (
-        <div className='loading-indicator'>
-          <div ref='spinner' className='mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active' />
-        </div>
-      )
+      body = <Spinner />
       menu = null
     }
 

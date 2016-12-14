@@ -3,7 +3,7 @@ import React from 'react'
 const VideosTitleBar = ({ accents, accentSelected, selectAccent }) => {
   return (
     <div className='eam-card-wrapper'>
-      <div className='eam-card eam-card--accents-list mdl-card mdl-shadow--8dp'>
+      <div className='eam-card mdl-card mdl-shadow--8dp'>
         <div className='mdl-card__title'>
           <img className='mdl-list__item-avatar'
             src={'/images/flags/' + accents.byId[accentSelected].country + '.svg'}

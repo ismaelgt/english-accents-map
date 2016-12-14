@@ -3,6 +3,7 @@ import { browserHistory, Router, Route, IndexRoute } from 'react-router'
 import { Provider } from 'react-redux'
 import CoreLayout from '../CoreLayout'
 import HomePage from '../../scenes/home/components/HomePage'
+import FavoritesList from '../../scenes/home/components/FavoritesList'
 import SuggestPage from '../../scenes/suggest/components/SuggestPage'
 import CountriesList from '../../scenes/home/components/CountriesList'
 import AccentsList from '../../scenes/home/components/AccentsList'
@@ -20,9 +21,10 @@ class Root extends Component {
       <Provider store={store}>
         <Router history={browserHistory}>
           <Route component={CoreLayout}>
-            <Route path='/suggest/' component={SuggestPage} />
+            <Route path='/suggest' component={SuggestPage} />
             <Route path='/' component={HomePage}>
               <IndexRoute component={CountriesList} />
+              <Route path='favorites' component={FavoritesList} />
               <Route path=':countryId' component={AccentsList} />
               <Route path=':countryId/:accentId' component={AccentsList} />
             </Route>
