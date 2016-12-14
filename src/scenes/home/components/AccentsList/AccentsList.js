@@ -19,10 +19,10 @@ const AccentsList = React.createClass({
   },
 
   loadCountryAndAccentFromUrl () {
-    const { params, countries, accents, countriesLoading, accentsLoading,
-      countrySelected, accentSelected, onSelectCountry, onSelectAccent } = this.props
+    const { params, countries, accents, loading, countrySelected, accentSelected,
+      onSelectCountry, onSelectAccent } = this.props
 
-    if (countriesLoading || accentsLoading) {
+    if (loading) {
       return
     }
 
@@ -60,11 +60,11 @@ const AccentsList = React.createClass({
   },
 
   render () {
-    const { countries, accents, countriesLoading, accentsLoading, countrySelected,
-      accentSelected, regionAccentIds, countryAccentIds } = this.props
+    const { countries, accents, loading, countrySelected, accentSelected,
+      regionAccentIds, countryAccentIds } = this.props
     let header, body, menu, docTitle
 
-    if (!countriesLoading && !accentsLoading && countrySelected) {
+    if (!loading && countrySelected) {
       docTitle = accentSelected
         ? accents.byId[accentSelected].name + ' - ' + countries.byId[countrySelected].name
         : countries.byId[countrySelected].name
@@ -143,8 +143,7 @@ const AccentsList = React.createClass({
     accents: React.PropTypes.object,
     countryAccentIds: React.PropTypes.array,
     regionAccentIds: React.PropTypes.array,
-    countriesLoading: React.PropTypes.bool,
-    accentsLoading: React.PropTypes.bool,
+    loading: React.PropTypes.bool,
     countrySelected: React.PropTypes.string,
     accentSelected: React.PropTypes.string,
     onSelectCountry: React.PropTypes.func,
