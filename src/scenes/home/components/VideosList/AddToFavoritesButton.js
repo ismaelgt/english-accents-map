@@ -6,9 +6,9 @@ const AddToFavouritesButton = React.createClass({
   },
   render () {
     return (
-      <button className={'mdl-button mdl-js-button mdl-button--icon' +
-        (this.isFavorite(this.props.id) ? ' mdl-button--accent mdl-button--colored' : '')}
-        onClick={() => { this.props.toggleFavorite(this.props.id) }}
+      <button className={'mdl-button mdl-js-button mdl-button--icon videos-list__button-favorite' +
+        (this.isFavorite(this.props.id) ? ' is-active' : '')}
+        onClick={(evt) => { evt.stopPropagation(); this.props.toggleFavorite(this.props.id) }}
       >
         <i className='material-icons'>favorite</i>
       </button>

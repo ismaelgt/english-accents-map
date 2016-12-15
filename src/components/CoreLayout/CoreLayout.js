@@ -2,6 +2,7 @@ import React from 'react'
 import { Link, IndexLink } from 'react-router'
 import DocumentTitle from 'react-document-title'
 import makeDocumentTitle from '../../services/documentTitle'
+import { SNACKBAR_ELEMENT_ID } from '../../services/snackbar'
 import './styles.scss'
 
 class CoreLayout extends React.Component {
@@ -11,14 +12,6 @@ class CoreLayout extends React.Component {
       if (this.refs.drawer.classList.contains('is-visible')) {
         this.refs.layout.MaterialLayout.toggleDrawer()
       }
-    }
-  }
-
-  componentWillReceiveProps (nextProps) {
-    if (nextProps.online !== this.props.online) {
-      this.refs.snackbar.MaterialSnackbar.showSnackbar({
-        message: nextProps.online ? 'You are back online' : 'You have gone offline'
-      })
     }
   }
 
@@ -65,7 +58,7 @@ class CoreLayout extends React.Component {
         <main className='mdl-layout__content'>
           {this.props.children}
         </main>
-        <div ref='snackbar' className='mdl-js-snackbar mdl-snackbar'>
+        <div id={SNACKBAR_ELEMENT_ID} className='mdl-js-snackbar mdl-snackbar'>
           <div className='mdl-snackbar__text' />
           <button className='mdl-snackbar__action' type='button' />
         </div>

@@ -5,8 +5,9 @@ import toggleFavorite from '../../../../services/favoritesList/actions'
 const mapDispatchToProps = (dispatch) => {
   return {
     toggleFavorite: (accent) => {
-      dispatch(toggleFavorite(accent))
-    }
+      dispatch(toggleFavorite(accent, false))
+    },
+    dispatch
   }
 }
 

@@ -29,16 +29,13 @@ const CountriesList = React.createClass({
           ) : (
             <ul className='mdl-list'>
               { countries.orderedIds.map((countryId) => (
-                <li key={countryId} className='mdl-list__item' role='button'>
+                <li key={countryId} className='mdl-list__item'>
                   <Link to={'/' + countryId + '/'} className='eam-card__link'>
                     <span className='mdl-list__item-primary-content'>
                       <img className='mdl-list__item-avatar'
                         src={'/images/flags/' + countryId + '.svg'}
                         alt={countries.byId[countryId].name} />
                       {countries.byId[countryId].name}
-                    </span>
-                    <span className='mdl-list__item-secondary-action'>
-                      <i className='material-icons'>arrow_forward</i>
                     </span>
                   </Link>
                 </li>

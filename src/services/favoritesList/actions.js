@@ -1,8 +1,22 @@
+import showSnackbarMessage from '../snackbar'
+
 export const TOGGLE_FAVORITE = 'TOGGLE_FAVORITE'
 
-export default function toggleFavorite (accentId) {
+function getToggleFavoriteAction (accentId) {
   return {
     type    : TOGGLE_FAVORITE,
     payload : accentId
+  }
+}
+
+// Thunk
+export default function toggleFavorite (accentId, showSnackbar = true) {
+  return (dispatch) => {
+    dispatch(getToggleFavoriteAction(accentId))
+    if (showSnackbar) {
+      showSnackbarMessage({
+        message: 'Favorites list updated!'
+      })
+    }
   }
 }

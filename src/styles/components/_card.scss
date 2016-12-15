@@ -94,16 +94,8 @@
   flex-grow: 1;
   font-weight: 400;
 
-  .mdl-list__item-secondary-action {
-    opacity: 0;
-  }
-
   &--active,
   &:hover {
     color: $blue-900;
-
-    .mdl-list__item-secondary-action {
-      opacity: 1;
-    }
   }
 }

@@ -129,11 +129,14 @@ const VideosList = React.createClass({
               onClick={this.previousVideo} />
           </div>
           <div className='videos-list__wrapper'>
-            <button onClick={this.closeVideo}
-              className='mdl-button mdl-js-button mdl-button--icon
-              videos-list__button videos-list__button--close'>
-              <i className='material-icons'>close</i>
-            </button>
+            <div className='videos-list__button-container-top'>
+              <AddToFavoritesButton id={accentSelected} />
+              <button onClick={this.closeVideo}
+                className='mdl-button mdl-js-button mdl-button--icon
+                videos-list__button videos-list__button--close'>
+                <i className='material-icons'>close</i>
+              </button>
+            </div>
             <div ref='videoPlayer' />
           </div>
           <div className='videos-list__button-container'>

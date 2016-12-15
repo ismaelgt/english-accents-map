@@ -50,9 +50,9 @@ const AccentsList = React.createClass({
   },
 
   selectAccent (id) {
-    const { accents, accentSelected, countrySelected } = this.props
+    const { accents, accentSelected } = this.props
     if (accentSelected !== id) {
-      const accentUrl = '/' + countrySelected + '/' + id + '/'
+      const accentUrl = '/' + accents.byId[id].country + '/' + id + '/'
       const videos = accents.byId[id].videos
       const url = videos ? accentUrl + '#' + videos[0] : accentUrl
       browserHistory.push(url)
@@ -161,9 +161,6 @@ const AccentsListBody = ({ accentIds, accents, accentSelected, onAccentClick }) 
           <span className='mdl-list__item-primary-content'>
             <span>{accents.byId[id].name}</span>
             <span className='mdl-list__item-sub-title'>{accents.byId[id].videos.length} videos</span>
-          </span>
-          <span className='mdl-list__item-secondary-action'>
-            <i className='material-icons'>play_circle_outline</i>
           </span>
         </div>
       </li>
