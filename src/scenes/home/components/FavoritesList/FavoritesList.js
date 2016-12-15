@@ -58,7 +58,7 @@ const FavoritesList = React.createClass({
         <DocumentTitle title={makeDocumentTitle('Favorites')} />
         <div className='eam-card eam-card--favorites-list mdl-card mdl-shadow--8dp'>
           <div className='mdl-card__title'>
-            <h2 className='mdl-card__title-text'>My Favorites</h2>
+            <h2 className='mdl-card__title-text'>My favorites</h2>
             <i className='material-icons favorite-icon'>favorite</i>
           </div>
           <div className='mdl-card__menu'>

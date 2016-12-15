@@ -137,7 +137,9 @@ const VideosList = React.createClass({
                 <i className='material-icons'>close</i>
               </button>
             </div>
-            <div ref='videoPlayer' />
+            <div className='videos-list__wrapper-inner'>
+              <div ref='videoPlayer' />
+            </div>
           </div>
           <div className='videos-list__button-container'>
             <VideoListButton

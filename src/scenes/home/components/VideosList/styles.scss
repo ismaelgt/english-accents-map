@@ -49,6 +49,10 @@
   }
 }
 
+.videos-list__wrapper-inner {
+  height: calc(100% - 40px);
+}
+
 .videos-list__title-bar-mobile {
   height: 15%;
 
@@ -59,9 +63,9 @@
 
 .videos-list__button-container-top {
   display: flex;
+  height: 40px;
   justify-content: flex-end;
   margin-right: -16px;
-  padding-bottom: 8px;
 
   @include upto(tablet) {
     display: none;
