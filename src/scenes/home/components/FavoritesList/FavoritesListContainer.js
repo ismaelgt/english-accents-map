@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import FavoritesList from './FavoritesList'
-import toggleFavorite from '../../../../services/favoritesList/actions'
+import toggleFavorite from './actions'
 
 const mapDispatchToProps = (dispatch) => {
   return {
