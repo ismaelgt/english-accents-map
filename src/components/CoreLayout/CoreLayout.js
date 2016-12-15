@@ -47,11 +47,17 @@ class CoreLayout extends React.Component {
                 <i className='material-icons mdl-list__item-icon'>home</i> Home
               </IndexLink>
               <Link to='/favorites/' className='mdl-navigation__link' activeClassName='is-active'>
-                <i className='material-icons mdl-list__item-icon'>favorite</i> My Favorites
+                <i className='material-icons mdl-list__item-icon'>favorite</i> My favorites
               </Link>
               <Link to='/suggest/' className='mdl-navigation__link' activeClassName='is-active'>
                 <i className='material-icons mdl-list__item-icon'>add_location</i> Make a suggestion
               </Link>
+            </div>
+            <div>
+              <a href='https://github.com/ismaelgt/english-accents-map' target='_blank'
+                className='mdl-navigation__link'>
+                <i className='material-icons mdl-list__item-icon'>code</i> See the code
+              </a>
             </div>
           </nav>
         </div>
