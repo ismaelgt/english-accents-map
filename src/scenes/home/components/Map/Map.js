@@ -22,6 +22,7 @@ const Map = React.createClass({
   getInitialState () {
     return {
       loaded: false,
+      smallScreen: null,
       countries: null,
       accents: null,
       countrySelected: null,
@@ -45,7 +46,7 @@ const Map = React.createClass({
       }
       // Country selected
       if (nextProps.countrySelected !== this.state.countrySelected) {
-        this.selectCountry(nextProps.countries, nextProps.countrySelected)
+        this.selectCountry(nextProps.countries, nextProps.countrySelected, nextProps.smallScreen)
       }
       // Accent selected
       if (nextProps.accentSelected !== this.state.accentSelected) {
@@ -107,10 +108,16 @@ const Map = React.createClass({
   },
 
   // Fit country in map using South West and North East coordinates
-  selectCountry (countries, selectedCountryId) {
+  selectCountry (countries, selectedCountryId, smallScreen) {
     if (selectedCountryId !== null) {
       const { sw, ne } = countries.byId[selectedCountryId].coords
       const bounds = new this.props.google.maps.LatLngBounds(sw, ne)
+      // fitBounds will zoom out excessively on mobile
+      if (smallScreen) {
+        this.props.google.maps.event.addListenerOnce(this.map, 'bounds_changed', function () {
+          this.setZoom(countries.byId[selectedCountryId].zoom - 3)
+        })
+      }
       this.map.fitBounds(bounds)
     }
   },
@@ -130,6 +137,7 @@ const Map = React.createClass({
   propTypes: {
     loaded: React.PropTypes.bool,
     google: React.PropTypes.object,
+    smallScreen: React.PropTypes.bool,
     countries: React.PropTypes.object,
     accents: React.PropTypes.object,
     countriesLoading: React.PropTypes.bool,
