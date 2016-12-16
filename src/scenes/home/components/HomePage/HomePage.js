@@ -2,6 +2,7 @@ import React from 'react'
 import Map from '../Map'
 import VideosList from '../VideosList'
 import FavoritesList from '../FavoritesList'
+import LayoutClass from '../../../../components/LayoutClass'
 import './styles.scss'
 
 const HomePage = React.createClass({
@@ -25,6 +26,7 @@ const HomePage = React.createClass({
 
     const mobileView = (
       <div ref='tabs' className='eam-tabs mdl-tabs mdl-js-tabs mdl-js-ripple-effect'>
+        <LayoutClass name='no-shadow' />
         <div className='mdl-tabs__tab-bar'>
           { online ? (
             <a href='#map' className='mdl-tabs__tab is-active'>

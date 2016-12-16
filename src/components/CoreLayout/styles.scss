@@ -18,13 +18,13 @@
     background-color: $theme-color;
     position: fixed;
 
-    @include upto(tablet) {
-      box-shadow: none;
-    }
-
     @include upto(large) {
       display: flex;
     }
+  }
+
+  &.no-shadow .mdl-layout__header {
+    box-shadow: none;
   }
 
   .mdl-layout__drawer-button {
