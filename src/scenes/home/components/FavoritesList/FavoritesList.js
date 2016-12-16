@@ -1,8 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router'
 import Spinner from '../../../../components/Spinner'
-import DocumentTitle from 'react-document-title'
-import makeDocumentTitle from '../../../../services/documentTitle'
 import { selectAccent } from '../AccentsList/actions'
 import { selectCountry } from '../CountriesList/actions'
 import './styles.scss'
