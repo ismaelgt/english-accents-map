@@ -71,9 +71,13 @@
   .mdl-layout__drawer-header {
     background-color: $theme-color;
 
-    .mdl-layout__logo {
+    .mdl-layout__logo-wrapper {
       padding: 24px 16px 8px;
       text-align: center;
+    }
+
+    .mdl-layout__logo {
+      height: 90px;
     }
 
     .mdl-layout-title {

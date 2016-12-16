@@ -32,10 +32,8 @@ class CoreLayout extends React.Component {
         </header>
         <div id='mdl-layout__drawer' className='mdl-layout__drawer' ref='drawer'>
           <div className='mdl-layout__drawer-header'>
-            <div className='mdl-layout__logo'>
-              <img className='eam-layout-title__logo' src='/images/logo.png'
-                srcSet='/images/logo.png 1x, /images/logo@2x.png 2x, /images/logo@3x.png 3x'
-                alt='English Accents Map' />
+            <div className='mdl-layout__logo-wrapper'>
+              <img className='mdl-layout__logo' src='/images/logo.svg' alt='English Accents Map' />
             </div>
             <span className='mdl-layout-title'>
               <span>English</span><strong>Accents</strong><span>Map</span>
