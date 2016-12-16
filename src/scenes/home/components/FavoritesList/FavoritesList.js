@@ -15,7 +15,7 @@ const FavoritesList = React.createClass({
   },
 
   render () {
-    const { loading, favorites, accents, accentSelected, toggleFavorite } = this.props
+    const { smallScreen, loading, favorites, accents, accentSelected, toggleFavorite } = this.props
     let body = null
 
     if (loading) {
@@ -54,27 +54,26 @@ const FavoritesList = React.createClass({
     }
 
     return (
-      <div>
-        <DocumentTitle title={makeDocumentTitle('Favorites')} />
-        <div className='eam-card eam-card--favorites-list mdl-card mdl-shadow--8dp'>
-          <div className='mdl-card__title'>
-            <h2 className='mdl-card__title-text'>My favorites</h2>
-            <i className='material-icons favorite-icon'>favorite</i>
-          </div>
+      <div className='eam-card eam-card--favorites-list mdl-card mdl-shadow--8dp'>
+        <div className='mdl-card__title'>
+          <h2 className='mdl-card__title-text'>My favorites</h2>
+        </div>
+        { !smallScreen ? (
           <div className='mdl-card__menu'>
             <Link to='/'>
               <button className='mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect'>
-                <i className='material-icons'>arrow_back</i>
+                <i className='material-icons'>close</i>
               </button>
             </Link>
           </div>
-          <div className='mdl-card__supporting-text'>{ body }</div>
-        </div>
+        ) : null }
+        <div className='mdl-card__supporting-text'>{ body }</div>
       </div>
     )
   },
   propTypes: {
     loading: React.PropTypes.bool,
+    smallScreen: React.PropTypes.bool,
     favorites: React.PropTypes.array,
     accents: React.PropTypes.object,
     accentSelected: React.PropTypes.string,

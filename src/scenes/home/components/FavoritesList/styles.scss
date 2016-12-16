@@ -1,11 +1,18 @@
 @import '../../../../styles/definitions';
 
-.eam-card--favorites-list {
-  .favorite-icon {
-    color: $red-400;
-    position: absolute;
-    right: 16px;
-    top: 15px;
+.eam-card.eam-card--favorites-list {
+  .mdl-card__title {
+    padding: 16px 48px 16px 16px;
+
+    .mdl-card__title-text {
+      margin: 0;
+    }
+  }
+
+  .mdl-card__menu {
+    left: auto;
+    right: 12px;
+    top: 11px;
   }
 
   .empty-list {

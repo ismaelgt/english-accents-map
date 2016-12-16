@@ -1,6 +1,7 @@
 import React from 'react'
 import Map from '../Map'
 import VideosList from '../VideosList'
+import FavoritesList from '../FavoritesList'
 import './styles.scss'
 
 const HomePage = React.createClass({
@@ -21,16 +22,20 @@ const HomePage = React.createClass({
 
   render () {
     const { online, viewport, children, accentSelected } = this.props
-    let homeView = null
 
-    const mobileViewWithTabs = (
+    const mobileView = (
       <div ref='tabs' className='eam-tabs mdl-tabs mdl-js-tabs mdl-js-ripple-effect'>
         <div className='mdl-tabs__tab-bar'>
-          <a href='#map' className='mdl-tabs__tab is-active'>
-            <i className='material-icons'>map</i>
-          </a>
+          { online ? (
+            <a href='#map' className='mdl-tabs__tab is-active'>
+              <i className='material-icons'>map</i>
+            </a>
+          ) : null }
           <a href='#list' className='mdl-tabs__tab'>
             <i className='material-icons'>view_list</i>
+          </a>
+          <a href='#favorites' className='mdl-tabs__tab'>
+            <i className='material-icons'>favorite</i>
           </a>
         </div>
         <div className='mdl-tabs__panel is-active' id='map'>
@@ -41,12 +46,11 @@ const HomePage = React.createClass({
             { children }
           </div>
         </div>
-      </div>
-    )
-
-    const mobileViewWithoutTabs = (
-      <div className='eam-card-wrapper'>
-        { children }
+        <div className='mdl-tabs__panel' id='favorites'>
+          <div className='eam-card-wrapper'>
+            <FavoritesList />
+          </div>
+        </div>
       </div>
     )
 
@@ -59,19 +63,9 @@ const HomePage = React.createClass({
       </div>
     )
 
-    if (viewport.small) {
-      if (!online || location.pathname.indexOf('favorites') > -1) {
-        homeView = mobileViewWithoutTabs
-      } else {
-        homeView = mobileViewWithTabs
-      }
-    } else {
-      homeView = desktopView
-    }
-
     return (
       <div>
-        { homeView }
+        { viewport.small ? mobileView : desktopView }
         { accentSelected ? <VideosList /> : null }
       </div>
     )

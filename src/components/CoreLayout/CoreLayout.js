@@ -46,9 +46,11 @@ class CoreLayout extends React.Component {
               <IndexLink to='/' className='mdl-navigation__link' activeClassName='is-active'>
                 <i className='material-icons mdl-list__item-icon'>home</i> Home
               </IndexLink>
-              <Link to='/favorites/' className='mdl-navigation__link' activeClassName='is-active'>
-                <i className='material-icons mdl-list__item-icon'>favorite</i> My favorites
-              </Link>
+              { !this.props.smallScreen ? (
+                <Link to='/favorites/' className='mdl-navigation__link' activeClassName='is-active'>
+                  <i className='material-icons mdl-list__item-icon'>favorite</i> My favorites
+                </Link>
+              ) : null }
               <Link to='/suggest/' className='mdl-navigation__link' activeClassName='is-active'>
                 <i className='material-icons mdl-list__item-icon'>add_location</i> Make a suggestion
               </Link>
@@ -74,6 +76,7 @@ class CoreLayout extends React.Component {
 }
 
 CoreLayout.propTypes = {
+  smallScreen: React.PropTypes.bool,
   location: React.PropTypes.object,
   online: React.PropTypes.bool,
   children: React.PropTypes.node

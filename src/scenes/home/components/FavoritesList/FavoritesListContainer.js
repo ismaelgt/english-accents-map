@@ -13,6 +13,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
   return {
+    smallScreen: state.ui.viewport.small,
     loading: state.ui.countries.loading || state.ui.accents.loading,
     favorites: state.entities.favorites,
     accents: state.entities.accents,
