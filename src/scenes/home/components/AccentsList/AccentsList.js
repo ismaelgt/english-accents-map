@@ -8,10 +8,12 @@ import './styles.scss'
 const AccentsList = React.createClass({
 
   componentDidMount () {
+    componentHandler.upgradeDom()
     this.loadCountryAndAccentFromUrl()
   },
 
   componentDidUpdate (prevProps) {
+    componentHandler.upgradeDom()
     if (!this.props.countrySelected ||
       prevProps.params.accentId !== this.props.params.accentId) {
       this.loadCountryAndAccentFromUrl()
@@ -154,15 +156,14 @@ const AccentsList = React.createClass({
 const AccentsListBody = ({ accentIds, accents, accentSelected, onAccentClick }) => (
   <ul className='mdl-list'>
     { accentIds.map((id) => (
-      <li key={id} className='mdl-list__item mdl-list__item--two-line'>
-        <div
-          className={'eam-card__link' + (accentSelected === id ? ' eam-card__link--active' : '')}
-          onClick={() => onAccentClick(id)}>
-          <span className='mdl-list__item-primary-content'>
-            <span>{accents.byId[id].name}</span>
-            <span className='mdl-list__item-sub-title'>{accents.byId[id].videos.length} videos</span>
-          </span>
-        </div>
+      <li key={id} id={'list-item-accent-' + id}
+        className={'mdl-list__item mdl-list__item--two-line mdl-button mdl-js-button mdl-js-ripple-effect' +
+        (accentSelected === id ? ' mdl-list__item--active' : '')}
+        onClick={() => onAccentClick(id)}>
+        <span className='mdl-list__item-primary-content'>
+          <span>{accents.byId[id].name}</span>
+          <span className='mdl-list__item-sub-title'>{accents.byId[id].videos.length} videos</span>
+        </span>
       </li>
       )
     ) }
