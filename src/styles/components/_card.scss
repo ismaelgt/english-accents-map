@@ -68,10 +68,6 @@
     padding: 0;
   }
 
-  .mdl-list__item:hover {
-    background-color: $grey-hover;
-  }
-
   .loading-indicator {
     display: flex;
     justify-content: center;
@@ -97,6 +93,7 @@
   flex-grow: 1;
   font-weight: 400;
 
+  &:hover,
   &--active {
     color: $blue-900;
   }
