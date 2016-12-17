@@ -3,6 +3,7 @@ import { Link, browserHistory } from 'react-router'
 import Spinner from '../../../../components/Spinner'
 import DocumentTitle from 'react-document-title'
 import makeDocumentTitle from '../../../../services/documentTitle'
+import { pushAccentUrl } from './actions'
 import './styles.scss'
 
 const AccentsList = React.createClass({
@@ -50,12 +51,8 @@ const AccentsList = React.createClass({
   },
 
   selectAccent (id) {
-    const { accents, accentSelected } = this.props
-    if (accentSelected !== id) {
-      const accentUrl = '/' + accents.byId[id].country + '/' + id + '/'
-      const videos = accents.byId[id].videos
-      const url = videos ? accentUrl + '#' + videos[0] : accentUrl
-      browserHistory.push(url)
+    if (this.props.accentSelected !== id) {
+      pushAccentUrl(id, this.props.accents)
     }
   },
 
@@ -157,6 +154,7 @@ const AccentsListBody = ({ accentIds, accents, accentSelected, onAccentClick }) 
       <li key={id} className='mdl-list__item mdl-list__item--two-line'>
         <div
           className={'eam-card__link' + (accentSelected === id ? ' eam-card__link--active' : '')}
+          role='button'
           onClick={() => onAccentClick(id)}>
           <span className='mdl-list__item-primary-content'>
             <span>{accents.byId[id].name}</span>

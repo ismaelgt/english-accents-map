@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router'
 import Spinner from '../../../../components/Spinner'
-import { selectAccent } from '../AccentsList/actions'
+import { selectAccent, pushAccentUrl } from '../AccentsList/actions'
 import { selectCountry } from '../CountriesList/actions'
 import './styles.scss'
 
@@ -10,6 +10,12 @@ const FavoritesList = React.createClass({
   componentWillMount () {
     this.props.dispatch(selectCountry(null))
     this.props.dispatch(selectAccent(null))
+  },
+
+  selectAccent (id) {
+    if (this.props.accentSelected !== id) {
+      pushAccentUrl(id, this.props.accents)
+    }
   },
 
   render () {
@@ -24,8 +30,10 @@ const FavoritesList = React.createClass({
           <ul className='mdl-list'>
             { favorites.map((id) => (
               <li key={id} className='mdl-list__item mdl-list__item--two-line'>
-                <Link className={'eam-card__link' + (accentSelected === id ? ' eam-card__link--active' : '')}
-                  to={'/' + accents.byId[id].country + '/' + id + '/'}>
+                <div className={'eam-card__link' + (accentSelected === id ? ' eam-card__link--active' : '')}
+                  role='button'
+                  onClick={() => { this.selectAccent(id) }}
+                  >
                   <span className='mdl-list__item-primary-content'>
                     <img className='mdl-list__item-avatar'
                       src={'/images/flags/' + accents.byId[id].country + '.svg'}
@@ -33,7 +41,7 @@ const FavoritesList = React.createClass({
                     <span>{accents.byId[id].name}</span>
                     <span className='mdl-list__item-sub-title'>{accents.byId[id].videos.length} videos</span>
                   </span>
-                </Link>
+                </div>
                 <span className='mdl-list__item-secondary-action'>
                   <button className='mdl-button mdl-js-button mdl-button--icon'
                     onClick={() => { toggleFavorite(id) }}>
