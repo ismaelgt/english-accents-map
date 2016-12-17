@@ -131,10 +131,6 @@ const Map = React.createClass({
         this.map.panTo(selectedAccent.coords)
         this.map.setZoom(selectedCountry.zoom)
       }
-
-      // Scroll list item into view
-      const listItem = document.querySelector('#list-item-accent-' + selectedAccentId)
-      listItem.scrollIntoView()
     }
   },
 

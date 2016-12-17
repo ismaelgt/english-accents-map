@@ -1,5 +1,5 @@
 import React from 'react'
-import { browserHistory } from 'react-router'
+import { Link } from 'react-router'
 import Spinner from '../../../../components/Spinner'
 import { selectAccent } from '../AccentsList/actions'
 import { selectCountry } from './actions'
@@ -10,14 +10,6 @@ const CountriesList = React.createClass({
   componentWillMount () {
     this.props.dispatch(selectCountry(null))
     this.props.dispatch(selectAccent(null))
-  },
-
-  componentDidMount () {
-    componentHandler.upgradeDom()
-  },
-
-  componentDidUpdate () {
-    componentHandler.upgradeDom()
   },
 
   render () {
@@ -37,14 +29,15 @@ const CountriesList = React.createClass({
           ) : (
             <ul className='mdl-list'>
               { countries.orderedIds.map((countryId) => (
-                <li key={countryId} className='mdl-list__item mdl-button mdl-js-button mdl-js-ripple-effect'
-                  onClick={() => { browserHistory.push('/' + countryId + '/') }}>
-                  <span className='mdl-list__item-primary-content'>
-                    <img className='mdl-list__item-avatar'
-                      src={'/images/flags/' + countryId + '.svg'}
-                      alt={countries.byId[countryId].name} />
-                    {countries.byId[countryId].name}
-                  </span>
+                <li key={countryId} className='mdl-list__item'>
+                  <Link to={'/' + countryId + '/'} className='eam-card__link'>
+                    <span className='mdl-list__item-primary-content'>
+                      <img className='mdl-list__item-avatar'
+                        src={'/images/flags/' + countryId + '.svg'}
+                        alt={countries.byId[countryId].name} />
+                      {countries.byId[countryId].name}
+                    </span>
+                  </Link>
                 </li>
               )) }
             </ul>

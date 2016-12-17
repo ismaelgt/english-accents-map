@@ -1,5 +1,5 @@
 import React from 'react'
-import { browserHistory, Link } from 'react-router'
+import { Link } from 'react-router'
 import Spinner from '../../../../components/Spinner'
 import { selectAccent } from '../AccentsList/actions'
 import { selectCountry } from '../CountriesList/actions'
@@ -10,14 +10,6 @@ const FavoritesList = React.createClass({
   componentWillMount () {
     this.props.dispatch(selectCountry(null))
     this.props.dispatch(selectAccent(null))
-  },
-
-  componentDidMount () {
-    componentHandler.upgradeDom()
-  },
-
-  componentDidUpdate () {
-    componentHandler.upgradeDom()
   },
 
   render () {
@@ -31,18 +23,17 @@ const FavoritesList = React.createClass({
         favorites.length ? (
           <ul className='mdl-list'>
             { favorites.map((id) => (
-              <li key={id} id={'list-item-accent-' + id}
-                className={'mdl-list__item mdl-list__item--two-line mdl-button ' +
-                'mdl-js-button mdl-js-ripple-effect' +
-                (accentSelected === id ? ' mdl-list__item--active' : '')}
-                onClick={() => { browserHistory.push('/' + accents.byId[id].country + '/' + id + '/') }}>
-                <span className='mdl-list__item-primary-content'>
-                  <img className='mdl-list__item-avatar'
-                    src={'/images/flags/' + accents.byId[id].country + '.svg'}
-                    alt={accents.byId[id].country} />
-                  <span>{accents.byId[id].name}</span>
-                  <span className='mdl-list__item-sub-title'>{accents.byId[id].videos.length} videos</span>
-                </span>
+              <li key={id} className='mdl-list__item mdl-list__item--two-line'>
+                <Link className={'eam-card__link' + (accentSelected === id ? ' eam-card__link--active' : '')}
+                  to={'/' + accents.byId[id].country + '/' + id + '/'}>
+                  <span className='mdl-list__item-primary-content'>
+                    <img className='mdl-list__item-avatar'
+                      src={'/images/flags/' + accents.byId[id].country + '.svg'}
+                      alt={accents.byId[id].country} />
+                    <span>{accents.byId[id].name}</span>
+                    <span className='mdl-list__item-sub-title'>{accents.byId[id].videos.length} videos</span>
+                  </span>
+                </Link>
                 <span className='mdl-list__item-secondary-action'>
                   <button className='mdl-button mdl-js-button mdl-button--icon'
                     onClick={() => { toggleFavorite(id) }}>

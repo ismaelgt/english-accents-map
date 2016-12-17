@@ -68,22 +68,6 @@
     padding: 0;
   }
 
-  .mdl-button.mdl-list__item {
-    cursor: pointer;
-    height: 72px;
-    text-align: left;
-    text-transform: none;
-
-    &--active {
-      color: $blue-900;
-    }
-
-    &--active,
-    &:hover {
-      background-color: #e0e0e0;
-    }
-  }
-
   .loading-indicator {
     display: flex;
     justify-content: center;
@@ -98,5 +82,19 @@
     line-height: 48px;
     margin: 0;
     padding: 0 16px;
+  }
+}
+
+.eam-card__link {
+  align-items: center;
+  color: $grey-900;
+  cursor: pointer;
+  display: flex;
+  flex-grow: 1;
+  font-weight: 400;
+
+  &--active,
+  &:hover {
+    color: $blue-900;
   }
 }
