@@ -45,7 +45,9 @@ const VideosList = React.createClass({
   },
 
   componentWillUnmount () {
-    this.player.destroy()
+    if (this.refs.videoPlayer) {
+      this.player.destroy()
+    }
   },
 
   initPlayer () {
