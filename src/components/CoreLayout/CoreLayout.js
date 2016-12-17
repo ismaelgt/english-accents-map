@@ -18,8 +18,7 @@ class CoreLayout extends React.Component {
   render () {
     return (
       <div id='mdl-layout'
-        className={'eam-layout mdl-layout mdl-js-layout mdl-layout--fixed-header ' +
-          (this.props.online ? 'is-online' : 'is-offline')}
+        className='eam-layout mdl-layout mdl-js-layout mdl-layout--fixed-header'
         ref='layout'>
         <DocumentTitle title={makeDocumentTitle()} />
         <header className='mdl-layout__header'>
@@ -76,7 +75,6 @@ class CoreLayout extends React.Component {
 CoreLayout.propTypes = {
   smallScreen: React.PropTypes.bool,
   location: React.PropTypes.object,
-  online: React.PropTypes.bool,
   children: React.PropTypes.node
 }
 
