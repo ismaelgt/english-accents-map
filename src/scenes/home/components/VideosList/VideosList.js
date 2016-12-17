@@ -15,24 +15,8 @@ const VideosList = React.createClass({
   },
 
   componentDidMount () {
-    this.player = YouTubePlayer(this.refs.videoPlayer, {
-      height: '100%',
-      width: '100%'
-    })
-
-    this.player.addEventListener('onStateChange', (evt) => {
-      // Update index when player state changes
-      this.player.getPlaylistIndex().then((index) => {
-        this.setState({ index: index })
-      })
-      // Play list when cued
-      if (evt.data === 5) {
-        this.onPlaylistCued()
-      }
-    })
-    this.player.cuePlaylist(this.props.videos)
-    if (this.props.location.hash) {
-      sendPlayVideoEvent(this.props.location.hash.substring(1))
+    if (this.props.online) {
+      this.initPlayer()
     }
   },
 
@@ -55,10 +39,35 @@ const VideosList = React.createClass({
       const videoId = this.props.videos[this.state.index]
       this.updateUrlHash(videoId)
     }
+    if (!prevProps.online && this.props.online) {
+      this.initPlayer()
+    }
   },
 
   componentWillUnmount () {
     this.player.destroy()
+  },
+
+  initPlayer () {
+    this.player = YouTubePlayer(this.refs.videoPlayer, {
+      height: '100%',
+      width: '100%'
+    })
+
+    this.player.addEventListener('onStateChange', (evt) => {
+      // Update index when player state changes
+      this.player.getPlaylistIndex().then((index) => {
+        this.setState({ index: index })
+      })
+      // Play list when cued
+      if (evt.data === 5) {
+        this.onPlaylistCued()
+      }
+    })
+    this.player.cuePlaylist(this.props.videos)
+    if (this.props.location.hash) {
+      sendPlayVideoEvent(this.props.location.hash.substring(1))
+    }
   },
 
   onPlaylistCued () {
@@ -108,7 +117,7 @@ const VideosList = React.createClass({
   },
 
   render () {
-    const { videos, accentSelected } = this.props
+    const { online, videos, accentSelected } = this.props
     const { index } = this.state
 
     if (!videos || videos.length === 0) {
@@ -137,9 +146,18 @@ const VideosList = React.createClass({
                 <i className='material-icons'>close</i>
               </button>
             </div>
-            <div className='videos-list__wrapper-inner'>
-              <div ref='videoPlayer' />
-            </div>
+            { online ? (
+              <div key='video-player' className='videos-list__wrapper-inner'>
+                <div ref='videoPlayer' />
+              </div>
+            ) : (
+              <div key='no-video'
+                className='videos-list__wrapper-inner videos-list__wrapper-inner--offline'>
+                Sorry, it seems that you are offline. You can't see videos now but you
+                can add this accent to your favorites list by using the heart button
+                and see the videos later.
+              </div>
+            )}
           </div>
           <div className='videos-list__button-container'>
             <VideoListButton
@@ -167,6 +185,7 @@ const VideosList = React.createClass({
   },
   propTypes: {
     smallViewport: React.PropTypes.bool,
+    online: React.PropTypes.bool,
     videos: React.PropTypes.array,
     location: React.PropTypes.object,
     countrySelected: React.PropTypes.string,

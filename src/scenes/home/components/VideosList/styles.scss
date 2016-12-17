@@ -50,7 +50,21 @@
 }
 
 .videos-list__wrapper-inner {
-  height: calc(100% - 40px);
+  background-color: $black;
+  height: 100%;
+
+  @include from(tablet) {
+    height: calc(100% - 40px);
+  }
+}
+
+.videos-list__wrapper-inner--offline {
+  align-items: center;
+  color: $white;
+  display: flex;
+  justify-content: center;
+  padding: 16px;
+  text-align: center;
 }
 
 .videos-list__title-bar-mobile {

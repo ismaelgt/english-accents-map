@@ -8,6 +8,7 @@ const mapStateToProps = (state) => {
 
   return {
     smallViewport: state.ui.viewport.small,
+    online: state.ui.network.online,
     accentSelected: state.ui.accents.selected,
     countrySelected: state.ui.countries.selected,
     location: state.ui.location,

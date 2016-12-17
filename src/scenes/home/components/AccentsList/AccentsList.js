@@ -78,7 +78,7 @@ const AccentsList = React.createClass({
       )
 
       body = (
-        <section>
+        <div key='accents-list-body'>
           {
             countryAccentIds.length > 0
             ? <div>
@@ -105,7 +105,7 @@ const AccentsList = React.createClass({
             </div>
             : null
           }
-        </section>
+        </div>
       )
 
       menu = (
@@ -118,7 +118,7 @@ const AccentsList = React.createClass({
       docTitle = null
       header = null
 
-      body = <Spinner />
+      body = <Spinner key='loading-indicator' />
       menu = null
     }
 
