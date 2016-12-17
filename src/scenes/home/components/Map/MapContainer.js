@@ -5,8 +5,7 @@ const mapStateToProps = (state) => ({
   smallScreen: state.ui.viewport.small,
   countries: state.entities.countries,
   accents: state.entities.accents,
-  countriesLoading: state.ui.countries.loading,
-  accentsLoading: state.ui.accents.loading,
+  loading: state.ui.countries.loading || state.ui.accents.loading,
   countrySelected: state.ui.countries.selected,
   accentSelected: state.ui.accents.selected
 })

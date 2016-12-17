@@ -27,8 +27,7 @@ const Map = React.createClass({
       accents: null,
       countrySelected: null,
       accentSelected: null,
-      countriesLoading: true,
-      accentsLoading: true,
+      loading: null,
       mapRendered: false,
       markersRendered: false
     }
@@ -41,7 +40,7 @@ const Map = React.createClass({
 
     if (this.state.mapRendered) {
       // Accents loaded
-      if (!this.state.markersRendered && !nextProps.accentsLoading && !nextProps.countriesLoading) {
+      if (!this.state.markersRendered && !nextProps.loading) {
         this.loadMarkers(nextProps.accents, nextProps.countries)
       }
       // Country selected
@@ -80,8 +79,11 @@ const Map = React.createClass({
     this.map = new google.maps.Map(this.refs.map, GOOGLE_MAPS_CONFIG)
 
     this.state.mapRendered = true
-    if (!this.state.accentsLoading && !this.state.countriesLoading) {
+    if (!this.state.loading) {
       this.loadMarkers(this.state.accents, this.state.countries)
+    }
+    if (this.state.countrySelected) {
+      this.selectCountry(this.state.countries, this.state.countrySelected, this.state.smallScreen)
     }
   },
 
@@ -140,8 +142,7 @@ const Map = React.createClass({
     smallScreen: React.PropTypes.bool,
     countries: React.PropTypes.object,
     accents: React.PropTypes.object,
-    countriesLoading: React.PropTypes.bool,
-    accentsLoading: React.PropTypes.bool,
+    loading: React.PropTypes.bool,
     countrySelected: React.PropTypes.string,
     accentSelected: React.PropTypes.string
   }
