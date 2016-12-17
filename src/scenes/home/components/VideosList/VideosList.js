@@ -135,7 +135,8 @@ const VideosList = React.createClass({
               type='previous'
               index={index}
               total={videos.length}
-              onClick={this.previousVideo} />
+              onClick={this.previousVideo}
+              online={online} />
           </div>
           <div className='videos-list__wrapper'>
             <div className='videos-list__button-container-top'>
@@ -164,7 +165,8 @@ const VideosList = React.createClass({
               type='next'
               index={index}
               total={videos.length}
-              onClick={this.nextVideo} />
+              onClick={this.nextVideo}
+              online={online} />
           </div>
         </div>
         <div className='videos-list__button-container-mobile'>
@@ -172,13 +174,15 @@ const VideosList = React.createClass({
             type='previous'
             index={index}
             total={videos.length}
-            onClick={this.previousVideo} />
+            onClick={this.previousVideo}
+            online={online} />
           <AddToFavoritesButton id={accentSelected} />
           <VideoListButton
             type='next'
             index={index}
             total={videos.length}
-            onClick={this.nextVideo} />
+            onClick={this.nextVideo}
+            online={online} />
         </div>
       </div>
     )
