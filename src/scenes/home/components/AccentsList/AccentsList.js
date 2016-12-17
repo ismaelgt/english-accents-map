@@ -162,6 +162,9 @@ const AccentsListBody = ({ accentIds, accents, accentSelected, onAccentClick }) 
             <span>{accents.byId[id].name}</span>
             <span className='mdl-list__item-sub-title'>{accents.byId[id].videos.length} videos</span>
           </span>
+          <span className='mdl-list__item-secondary-action'>
+            <i className='material-icons'>play_circle_filled</i>
+          </span>
         </div>
       </li>
       )

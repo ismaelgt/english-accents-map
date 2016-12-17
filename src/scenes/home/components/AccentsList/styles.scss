@@ -4,4 +4,12 @@
   .mdl-card__title {
     border-bottom: 0 none;
   }
+
+  .mdl-list__item-secondary-action i {
+    display: none;
+  }
+
+  .eam-card__link--active i {
+    display: block;
+  }
 }
