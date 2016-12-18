@@ -19,4 +19,7 @@ export default function init (store) {
 
   window.addEventListener('offline', dispatchNetworkStatusChangeAction)
   window.addEventListener('online', dispatchNetworkStatusChangeAction)
+  if (store.getState().ui.network.online !== window.navigator.onLine) {
+    store.dispatch(networkStatusChange(window.navigator.onLine))
+  }
 }

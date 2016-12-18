@@ -33,10 +33,12 @@ const HomePage = React.createClass({
               <i className='material-icons'>map</i>
             </a>
           ) : null }
-          <a href='#list' className={'mdl-tabs__tab' + (!online ? ' is-active' : '')}>
+          <a href='#list'
+            className={'mdl-tabs__tab' + (!online ? ' is-active' : '')}>
             <i className='material-icons'>view_list</i>
           </a>
-          <a href='#favorites' className='mdl-tabs__tab'>
+          <a href='#favorites'
+            className={'mdl-tabs__tab' + (!online ? ' is-inactive' : '')}>
             <i className='material-icons'>favorite</i>
           </a>
         </div>
@@ -45,13 +47,14 @@ const HomePage = React.createClass({
             <Map />
           </div>
         ) : null }
-        <div className={'mdl-tabs__panel' + (!online ? ' is-active' : '')}
-          id='list'>
+        <div id='list'
+          className={'mdl-tabs__panel' + (!online ? ' is-active' : '')}>
           <div className='eam-card-wrapper'>
             { children }
           </div>
         </div>
-        <div className='mdl-tabs__panel' id='favorites'>
+        <div id='favorites'
+          className={'mdl-tabs__panel' + (!online ? ' is-inactive' : '')}>
           <div className='eam-card-wrapper'>
             <FavoritesList />
           </div>
