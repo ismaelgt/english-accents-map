@@ -5,6 +5,7 @@ import YouTubePlayer from 'youtube-player'
 import VideosTitleBar from './VideosTitleBarContainer'
 import VideoListButton from './VideoListButton'
 import AddToFavoritesButton from './AddToFavoritesButtonContainer'
+import ShareButton from './ShareButton'
 import './styles.scss'
 
 const VideosList = React.createClass({
@@ -178,6 +179,7 @@ const VideosList = React.createClass({
             total={videos.length}
             onClick={this.previousVideo}
             online={online} />
+          <ShareButton />
           <AddToFavoritesButton id={accentSelected} />
           <VideoListButton
             type='next'

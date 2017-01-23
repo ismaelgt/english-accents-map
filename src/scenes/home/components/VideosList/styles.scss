@@ -85,7 +85,8 @@
     display: none;
   }
 
-  .videos-list__button {
+  .videos-list__button,
+  .videos-list__button-favorite {
     margin-left: 8px;
   }
 }
@@ -150,7 +151,8 @@
   }
 }
 
-.mdl-button.mdl-button--icon.videos-list__button-favorite {
+.mdl-button.mdl-button--icon.videos-list__button-favorite,
+.mdl-button.mdl-button--icon.videos-list__button-share {
   &,
   &:hover,
   &:active,
