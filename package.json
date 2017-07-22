@@ -4,8 +4,8 @@
   "description": "A map of English accents",
   "main": "index.js",
   "engines": {
-    "node": ">=4.5.0",
-    "npm": ">=3.0.0"
+    "node": "^8.0.0",
+    "npm": "^5.0.0"
   },
   "scripts": {
     "build": "better-npm-run build",
