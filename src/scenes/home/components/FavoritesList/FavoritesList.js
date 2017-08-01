@@ -5,18 +5,17 @@ import { selectAccent, pushAccentUrl } from '../AccentsList/actions'
 import { selectCountry } from '../CountriesList/actions'
 import './styles.scss'
 
-const FavoritesList = React.createClass({
-
+class FavoritesList extends React.Component {
   componentWillMount () {
     this.props.dispatch(selectCountry(null))
     this.props.dispatch(selectAccent(null))
-  },
+  }
 
   selectAccent (id) {
     if (this.props.accentSelected !== id) {
       pushAccentUrl(id, this.props.accents)
     }
-  },
+  }
 
   render () {
     const { smallScreen, loading, favorites, accents, accentSelected, toggleFavorite } = this.props
@@ -76,16 +75,17 @@ const FavoritesList = React.createClass({
         <div className='mdl-card__supporting-text'>{ body }</div>
       </div>
     )
-  },
-  propTypes: {
-    loading: React.PropTypes.bool,
-    smallScreen: React.PropTypes.bool,
-    favorites: React.PropTypes.array,
-    accents: React.PropTypes.object,
-    accentSelected: React.PropTypes.string,
-    toggleFavorite: React.PropTypes.func,
-    dispatch: React.PropTypes.func
   }
-})
+}
+
+FavoritesList.propTypes = {
+  loading: React.PropTypes.bool,
+  smallScreen: React.PropTypes.bool,
+  favorites: React.PropTypes.array,
+  accents: React.PropTypes.object,
+  accentSelected: React.PropTypes.string,
+  toggleFavorite: React.PropTypes.func,
+  dispatch: React.PropTypes.func
+}
 
 export default FavoritesList

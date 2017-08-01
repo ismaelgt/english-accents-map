@@ -5,21 +5,21 @@ import FavoritesList from '../FavoritesList'
 import LayoutClass from '../../../../components/LayoutClass'
 import './styles.scss'
 
-const HomePage = React.createClass({
+class HomePage extends React.Component {
   componentDidMount () {
     this.initTabs()
-  },
+  }
 
   componentDidUpdate (prevProps) {
     this.initTabs()
-  },
+  }
 
   initTabs () {
     if (this.refs.tabs) {
       componentHandler.upgradeDom()
       this.refs.tabs.MaterialTabs.init()
     }
-  },
+  }
 
   render () {
     const { online, viewport, children, accentSelected } = this.props
@@ -77,14 +77,14 @@ const HomePage = React.createClass({
         { accentSelected ? <VideosList /> : null }
       </div>
     )
-  },
-  propTypes: {
-    online: React.PropTypes.bool,
-    viewport: React.PropTypes.object,
-    location: React.PropTypes.object,
-    accentSelected: React.PropTypes.string,
-    children: React.PropTypes.node
   }
-})
+}
+
+HomePage.propTypes = {
+  online: React.PropTypes.bool,
+  viewport: React.PropTypes.object,
+  accentSelected: React.PropTypes.string,
+  children: React.PropTypes.node
+}
 
 export default HomePage

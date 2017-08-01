@@ -5,12 +5,11 @@ import { selectAccent } from '../AccentsList/actions'
 import { selectCountry } from './actions'
 import './styles.scss'
 
-const CountriesList = React.createClass({
-
+class CountriesList extends React.Component {
   componentWillMount () {
     this.props.dispatch(selectCountry(null))
     this.props.dispatch(selectAccent(null))
-  },
+  }
 
   render () {
     const { countries, loading } = this.props
@@ -45,14 +44,13 @@ const CountriesList = React.createClass({
         </div>
       </div>
     )
-  },
-
-  propTypes: {
-    countries: React.PropTypes.object,
-    loading: React.PropTypes.bool,
-    dispatch: React.PropTypes.func
   }
+}
 
-})
+CountriesList.propTypes = {
+  countries: React.PropTypes.object,
+  loading: React.PropTypes.bool,
+  dispatch: React.PropTypes.func
+}
 
 export default CountriesList

@@ -6,18 +6,22 @@ import makeDocumentTitle from '../../../../services/documentTitle'
 import { pushAccentUrl } from './actions'
 import './styles.scss'
 
-const AccentsList = React.createClass({
+class AccentsList extends React.Component {
+  constructor (props) {
+    super(props)
+    this.selectAccent = this.selectAccent.bind(this)
+  }
 
   componentDidMount () {
     this.loadCountryAndAccentFromUrl()
-  },
+  }
 
   componentDidUpdate (prevProps) {
     if (!this.props.countrySelected ||
       prevProps.params.accentId !== this.props.params.accentId) {
       this.loadCountryAndAccentFromUrl()
     }
-  },
+  }
 
   loadCountryAndAccentFromUrl () {
     const { params, countries, accents, loading, countrySelected, accentSelected,
@@ -48,13 +52,13 @@ const AccentsList = React.createClass({
       }
       onSelectAccent(params.accentId || null)
     }
-  },
+  }
 
   selectAccent (id) {
     if (this.props.accentSelected !== id) {
       pushAccentUrl(id, this.props.accents)
     }
-  },
+  }
 
   render () {
     const { countries, accents, loading, countrySelected, accentSelected,
@@ -132,21 +136,21 @@ const AccentsList = React.createClass({
         </div>
       </div>
     )
-  },
-
-  propTypes: {
-    params: React.PropTypes.object,
-    countries: React.PropTypes.object,
-    accents: React.PropTypes.object,
-    countryAccentIds: React.PropTypes.array,
-    regionAccentIds: React.PropTypes.array,
-    loading: React.PropTypes.bool,
-    countrySelected: React.PropTypes.string,
-    accentSelected: React.PropTypes.string,
-    onSelectCountry: React.PropTypes.func,
-    onSelectAccent: React.PropTypes.func
   }
-})
+}
+
+AccentsList.propTypes = {
+  params: React.PropTypes.object,
+  countries: React.PropTypes.object,
+  accents: React.PropTypes.object,
+  countryAccentIds: React.PropTypes.array,
+  regionAccentIds: React.PropTypes.array,
+  loading: React.PropTypes.bool,
+  countrySelected: React.PropTypes.string,
+  accentSelected: React.PropTypes.string,
+  onSelectCountry: React.PropTypes.func,
+  onSelectAccent: React.PropTypes.func
+}
 
 const AccentsListBody = ({ accentIds, accents, accentSelected, onAccentClick }) => (
   <ul className='mdl-list'>

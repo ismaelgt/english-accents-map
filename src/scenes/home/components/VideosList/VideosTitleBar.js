@@ -1,14 +1,18 @@
 import React from 'react'
 import { browserHistory } from 'react-router'
 
-const VideosTitleBar = React.createClass({
+class VideosTitleBar extends React.Component {
+  constructor (props) {
+    super(props)
+    this.closeVideo = this.closeVideo.bind(this)
+  }
 
   closeVideo (evt) {
     const { accents, accentSelected } = this.props
 
     evt.stopPropagation()
     browserHistory.push('/' + accents.byId[accentSelected].country + '/')
-  },
+  }
 
   render () {
     const { accents, accentSelected } = this.props
@@ -32,14 +36,12 @@ const VideosTitleBar = React.createClass({
         </div>
       </div>
     )
-  },
-
-  propTypes: {
-    accents: React.PropTypes.object,
-    accentSelected: React.PropTypes.string,
-    countrySelected: React.PropTypes.string,
-    selectAccent: React.PropTypes.func
   }
-})
+}
+
+VideosTitleBar.propTypes = {
+  accents: React.PropTypes.object,
+  accentSelected: React.PropTypes.string
+}
 
 export default VideosTitleBar

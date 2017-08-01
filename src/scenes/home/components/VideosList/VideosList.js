@@ -8,24 +8,33 @@ import AddToFavoritesButton from './AddToFavoritesButtonContainer'
 import ShareButton from './ShareButton'
 import './styles.scss'
 
-const VideosList = React.createClass({
-  getInitialState () {
-    return {
+class VideosList extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
       index: 0
     }
-  },
+    this.initPlayer = this.initPlayer.bind(this)
+    this.onPlaylistCued = this.onPlaylistCued.bind(this)
+    this.playVideoById = this.playVideoById.bind(this)
+    this.closeVideoIfLargeScreen = this.closeVideoIfLargeScreen.bind(this)
+    this.updateUrlHash = this.updateUrlHash.bind(this)
+    this.nextVideo = this.nextVideo.bind(this)
+    this.previousVideo = this.previousVideo.bind(this)
+    this.closeVideo = this.closeVideo.bind(this)
+  }
 
   componentDidMount () {
     if (this.props.online) {
       this.initPlayer()
     }
-  },
+  }
 
   componentWillReceiveProps (nextProps) {
     if (nextProps.videos !== this.props.videos) {
       this.setState({ index: 0 })
     }
-  },
+  }
 
   componentDidUpdate (prevProps, prevState) {
     if (prevProps.videos !== this.props.videos) {
@@ -43,13 +52,13 @@ const VideosList = React.createClass({
     if (!prevProps.online && this.props.online) {
       this.initPlayer()
     }
-  },
+  }
 
   componentWillUnmount () {
     if (this.refs.videoPlayer) {
       this.player.destroy()
     }
-  },
+  }
 
   initPlayer () {
     this.player = YouTubePlayer(this.refs.videoPlayer, {
@@ -71,7 +80,7 @@ const VideosList = React.createClass({
     if (this.props.location.hash) {
       sendPlayVideoEvent(this.props.location.hash.substring(1))
     }
-  },
+  }
 
   onPlaylistCued () {
     if (this.props.location.hash) {
@@ -80,44 +89,44 @@ const VideosList = React.createClass({
       const videoId = this.props.videos[0]
       this.updateUrlHash(videoId)
     }
-  },
+  }
 
   playVideoById (id) {
     const videoIndex = this.props.videos.indexOf(id)
     if (videoIndex > -1) {
       this.player.playVideoAt(videoIndex)
     }
-  },
+  }
 
   nextVideo (evt) {
     evt.stopPropagation()
     const videoId = this.props.videos[this.state.index + 1]
     this.updateUrlHash(videoId)
-  },
+  }
 
   previousVideo (evt) {
     evt.stopPropagation()
     const videoId = this.props.videos[this.state.index - 1]
     this.updateUrlHash(videoId)
-  },
+  }
 
   closeVideo (evt) {
     evt.stopPropagation()
     browserHistory.push('/' + this.props.countrySelected + '/')
-  },
+  }
 
   closeVideoIfLargeScreen (evt) {
     if (!this.props.smallViewport) {
       this.closeVideo(evt)
     }
-  },
+  }
 
   updateUrlHash (videoId = null) {
     const hash = videoId ? '#' + videoId : ''
     if (this.props.location.hash !== hash) {
       browserHistory.push(this.props.location.pathname + hash)
     }
-  },
+  }
 
   render () {
     const { online, videos, accentSelected } = this.props
@@ -190,15 +199,16 @@ const VideosList = React.createClass({
         </div>
       </div>
     )
-  },
-  propTypes: {
-    smallViewport: React.PropTypes.bool,
-    online: React.PropTypes.bool,
-    videos: React.PropTypes.array,
-    location: React.PropTypes.object,
-    countrySelected: React.PropTypes.string,
-    accentSelected: React.PropTypes.string
   }
-})
+}
+
+VideosList.propTypes = {
+  smallViewport: React.PropTypes.bool,
+  online: React.PropTypes.bool,
+  videos: React.PropTypes.array,
+  location: React.PropTypes.object,
+  countrySelected: React.PropTypes.string,
+  accentSelected: React.PropTypes.string
+}
 
 export default VideosList

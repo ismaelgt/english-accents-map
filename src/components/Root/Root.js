@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react'
+import React from 'react'
 import { browserHistory, Router, Route, IndexRoute } from 'react-router'
 import { Provider } from 'react-redux'
 import CoreLayout from '../CoreLayout'
@@ -9,11 +9,7 @@ import CountriesList from '../../scenes/home/components/CountriesList'
 import AccentsList from '../../scenes/home/components/AccentsList'
 import '../../styles/main.scss'
 
-class Root extends Component {
-  static propTypes = {
-    store: PropTypes.object.isRequired
-  }
-
+class Root extends React.Component {
   render () {
     const { store } = this.props
 
@@ -33,6 +29,10 @@ class Root extends Component {
       </Provider>
     )
   }
+}
+
+Root.propTypes = {
+  store: React.PropTypes.object.isRequired
 }
 
 export default Root

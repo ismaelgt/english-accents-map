@@ -1,18 +1,17 @@
 import React from 'react'
 
-const AddToFavouritesButton = React.createClass({
-
+class AddToFavouritesButton extends React.Component {
   componentDidMount () {
     componentHandler.upgradeDom()
-  },
+  }
 
   componentDidUpdate () {
     componentHandler.upgradeDom()
-  },
+  }
 
   isFavorite (id) {
     return this.props.favorites.indexOf(id) > -1
-  },
+  }
 
   render () {
     return (
@@ -28,13 +27,13 @@ const AddToFavouritesButton = React.createClass({
         </div>
       </div>
     )
-  },
-
-  propTypes: {
-    id: React.PropTypes.string,
-    favorites: React.PropTypes.array,
-    toggleFavorite: React.PropTypes.func
   }
-})
+}
+
+AddToFavouritesButton.propTypes = {
+  id: React.PropTypes.string,
+  favorites: React.PropTypes.array,
+  toggleFavorite: React.PropTypes.func
+}
 
 export default AddToFavouritesButton

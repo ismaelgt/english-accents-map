@@ -1,10 +1,9 @@
 import React from 'react'
 
-const Spinner = React.createClass({
-
+class Spinner extends React.Component {
   componentDidMount () {
     componentHandler.upgradeDom()
-  },
+  }
 
   render () {
     return (
@@ -13,6 +12,6 @@ const Spinner = React.createClass({
       </div>
     )
   }
-})
+}
 
 export default Spinner

@@ -1,3 +1,5 @@
+/* eslint-disable react/no-unused-prop-types */
+
 import React from 'react'
 import { browserHistory } from 'react-router'
 import GoogleApiComponent from 'google-maps-react/dist/GoogleApiComponent'
@@ -8,19 +10,11 @@ import './styles.scss'
 // This component will not re-render in response to redux state or prop
 // changes. We don't want to reload the map everytime these hapen. Instead,
 // we'll keep an internal state, and we'll use Google Maps API to manage it.
-const Map = React.createClass({
+class Map extends React.Component {
+  constructor (props) {
+    super(props)
 
-  render () {
-    return (
-      <div className='map-wrapper'>
-        <div className='map' ref='map' />
-      </div>
-    )
-  },
-
-  // Define internal state.
-  getInitialState () {
-    return {
+    this.state = {
       loaded: false,
       smallScreen: null,
       countries: null,
@@ -31,7 +25,15 @@ const Map = React.createClass({
       mapRendered: false,
       markersRendered: false
     }
-  },
+  }
+
+  render () {
+    return (
+      <div className='map-wrapper'>
+        <div className='map' ref='map' />
+      </div>
+    )
+  }
 
   componentWillReceiveProps (nextProps) {
     if (!this.state.loaded && nextProps.loaded) {
@@ -56,7 +58,7 @@ const Map = React.createClass({
     // Update component state.
     // We don't want asynchronous state updates as this component doesn't re-render
     this.state = { ...this.state, ...nextProps }
-  },
+  }
 
   // This component should never update after its initialisation as
   // the map would be reloaded.
@@ -65,13 +67,13 @@ const Map = React.createClass({
       return true
     }
     return false
-  },
+  }
 
   // This is the first and only time the component is updated.
   componentDidUpdate (prevProps, prevState) {
     this.state = { ...this.state, ...this.props, loaded: true }
     this.loadMap()
-  },
+  }
 
   // Load the map
   loadMap () {
@@ -85,7 +87,7 @@ const Map = React.createClass({
     if (this.state.countrySelected) {
       this.selectCountry(this.state.countries, this.state.countrySelected, this.state.smallScreen)
     }
-  },
+  }
 
   // Create one marker in the map for each accent
   loadMarkers (accents, countries) {
@@ -107,7 +109,7 @@ const Map = React.createClass({
       marker.setMap(this.map)
     })
     this.state.markersRendered = true
-  },
+  }
 
   // Fit country in map using South West and North East coordinates
   selectCountry (countries, selectedCountryId, smallScreen) {
@@ -122,7 +124,7 @@ const Map = React.createClass({
       }
       this.map.fitBounds(bounds)
     }
-  },
+  }
 
   // Move map center to accent location
   selectAccent (countries, accents, selectedAccentId) {
@@ -134,19 +136,19 @@ const Map = React.createClass({
         this.map.setZoom(selectedCountry.zoom)
       }
     }
-  },
-
-  propTypes: {
-    loaded: React.PropTypes.bool,
-    google: React.PropTypes.object,
-    smallScreen: React.PropTypes.bool,
-    countries: React.PropTypes.object,
-    accents: React.PropTypes.object,
-    loading: React.PropTypes.bool,
-    countrySelected: React.PropTypes.string,
-    accentSelected: React.PropTypes.string
   }
-})
+}
+
+Map.propTypes = {
+  loaded: React.PropTypes.bool,
+  google: React.PropTypes.object,
+  smallScreen: React.PropTypes.bool,
+  countries: React.PropTypes.object,
+  accents: React.PropTypes.object,
+  loading: React.PropTypes.bool,
+  countrySelected: React.PropTypes.string,
+  accentSelected: React.PropTypes.string
+}
 
 export default GoogleApiComponent({
   apiKey: GOOGLE_MAPS_API_KEY,

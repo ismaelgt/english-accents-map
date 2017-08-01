@@ -1,14 +1,13 @@
 import React from 'react'
 
-const ShareButton = React.createClass({
-
+class ShareButton extends React.Component {
   share (evt) {
     evt.stopPropagation()
     navigator.share({
       title: document.title,
       url: window.location.href
     })
-  },
+  }
 
   render () {
     // Just experimenting with this so no graceful degradation for now
@@ -25,6 +24,6 @@ const ShareButton = React.createClass({
       </div>
     )
   }
-})
+}
 
 export default ShareButton

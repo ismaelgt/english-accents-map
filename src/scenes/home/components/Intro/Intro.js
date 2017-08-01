@@ -1,7 +1,7 @@
 import React from 'react'
 import './styles.scss'
 
-const Intro = React.createClass({
+class Intro extends React.Component {
   render () {
     return (
       <div className='eam-card eam-card--intro mdl-card mdl-shadow--8dp'>
@@ -19,6 +19,6 @@ const Intro = React.createClass({
       </div>
     )
   }
-})
+}
 
 export default Intro
