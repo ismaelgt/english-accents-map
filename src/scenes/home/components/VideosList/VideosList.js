@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { browserHistory } from 'react-router'
 import { sendPlayVideoEvent } from '../../../../services/analytics'
 import YouTubePlayer from 'youtube-player'
@@ -203,12 +204,12 @@ class VideosList extends React.Component {
 }
 
 VideosList.propTypes = {
-  smallViewport: React.PropTypes.bool,
-  online: React.PropTypes.bool,
-  videos: React.PropTypes.array,
-  location: React.PropTypes.object,
-  countrySelected: React.PropTypes.string,
-  accentSelected: React.PropTypes.string
+  smallViewport: PropTypes.bool,
+  online: PropTypes.bool,
+  videos: PropTypes.array,
+  location: PropTypes.object,
+  countrySelected: PropTypes.string,
+  accentSelected: PropTypes.string
 }
 
 export default VideosList

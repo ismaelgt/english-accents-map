@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router'
 import Spinner from '../../../../components/Spinner'
 import { selectAccent } from '../AccentsList/actions'
@@ -48,9 +49,9 @@ class CountriesList extends React.Component {
 }
 
 CountriesList.propTypes = {
-  countries: React.PropTypes.object,
-  loading: React.PropTypes.bool,
-  dispatch: React.PropTypes.func
+  countries: PropTypes.object,
+  loading: PropTypes.bool,
+  dispatch: PropTypes.func
 }
 
 export default CountriesList

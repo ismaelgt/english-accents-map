@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router'
 import Spinner from '../../../../components/Spinner'
 import { selectAccent, pushAccentUrl } from '../AccentsList/actions'
@@ -79,13 +80,13 @@ class FavoritesList extends React.Component {
 }
 
 FavoritesList.propTypes = {
-  loading: React.PropTypes.bool,
-  smallScreen: React.PropTypes.bool,
-  favorites: React.PropTypes.array,
-  accents: React.PropTypes.object,
-  accentSelected: React.PropTypes.string,
-  toggleFavorite: React.PropTypes.func,
-  dispatch: React.PropTypes.func
+  loading: PropTypes.bool,
+  smallScreen: PropTypes.bool,
+  favorites: PropTypes.array,
+  accents: PropTypes.object,
+  accentSelected: PropTypes.string,
+  toggleFavorite: PropTypes.func,
+  dispatch: PropTypes.func
 }
 
 export default FavoritesList

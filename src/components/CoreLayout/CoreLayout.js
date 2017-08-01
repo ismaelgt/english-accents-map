@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Link, IndexLink } from 'react-router'
 import DocumentTitle from 'react-document-title'
 import makeDocumentTitle from '../../services/documentTitle'
@@ -73,9 +74,9 @@ class CoreLayout extends React.Component {
 }
 
 CoreLayout.propTypes = {
-  smallScreen: React.PropTypes.bool,
-  location: React.PropTypes.object,
-  children: React.PropTypes.node
+  smallScreen: PropTypes.bool,
+  location: PropTypes.object,
+  children: PropTypes.node
 }
 
 export default CoreLayout

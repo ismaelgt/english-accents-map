@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import './styles.scss'
 
 export default class PageLayout extends React.Component {
@@ -12,5 +13,5 @@ export default class PageLayout extends React.Component {
 }
 
 PageLayout.propTypes = {
-  children: React.PropTypes.node
+  children: PropTypes.node
 }

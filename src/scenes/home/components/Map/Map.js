@@ -1,6 +1,7 @@
 /* eslint-disable react/no-unused-prop-types */
 
 import React from 'react'
+import PropTypes from 'prop-types'
 import { browserHistory } from 'react-router'
 import GoogleApiComponent from 'google-maps-react/dist/GoogleApiComponent'
 import { GOOGLE_MAPS_API_KEY } from '../../../../config'
@@ -140,14 +141,14 @@ class Map extends React.Component {
 }
 
 Map.propTypes = {
-  loaded: React.PropTypes.bool,
-  google: React.PropTypes.object,
-  smallScreen: React.PropTypes.bool,
-  countries: React.PropTypes.object,
-  accents: React.PropTypes.object,
-  loading: React.PropTypes.bool,
-  countrySelected: React.PropTypes.string,
-  accentSelected: React.PropTypes.string
+  loaded: PropTypes.bool,
+  google: PropTypes.object,
+  smallScreen: PropTypes.bool,
+  countries: PropTypes.object,
+  accents: PropTypes.object,
+  loading: PropTypes.bool,
+  countrySelected: PropTypes.string,
+  accentSelected: PropTypes.string
 }
 
 export default GoogleApiComponent({

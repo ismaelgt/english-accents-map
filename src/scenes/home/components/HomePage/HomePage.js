@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Map from '../Map'
 import VideosList from '../VideosList'
 import FavoritesList from '../FavoritesList'
@@ -81,10 +82,10 @@ class HomePage extends React.Component {
 }
 
 HomePage.propTypes = {
-  online: React.PropTypes.bool,
-  viewport: React.PropTypes.object,
-  accentSelected: React.PropTypes.string,
-  children: React.PropTypes.node
+  online: PropTypes.bool,
+  viewport: PropTypes.object,
+  accentSelected: PropTypes.string,
+  children: PropTypes.node
 }
 
 export default HomePage

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { browserHistory } from 'react-router'
 
 class VideosTitleBar extends React.Component {
@@ -40,8 +41,8 @@ class VideosTitleBar extends React.Component {
 }
 
 VideosTitleBar.propTypes = {
-  accents: React.PropTypes.object,
-  accentSelected: React.PropTypes.string
+  accents: PropTypes.object,
+  accentSelected: PropTypes.string
 }
 
 export default VideosTitleBar

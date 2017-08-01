@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const VideoListButton = ({ type, index, total, onClick, online }) => {
   return (
@@ -12,11 +13,11 @@ const VideoListButton = ({ type, index, total, onClick, online }) => {
 }
 
 VideoListButton.propTypes = {
-  type: React.PropTypes.string,
-  index: React.PropTypes.number,
-  total: React.PropTypes.number,
-  onClick: React.PropTypes.func,
-  online: React.PropTypes.bool
+  type: PropTypes.string,
+  index: PropTypes.number,
+  total: PropTypes.number,
+  onClick: PropTypes.func,
+  online: PropTypes.bool
 }
 
 export default VideoListButton

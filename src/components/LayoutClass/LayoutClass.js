@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const LAYOUT_ID = 'mdl-layout'
 
@@ -18,7 +19,7 @@ class LayoutClass extends React.Component {
 }
 
 LayoutClass.propTypes = {
-  name: React.PropTypes.string
+  name: PropTypes.string
 }
 
 export default LayoutClass

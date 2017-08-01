@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Link, browserHistory } from 'react-router'
 import Spinner from '../../../../components/Spinner'
 import DocumentTitle from 'react-document-title'
@@ -140,16 +141,16 @@ class AccentsList extends React.Component {
 }
 
 AccentsList.propTypes = {
-  params: React.PropTypes.object,
-  countries: React.PropTypes.object,
-  accents: React.PropTypes.object,
-  countryAccentIds: React.PropTypes.array,
-  regionAccentIds: React.PropTypes.array,
-  loading: React.PropTypes.bool,
-  countrySelected: React.PropTypes.string,
-  accentSelected: React.PropTypes.string,
-  onSelectCountry: React.PropTypes.func,
-  onSelectAccent: React.PropTypes.func
+  params: PropTypes.object,
+  countries: PropTypes.object,
+  accents: PropTypes.object,
+  countryAccentIds: PropTypes.array,
+  regionAccentIds: PropTypes.array,
+  loading: PropTypes.bool,
+  countrySelected: PropTypes.string,
+  accentSelected: PropTypes.string,
+  onSelectCountry: PropTypes.func,
+  onSelectAccent: PropTypes.func
 }
 
 const AccentsListBody = ({ accentIds, accents, accentSelected, onAccentClick }) => (
@@ -175,10 +176,10 @@ const AccentsListBody = ({ accentIds, accents, accentSelected, onAccentClick }) 
 )
 
 AccentsListBody.propTypes = {
-  accents: React.PropTypes.object,
-  accentIds: React.PropTypes.array,
-  accentSelected: React.PropTypes.string,
-  onAccentClick: React.PropTypes.func
+  accents: PropTypes.object,
+  accentIds: PropTypes.array,
+  accentSelected: PropTypes.string,
+  onAccentClick: PropTypes.func
 }
 
 export default AccentsList

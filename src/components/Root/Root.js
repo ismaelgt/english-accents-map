@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { browserHistory, Router, Route, IndexRoute } from 'react-router'
 import { Provider } from 'react-redux'
 import CoreLayout from '../CoreLayout'
@@ -32,7 +33,7 @@ class Root extends React.Component {
 }
 
 Root.propTypes = {
-  store: React.PropTypes.object.isRequired
+  store: PropTypes.object.isRequired
 }
 
 export default Root

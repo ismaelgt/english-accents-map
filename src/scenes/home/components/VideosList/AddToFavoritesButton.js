@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 class AddToFavouritesButton extends React.Component {
   componentDidMount () {
@@ -31,9 +32,9 @@ class AddToFavouritesButton extends React.Component {
 }
 
 AddToFavouritesButton.propTypes = {
-  id: React.PropTypes.string,
-  favorites: React.PropTypes.array,
-  toggleFavorite: React.PropTypes.func
+  id: PropTypes.string,
+  favorites: PropTypes.array,
+  toggleFavorite: PropTypes.func
 }
 
 export default AddToFavouritesButton

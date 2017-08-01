@@ -109,6 +109,7 @@
     "node-sass": "^3.7.0",
     "normalize.css": "^4.1.1",
     "postcss-loader": "^0.13.0",
+    "prop-types": "^15.5.10",
     "react": "^15.0.0",
     "react-document-title": "^2.0.2",
     "react-dom": "^15.0.0",
