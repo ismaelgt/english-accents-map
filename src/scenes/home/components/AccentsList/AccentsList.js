@@ -1,9 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link, browserHistory } from 'react-router'
+import { Link } from 'react-router-dom'
 import Spinner from '../../../../components/Spinner'
 import DocumentTitle from 'react-document-title'
 import makeDocumentTitle from '../../../../services/documentTitle'
+import { history } from '../../../../services/location'
 import { pushAccentUrl } from './actions'
 import './styles.scss'
 
@@ -19,13 +20,13 @@ class AccentsList extends React.Component {
 
   componentDidUpdate (prevProps) {
     if (!this.props.countrySelected ||
-      prevProps.params.accentId !== this.props.params.accentId) {
+      prevProps.match.params.accentId !== this.props.match.params.accentId) {
       this.loadCountryAndAccentFromUrl()
     }
   }
 
   loadCountryAndAccentFromUrl () {
-    const { params, countries, accents, loading, countrySelected, accentSelected,
+    const { match, countries, accents, loading, countrySelected, accentSelected,
       onSelectCountry, onSelectAccent } = this.props
 
     if (loading) {
@@ -33,25 +34,25 @@ class AccentsList extends React.Component {
     }
 
     // Load country
-    if (params.countryId !== countrySelected) {
-      const country = countries.byId[params.countryId]
+    if (match.params.countryId !== countrySelected) {
+      const country = countries.byId[match.params.countryId]
       if (!country) {
-        browserHistory.push('/') // TODO: 404?
+        history.push('/') // TODO: 404?
         return
       }
-      onSelectCountry(params.countryId)
+      onSelectCountry(match.params.countryId)
     }
 
     // Load accent
-    if (params.accentId !== accentSelected) {
-      if (params.accentId) {
-        const accent = accents.byId[params.accentId]
+    if (match.params.accentId !== accentSelected) {
+      if (match.params.accentId) {
+        const accent = accents.byId[match.params.accentId]
         if (!accent) {
-          browserHistory.push('/' + countrySelected + '/') // TODO: 404?
+          history.push('/' + countrySelected + '/') // TODO: 404?
           return
         }
       }
-      onSelectAccent(params.accentId || null)
+      onSelectAccent(match.params.accentId || null)
     }
   }
 
@@ -141,7 +142,7 @@ class AccentsList extends React.Component {
 }
 
 AccentsList.propTypes = {
-  params: PropTypes.object,
+  match: PropTypes.object,
   countries: PropTypes.object,
   accents: PropTypes.object,
   countryAccentIds: PropTypes.array,

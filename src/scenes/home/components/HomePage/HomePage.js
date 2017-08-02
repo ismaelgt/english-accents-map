@@ -1,8 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Route, Switch } from 'react-router-dom'
 import Map from '../Map'
-import VideosList from '../VideosList'
 import FavoritesList from '../FavoritesList'
+import CountriesList from '../CountriesList'
+import AccentsList from '../AccentsList'
+import VideosList from '../VideosList'
 import LayoutClass from '../../../../components/LayoutClass'
 import './styles.scss'
 
@@ -23,7 +26,16 @@ class HomePage extends React.Component {
   }
 
   render () {
-    const { online, viewport, children, accentSelected } = this.props
+    const { online, viewport, accentSelected } = this.props
+
+    const router = (
+      <Switch>
+        <Route path='/favorites' component={FavoritesList} />
+        <Route path='/:countryId/:accentId' component={AccentsList} />
+        <Route path='/:countryId' component={AccentsList} />
+        <Route exact path='/' component={CountriesList} />
+      </Switch>
+    )
 
     const mobileView = (
       <div ref='tabs' className='eam-tabs mdl-tabs mdl-js-tabs mdl-js-ripple-effect'>
@@ -51,7 +63,7 @@ class HomePage extends React.Component {
         <div id='list'
           className={'mdl-tabs__panel' + (!online ? ' is-active' : '')}>
           <div className='eam-card-wrapper'>
-            { children }
+            { router }
           </div>
         </div>
         <div id='favorites'
@@ -67,7 +79,7 @@ class HomePage extends React.Component {
       <div>
         { online ? <Map /> : null }
         <div className='eam-card-wrapper'>
-          { children }
+          { router }
         </div>
       </div>
     )
@@ -84,8 +96,7 @@ class HomePage extends React.Component {
 HomePage.propTypes = {
   online: PropTypes.bool,
   viewport: PropTypes.object,
-  accentSelected: PropTypes.string,
-  children: PropTypes.node
+  accentSelected: PropTypes.string
 }
 
 export default HomePage

@@ -1,7 +1,9 @@
-import { browserHistory } from 'react-router'
+import createBrowserHistory from 'history/createBrowserHistory'
 import { updateLocation } from './actions'
 
+export const history = createBrowserHistory()
+
 export default function init (store) {
-  // To unsubscribe, invoke `store.unsubscribeHistory()` anytime
-  store.unsubscribeHistory = browserHistory.listen(updateLocation(store))
+  updateLocation(store)(history.location)
+  store.unsubscribeHistory = history.listen(updateLocation(store))
 }

@@ -1,6 +1,6 @@
 import firebase from 'firebase/app'
 import 'firebase/database'
-import { browserHistory } from 'react-router'
+import { history } from '../../../../services/location'
 
 export const REQUEST_ACCENTS = 'REQUEST_ACCENTS'
 export const RECEIVE_ACCENTS = 'RECEIVE_ACCENTS'
@@ -37,5 +37,5 @@ export const pushAccentUrl = (id, accents) => {
   const accentUrl = '/' + accents.byId[id].country + '/' + id + '/'
   const videos = accents.byId[id].videos
   const url = videos ? accentUrl + '#' + videos[0] : accentUrl
-  browserHistory.push(url)
+  history.push(url)
 }

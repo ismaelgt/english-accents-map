@@ -2,7 +2,7 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import { browserHistory } from 'react-router'
+import { history } from '../../../../services/location'
 import GoogleApiComponent from 'google-maps-react/dist/GoogleApiComponent'
 import { GOOGLE_MAPS_API_KEY } from '../../../../config'
 import GOOGLE_MAPS_CONFIG from './config'
@@ -104,7 +104,7 @@ class Map extends React.Component {
       })
       marker.addListener('click', () => {
         if (this.state.accentSelected !== id) {
-          browserHistory.push('/' + accent.country + '/' + id + '/#' + accent.videos[0])
+          history.push('/' + accent.country + '/' + id + '/#' + accent.videos[0])
         }
       })
       marker.setMap(this.map)

@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { browserHistory } from 'react-router'
+import { history } from '../../../../services/location'
 
 class VideosTitleBar extends React.Component {
   constructor (props) {
@@ -12,7 +12,7 @@ class VideosTitleBar extends React.Component {
     const { accents, accentSelected } = this.props
 
     evt.stopPropagation()
-    browserHistory.push('/' + accents.byId[accentSelected].country + '/')
+    history.push('/' + accents.byId[accentSelected].country + '/')
   }
 
   render () {

@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { browserHistory } from 'react-router'
+import { history } from '../../../../services/location'
 import { sendPlayVideoEvent } from '../../../../services/analytics'
 import YouTubePlayer from 'youtube-player'
 import VideosTitleBar from './VideosTitleBarContainer'
@@ -113,7 +113,7 @@ class VideosList extends React.Component {
 
   closeVideo (evt) {
     evt.stopPropagation()
-    browserHistory.push('/' + this.props.countrySelected + '/')
+    history.push('/' + this.props.countrySelected + '/')
   }
 
   closeVideoIfLargeScreen (evt) {
@@ -125,7 +125,7 @@ class VideosList extends React.Component {
   updateUrlHash (videoId = null) {
     const hash = videoId ? '#' + videoId : ''
     if (this.props.location.hash !== hash) {
-      browserHistory.push(this.props.location.pathname + hash)
+      history.push(this.props.location.pathname + hash)
     }
   }
 

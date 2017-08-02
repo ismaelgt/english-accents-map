@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link, IndexLink } from 'react-router'
+import { Route, Switch, Link, NavLink } from 'react-router-dom'
+import HomePage from '../../scenes/home/components/HomePage'
+import SuggestPage from '../../scenes/suggest/components/SuggestPage'
 import DocumentTitle from 'react-document-title'
 import makeDocumentTitle from '../../services/documentTitle'
 import { SNACKBAR_ELEMENT_ID } from '../../services/snackbar'
@@ -41,17 +43,17 @@ class CoreLayout extends React.Component {
           </div>
           <nav className='mdl-navigation'>
             <div>
-              <IndexLink to='/' className='mdl-navigation__link' activeClassName='is-active'>
+              <NavLink to='/' className='mdl-navigation__link' activeClassName='is-active' exact>
                 <i className='material-icons mdl-list__item-icon'>home</i> Home
-              </IndexLink>
+              </NavLink>
               { !this.props.smallScreen ? (
-                <Link to='/favorites/' className='mdl-navigation__link' activeClassName='is-active'>
+                <NavLink to='/favorites/' className='mdl-navigation__link' activeClassName='is-active'>
                   <i className='material-icons mdl-list__item-icon'>favorite</i> My favorites
-                </Link>
+                </NavLink>
               ) : null }
-              <Link to='/suggest/' className='mdl-navigation__link' activeClassName='is-active'>
+              <NavLink to='/suggest/' className='mdl-navigation__link' activeClassName='is-active'>
                 <i className='material-icons mdl-list__item-icon'>add_location</i> Make a suggestion
-              </Link>
+              </NavLink>
             </div>
             <div>
               <a href='https://github.com/ismaelgt/english-accents-map' target='_blank'
@@ -62,7 +64,10 @@ class CoreLayout extends React.Component {
           </nav>
         </div>
         <main className='mdl-layout__content'>
-          {this.props.children}
+          <Switch>
+            <Route path='/suggest/' component={SuggestPage} />
+            <Route path='/' component={HomePage} />
+          </Switch>
         </main>
         <div id={SNACKBAR_ELEMENT_ID} className='mdl-js-snackbar mdl-snackbar'>
           <div className='mdl-snackbar__text' />
@@ -75,8 +80,7 @@ class CoreLayout extends React.Component {
 
 CoreLayout.propTypes = {
   smallScreen: PropTypes.bool,
-  location: PropTypes.object,
-  children: PropTypes.node
+  location: PropTypes.object
 }
 
 export default CoreLayout
