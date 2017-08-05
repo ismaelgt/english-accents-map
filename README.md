@@ -1,4 +1,8 @@
-# English Accents Map [![Build Status](https://travis-ci.org/ismaelgt/english-accents-map.svg?branch=master)](https://travis-ci.org/ismaelgt/english-accents-map)
+[<img src="https://www.englishaccentsmap.com/images/logo.svg" width="150">](http://www.englishaccentsmap.com/)
+
+# English Accents Map
+
+[![Build Status](https://travis-ci.org/ismaelgt/english-accents-map.svg?branch=master)](https://travis-ci.org/ismaelgt/english-accents-map)
 
 A progressive web app (PWA) built on [React](https://facebook.github.io/react/),
 [Redux](http://redux.js.org/) and [Firebase](https://firebase.google.com/).
