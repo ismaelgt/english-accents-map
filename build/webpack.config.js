@@ -57,18 +57,6 @@ webpackConfig.plugins = [
     minify   : {
       collapseWhitespace : true
     }
-  }),
-  new SWPrecacheWebpackPlugin({
-    cacheId: 'english-accents-map',
-    filename: 'sw.js',
-    verbose: true,
-    runtimeCaching: [{
-      urlPattern: /^https:\/\/fonts\.googleapis\.com/,
-      handler: 'cacheFirst'
-    }, {
-      urlPattern: /\/images\//,
-      handler: 'cacheFirst'
-    }]
   })
 ]
 
@@ -93,11 +81,23 @@ if (__DEV__) {
   )
 }
 
-// Don't split bundles during testing, since we only want import one bundle
 if (!__TEST__) {
   webpackConfig.plugins.push(
+    // Don't split bundles during testing, since we only want import one bundle
     new webpack.optimize.CommonsChunkPlugin({
       names : ['vendor']
+    }),
+    new SWPrecacheWebpackPlugin({
+      cacheId: 'english-accents-map',
+      filename: 'sw.js',
+      verbose: true,
+      runtimeCaching: [{
+        urlPattern: /^https:\/\/fonts\.googleapis\.com/,
+        handler: 'cacheFirst'
+      }, {
+        urlPattern: /\/images\//,
+        handler: 'cacheFirst'
+      }]
     })
   )
 }
