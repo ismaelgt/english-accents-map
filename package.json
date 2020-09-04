@@ -107,7 +107,7 @@
     "ip": "^1.1.2",
     "json-loader": "^0.5.7",
     "material-design-lite": "^1.2.1",
-    "node-sass": "^3.7.0",
+    "node-sass": "^4.13.1",
     "normalize.css": "^4.1.1",
     "postcss-loader": "^0.13.0",
     "prop-types": "^15.6.0",
